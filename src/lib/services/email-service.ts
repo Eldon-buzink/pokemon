@@ -109,6 +109,16 @@ export class EmailService {
    * Get top 5 movers based on profit/loss
    */
   private async getTopMovers(periodDays: number): Promise<TopMover[]> {
+    // Define types for joined data
+    interface MoverWithJoins {
+      card_id: string
+      spread_after_fees: number
+      psa10_delta: number
+      raw_delta: number
+      confidence: string
+      cards: { name: string }
+      card_assets: { set_name: string; image_url_small: string }
+    }
     const { data: movers, error } = await supabaseAdmin
       .from('facts_historical')
       .select(`
@@ -122,7 +132,7 @@ export class EmailService {
       `)
       .eq('period_days', periodDays)
       .order('spread_after_fees', { ascending: false })
-      .limit(5)
+      .limit(5) as { data: MoverWithJoins[] | null; error: Error | null }
 
     if (error) {
       throw new Error(`Failed to get top movers: ${error.message}`)
@@ -130,13 +140,13 @@ export class EmailService {
 
     return movers?.map(mover => ({
       card_id: mover.card_id,
-      name: (mover.cards as any)?.name || '',
-      set_name: (mover.card_assets as any)?.set_name || '',
+      name: mover.cards?.name || '',
+      set_name: mover.card_assets?.set_name || '',
       spread_after_fees: mover.spread_after_fees,
       psa10_delta: mover.psa10_delta,
       raw_delta: mover.raw_delta,
       confidence: mover.confidence,
-      image_url_small: (mover.card_assets as any)?.image_url_small || ''
+      image_url_small: mover.card_assets?.image_url_small || ''
     })) || []
   }
 
