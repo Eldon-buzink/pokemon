@@ -2,6 +2,8 @@
 
 A Next.js application for tracking Pokémon card price movements and identifying grading opportunities.
 
+<!-- Force deployment update -->
+
 ## Features
 
 - **5-Day Movers**: Track cards with significant price movements
