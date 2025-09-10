@@ -29,7 +29,7 @@ export function Filters({ sets, rarities, currentFilters }: FiltersProps) {
   const searchParams = useSearchParams()
   const [filters, setFilters] = useState(currentFilters)
 
-  const updateFilter = (key: string, value: any) => {
+  const updateFilter = (key: string, value: string | number | boolean) => {
     const newFilters = { ...filters, [key]: value }
     setFilters(newFilters)
     

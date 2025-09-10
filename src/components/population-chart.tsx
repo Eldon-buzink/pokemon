@@ -5,7 +5,7 @@ import { type PopulationDataPoint } from '@/lib/services/chart-data'
 
 interface PopulationChartProps {
   data: PopulationDataPoint[]
-  cardName: string
+  cardName?: string
 }
 
 export function PopulationChart({ data, cardName }: PopulationChartProps) {
@@ -25,7 +25,7 @@ export function PopulationChart({ data, cardName }: PopulationChartProps) {
     }
     acc[date][point.grade] = point.count
     return acc
-  }, {} as Record<string, any>)
+  }, {} as Record<string, Record<string, number>>)
 
   const chartData = Object.values(groupedData).slice(-14) // Show last 14 days
 

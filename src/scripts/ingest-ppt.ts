@@ -125,7 +125,7 @@ class PPTIngestionService {
   /**
    * Save raw prices to database
    */
-  private async saveRawPrices(cardId: string, prices: any[]): Promise<void> {
+  private async saveRawPrices(cardId: string, prices: Array<{ date: string; price: number; condition: string }>): Promise<void> {
     if (prices.length === 0) return
 
     const priceRecords = prices.map(price => ({
@@ -148,7 +148,7 @@ class PPTIngestionService {
   /**
    * Save graded sales to database
    */
-  private async saveGradedSales(cardId: string, sales: any[]): Promise<void> {
+  private async saveGradedSales(cardId: string, sales: Array<{ grade: string; sold_date: string; price: number }>): Promise<void> {
     if (sales.length === 0) return
 
     const saleRecords = sales.map(sale => ({
@@ -172,7 +172,7 @@ class PPTIngestionService {
   /**
    * Save population data to database
    */
-  private async savePopulationData(cardId: string, population: any[]): Promise<void> {
+  private async savePopulationData(cardId: string, population: Array<{ grade: string; count: number }>): Promise<void> {
     if (population.length === 0) return
 
     const popRecords = population.map(pop => ({

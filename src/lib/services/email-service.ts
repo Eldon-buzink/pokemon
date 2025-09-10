@@ -8,7 +8,7 @@ import { supabaseAdmin } from '@/lib/supabase'
 interface EmailSubscription {
   id: number
   email: string
-  filters: Record<string, any>
+  filters: Record<string, string | number | boolean>
   is_active: boolean
   unsubscribe_token: string
 }
@@ -24,12 +24,12 @@ interface TopMover {
   image_url_small: string
 }
 
-interface MarketUpdateData {
-  topMovers: TopMover[]
-  period: number
-  totalCards: number
-  updateDate: string
-}
+// interface MarketUpdateData {
+//   topMovers: TopMover[]
+//   period: number
+//   totalCards: number
+//   updateDate: string
+// }
 
 export class EmailService {
   /**
@@ -166,7 +166,7 @@ export class EmailService {
   /**
    * Generate HTML email content
    */
-  private generateEmailHTML(topMovers: TopMover[], filters: Record<string, any>): string {
+  private generateEmailHTML(topMovers: TopMover[], filters: Record<string, string | number | boolean>): string {
     const period = filters.period || 7
     const periodText = period === 7 ? 'week' : `${period} days`
     
@@ -250,7 +250,7 @@ export class EmailService {
   /**
    * Subscribe user to weekly updates
    */
-  async subscribe(email: string, filters: Record<string, any>): Promise<{ success: boolean; message: string }> {
+  async subscribe(email: string, filters: Record<string, string | number | boolean>): Promise<{ success: boolean; message: string }> {
     try {
       const { data, error } = await supabaseAdmin
         .from('email_subscriptions')

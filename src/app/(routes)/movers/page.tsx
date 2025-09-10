@@ -72,7 +72,7 @@ export default async function MoversPage({
                   </button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
-                  We'll send you the top 5 profit/loss movers every Monday. Unsubscribe anytime.
+                  We&apos;ll send you the top 5 profit/loss movers every Monday. Unsubscribe anytime.
                 </p>
               </div>
             </div>

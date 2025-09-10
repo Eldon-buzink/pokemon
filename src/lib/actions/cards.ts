@@ -100,7 +100,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
     const psa10DataMap = await psa10Service.getPSA10DataBatch(limitedCardBatch)
     
     for (const card of cards) {
-      const assets = card.card_assets as any
+      const assets = card.card_assets as { image_url_small?: string; image_url_large?: string } | null
       
       // Get the most recent daily facts for this card
       const { data: recentFacts, error: factsError } = await supabase
@@ -123,7 +123,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       const facts = recentFacts[0]
       
       // Get 5-day facts for delta calculations
-      const { data: facts5d, error: facts5dError } = await supabase
+      const { error: facts5dError } = await supabase
         .from('facts_5d')
         .select('*')
         .eq('card_id', card.card_id)
@@ -150,7 +150,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         try {
           const pptClient = createPPTClient()
           cardWithHistory = await pptClient.getCardWithHistory(card.card_id)
-          priceHistory = cardWithHistory.priceHistory?.conditions?.Near_Mint?.history || []
+          // priceHistory = cardWithHistory.priceHistory?.conditions?.Near_Mint?.history || []
           // Add delay to avoid rate limits
           await new Promise(resolve => setTimeout(resolve, 300))
         } catch (error) {

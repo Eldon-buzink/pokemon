@@ -154,9 +154,9 @@ interface PPTCard {
       monthlyTotal: number
     }
     priceHistory: {
-      psa8?: { [date: string]: any }
-      psa9?: { [date: string]: any }
-      psa10?: { [date: string]: any }
+      psa8?: { [date: string]: { average: number; count: number } }
+      psa9?: { [date: string]: { average: number; count: number } }
+      psa10?: { [date: string]: { average: number; count: number } }
     }
   }
 }
