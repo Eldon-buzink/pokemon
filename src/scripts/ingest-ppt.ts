@@ -4,9 +4,20 @@
  * Manages quota usage and prioritizes high-volume cards
  */
 
-import { createPPTClient } from '@/lib/sources/ppt'
+import { createPPTClient, type PPTPriceData } from '@/lib/sources/ppt'
 import { supabaseAdmin } from '@/lib/supabase'
 import { pptQuotaManager } from '@/lib/services/quota-manager'
+
+// Normalize PPTPriceData to the format expected by saveRawPrices
+function normalizePPTPrices(rows: PPTPriceData[]): { date: string; price: number; condition: string }[] {
+  return rows
+    .map((r) => ({
+      date: r.date,
+      price: r.median_price,
+      condition: 'Near Mint' // PPT API provides raw prices which are typically Near Mint condition
+    }))
+    .filter((x) => typeof x.date === 'string' && typeof x.price === 'number')
+}
 
 interface IngestConfig {
   batchSize: number
@@ -102,7 +113,7 @@ class PPTIngestionService {
     try {
       // Get raw prices
       const rawPrices = await this.pptClient.getRawPrices(cardId, 7)
-      await this.saveRawPrices(cardId, rawPrices)
+      await this.saveRawPrices(cardId, normalizePPTPrices(rawPrices))
 
       // Get graded sales for PSA 9 and 10
       const [psa9Sales, psa10Sales] = await Promise.all([
