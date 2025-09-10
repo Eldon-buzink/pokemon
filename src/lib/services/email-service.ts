@@ -130,13 +130,13 @@ export class EmailService {
 
     return movers?.map(mover => ({
       card_id: mover.card_id,
-      name: mover.cards.name,
-      set_name: mover.card_assets.set_name,
+      name: (mover.cards as any)?.name || '',
+      set_name: (mover.card_assets as any)?.set_name || '',
       spread_after_fees: mover.spread_after_fees,
       psa10_delta: mover.psa10_delta,
       raw_delta: mover.raw_delta,
       confidence: mover.confidence,
-      image_url_small: mover.card_assets.image_url_small
+      image_url_small: (mover.card_assets as any)?.image_url_small || ''
     })) || []
   }
 
