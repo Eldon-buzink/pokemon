@@ -1,0 +1,22 @@
+/
+  /src/app
+    /(routes)/movers
+    /card/[id]
+  /src/components
+  /src/lib
+    /sources/ppt.ts
+    /compute/{aggregates,score}.ts
+    /fees/model.ts
+  /src/scripts
+    ingest-ppt.ts
+    compute-daily.ts
+    compute-5d.ts
+  /src/tests
+  .env.example
+  README.md
+  product.md
+  design-guidelines.md
+  debug.md
+  package.json
+  next.config.ts
+  tsconfig.json

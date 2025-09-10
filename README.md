@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokémon Card Movers
+
+A Next.js application for tracking Pokémon card price movements and identifying grading opportunities.
+
+## Features
+
+- **5-Day Movers**: Track cards with significant price movements
+- **Confidence Scoring**: High/Speculative/Noisy ratings based on data quality
+- **PSA10 Analysis**: Probability calculations and spread analysis
+- **Fee Modeling**: Comprehensive cost analysis for grading decisions
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend**: Supabase (PostgreSQL + Auth + Storage)
+- **Data Sources**: Pokemon Price Tracker API
+- **Charts**: Recharts
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── (routes)/
+│   │   └── movers/          # 5-day movers leaderboard
+│   ├── card/[id]/           # Individual card detail pages
+│   └── layout.tsx           # Root layout with navigation
+├── components/
+│   └── navigation.tsx       # Main navigation component
+├── lib/
+│   ├── sources/
+│   │   └── ppt.ts          # Pokemon Price Tracker API client
+│   ├── compute/
+│   │   ├── aggregates.ts   # Price aggregation and outlier detection
+│   │   └── score.ts        # Ranking and confidence scoring
+│   ├── fees/
+│   │   └── model.ts        # PSA grading fee structure
+│   └── supabase.ts         # Supabase client configuration
+└── scripts/                # Data ingestion and computation scripts
+```
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Set up environment variables**:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your Supabase and PPT API credentials.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. **Open [http://localhost:3000](http://localhost:3000)** in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+- `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase service role key
+- `PPT_API_KEY`: Your Pokemon Price Tracker API key
+- `PPT_BASE_URL`: Pokemon Price Tracker API base URL
 
-To learn more about Next.js, take a look at the following resources:
+## Database Schema
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application uses a comprehensive schema for tracking:
+- Card catalog and assets
+- Raw and graded price data
+- PSA population data
+- Computed daily and 5-day aggregates
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See `schema.sql` in the project root for the complete database structure.
 
-## Deploy on Vercel
+## Data Flow
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Ingest**: Pull data from PPT API into staging tables
+2. **Normalize**: Process into canonical cards and price records
+3. **Compute**: Calculate daily aggregates and 5-day deltas
+4. **Score**: Apply ranking algorithm and confidence scoring
+5. **Serve**: Display results via typed server queries
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development
+
+- **Linting**: `npm run lint`
+- **Type checking**: `npm run type-check`
+- **Build**: `npm run build`
+
+## Next Steps
+
+1. Set up Supabase project and run database migrations
+2. Implement PPT API integration
+3. Build data ingestion scripts
+4. Add chart components with Recharts
+5. Implement filtering and search functionality
