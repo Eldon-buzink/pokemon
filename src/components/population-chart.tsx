@@ -25,7 +25,7 @@ export function PopulationChart({ data }: PopulationChartProps) {
     }
     acc[date][point.grade] = point.count
     return acc
-  }, {} as Record<string, Record<string, number>>)
+  }, {} as Record<string, Record<string, string | number>>)
 
   const chartData = Object.values(groupedData).slice(-14) // Show last 14 days
 
