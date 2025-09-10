@@ -2,6 +2,10 @@ import { getCards, getSets, getRarities, type FilterOptions } from '@/lib/action
 import { CardTable } from '@/components/card-table'
 import { Filters } from '@/components/filters'
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const runtime = 'nodejs';
+
 export default async function MoversPage({
   searchParams,
 }: {

@@ -3,9 +3,10 @@
  * Fetch card data from Supabase for the UI
  */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use server'
 
-import { supabase } from '@/lib/supabase'
+import { getServerSupabase } from '@/lib/supabase/server'
 import { createPSA10Service } from '@/lib/services/psa10-service'
 import { createPPTClient } from '@/lib/sources/ppt'
 
@@ -56,9 +57,22 @@ export interface FilterOptions {
   gradingRecommendation: string
 }
 
+interface CardWithAssets {
+  card_id: string
+  name: string
+  number: string
+  rarity: string
+  card_assets: {
+    set_name: string
+    image_url_small: string
+    image_url_large: string
+  }
+}
+
 export async function getCards(filters: FilterOptions): Promise<CardData[]> {
   try {
     // Get cards with real price data from facts_daily and facts_5d
+    const supabase = getServerSupabase()
     const { data: cards, error } = await supabase
       .from('cards')
       .select(`
@@ -72,6 +86,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
           image_url_large
         )
       `)
+      .order('name')
       .limit(50)
 
     if (error) {
@@ -89,7 +104,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
     const psa10Service = createPSA10Service()
     
     // Prepare batch data for PSA10 service
-    const cardBatch = cards.map(card => ({
+    const cardBatch = (cards || []).map((card: CardWithAssets) => ({
       cardId: card.card_id,
       cardName: card.name
     }))
@@ -102,7 +117,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
     // Track cards with insufficient PSA 10 history for summary
     let cardsWithInsufficientHistory = 0
     
-    for (const card of cards) {
+    for (const card of (cards as CardWithAssets[])) {
       const assets = card.card_assets as { image_url_small?: string; image_url_large?: string; set_name?: string } | null
       
       // Get the most recent daily facts for this card
@@ -138,7 +153,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       
       // Calculate spread after fees (PSA 10 price - raw price - grading fees)
       const gradingFees = 25 // $25 base grading fee
-      const rawPrice = Number(facts.raw_median) || 0
+      const rawPrice = Number((facts as any)?.raw_median) || 0
       
       // Get PSA 10 price from batch data (much faster)
       const psa10Data = psa10DataMap.get(card.card_id)
@@ -148,7 +163,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       
       // Get card data with history for real calculations (only for first 5 cards to avoid rate limits)
       let cardWithHistory = null
-      if (cards.indexOf(card) < 10) {
+      if ((cards as CardWithAssets[]).indexOf(card) < 10) {
         try {
           const pptClient = createPPTClient()
           cardWithHistory = await pptClient.getCardWithHistory(card.card_id)
@@ -160,7 +175,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       }
       
       // Calculate confidence based on real sales volume from PPT API
-      let totalSales = (facts.raw_n || 0)
+      let totalSales = ((facts as any)?.raw_n || 0)
       let confidence: 'High' | 'Speculative' | 'Noisy' = 'Noisy'
       
       if (cardWithHistory) {
@@ -177,13 +192,13 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         } catch (error) {
           console.error(`Error calculating confidence for ${card.card_id}:`, error)
           // Use database data only if API fails
-          totalSales = (facts.raw_n || 0) + (facts.psa10_n || 0)
+          totalSales = ((facts as any)?.raw_n || 0) + ((facts as any)?.psa10_n || 0)
           if (totalSales >= 10) confidence = 'High'
           else if (totalSales >= 5) confidence = 'Speculative'
         }
       } else {
         // Use database data only if API fails
-        totalSales = (facts.raw_n || 0) + (facts.psa10_n || 0)
+        totalSales = ((facts as any)?.raw_n || 0) + ((facts as any)?.psa10_n || 0)
         if (totalSales >= 10) confidence = 'High'
         else if (totalSales >= 5) confidence = 'Speculative'
       }
@@ -475,6 +490,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
 
 export async function getSets(): Promise<string[]> {
   try {
+    const supabase = getServerSupabase()
     const { data, error } = await supabase
       .from('card_assets')
       .select('set_name')
@@ -484,7 +500,7 @@ export async function getSets(): Promise<string[]> {
     }
 
     // Get unique set names
-    const uniqueSets = [...new Set(data?.map(item => item.set_name) || [])]
+    const uniqueSets = [...new Set((data as any[])?.map((item: any) => item.set_name) || [])]
     return ['All Sets', ...uniqueSets.sort()]
   } catch (error) {
     console.error('Error fetching sets:', error)
@@ -494,6 +510,7 @@ export async function getSets(): Promise<string[]> {
 
 export async function getRarities(): Promise<string[]> {
   try {
+    const supabase = getServerSupabase()
     const { data, error } = await supabase
       .from('cards')
       .select('rarity')
@@ -503,7 +520,7 @@ export async function getRarities(): Promise<string[]> {
     }
 
     // Get unique rarities
-    const uniqueRarities = [...new Set(data?.map(item => item.rarity).filter(Boolean) || [])]
+    const uniqueRarities = [...new Set((data as any[])?.map((item: any) => item.rarity).filter(Boolean) || [])]
     return ['All Rarities', ...uniqueRarities.sort()]
   } catch (error) {
     console.error('Error fetching rarities:', error)
