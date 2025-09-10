@@ -65,7 +65,11 @@ export class PSA10Service {
       for (const card of batch) {
         try {
           const data = await this.getPSA10Data(card.cardId, card.cardName);
-          results.set(card.cardId, data);
+          if (data) {
+            results.set(card.cardId, data);
+          } else {
+            results.set(card.cardId, this.getPlaceholderPSA10Data(card.cardName));
+          }
         } catch (error) {
           console.error(`Error getting PSA 10 data for ${card.cardId}:`, error);
           results.set(card.cardId, this.getPlaceholderPSA10Data(card.cardName));
