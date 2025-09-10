@@ -8,7 +8,7 @@ interface PopulationChartProps {
   cardName?: string
 }
 
-export function PopulationChart({ data, cardName }: PopulationChartProps) {
+export function PopulationChart({ data }: PopulationChartProps) {
   if (!data || data.length === 0) {
     return (
       <div className="h-64 bg-muted rounded-xl flex items-center justify-center">

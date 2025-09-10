@@ -145,7 +145,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       
       // Get card data with history for real calculations (only for first 5 cards to avoid rate limits)
       let cardWithHistory = null
-      let priceHistory = []
+      const priceHistory = []
       if (cards.indexOf(card) < 10) {
         try {
           const pptClient = createPPTClient()

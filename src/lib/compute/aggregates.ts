@@ -66,7 +66,7 @@ export function calculateDelta5d(currentPrice: number, price5DaysAgo: number): n
 export function calculateDailyAggregates(
   rawPrices: PriceData[],
   gradedSales: SalesData[],
-  grade: number
+  _grade: number
 ): {
   rawMedian: number
   rawN: number

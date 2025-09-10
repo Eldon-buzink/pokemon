@@ -48,7 +48,7 @@ export class ImageMirrorService {
       const largeBuffer = await largeResponse.arrayBuffer()
 
       // Upload to Supabase Storage
-      const { data: smallData, error: smallError } = await supabaseAdmin.storage
+      const { error: smallError } = await supabaseAdmin.storage
         .from(this.config.bucketName)
         .upload(cardImage.local_small_path, smallBuffer, {
           contentType: 'image/png',
@@ -59,7 +59,7 @@ export class ImageMirrorService {
         throw new Error(`Failed to upload small image: ${smallError.message}`)
       }
 
-      const { data: largeData, error: largeError } = await supabaseAdmin.storage
+      const { error: largeError } = await supabaseAdmin.storage
         .from(this.config.bucketName)
         .upload(cardImage.local_large_path, largeBuffer, {
           contentType: 'image/png',

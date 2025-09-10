@@ -252,7 +252,7 @@ export class EmailService {
    */
   async subscribe(email: string, filters: Record<string, string | number | boolean>): Promise<{ success: boolean; message: string }> {
     try {
-      const { data, error } = await supabaseAdmin
+      const { error } = await supabaseAdmin
         .from('email_subscriptions')
         .upsert({
           email,

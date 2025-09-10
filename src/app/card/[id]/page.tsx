@@ -5,7 +5,7 @@ interface CardDetailPageProps {
 }
 
 export default async function CardDetailPage({ params }: CardDetailPageProps) {
-  const { id: _id } = await params
+  await params
 
   return (
     <div className="container mx-auto px-4 py-8">

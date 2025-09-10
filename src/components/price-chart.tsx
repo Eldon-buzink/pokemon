@@ -8,7 +8,7 @@ interface PriceChartProps {
   cardName: string
 }
 
-export function PriceChart({ data, cardName }: PriceChartProps) {
+export function PriceChart({ data }: PriceChartProps) {
   if (!data || data.length === 0) {
     return (
       <div className="h-64 bg-muted rounded-xl flex items-center justify-center">

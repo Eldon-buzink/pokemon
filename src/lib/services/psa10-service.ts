@@ -25,7 +25,7 @@ export class PSA10Service {
   /**
    * Get PSA 10 data for a card
    */
-  async getPSA10Data(cardId: string, cardName: string): Promise<PSA10Data | null> {
+  async getPSA10Data(cardId: string, _cardName: string): Promise<PSA10Data | null> {
     try {
       // Get card data with PSA information from PPT API
       const card = await this.pptClient.getCardWithHistory(cardId);

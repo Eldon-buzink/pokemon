@@ -38,7 +38,7 @@ export async function getPriceHistory(cardId: string): Promise<PriceDataPoint[]>
     }
 
     // Get PSA 10 prices from facts_daily
-    const { data: facts, error: factsError } = await supabase
+    const { error: factsError } = await supabase
       .from('facts_daily')
       .select('psa10_median, date')
       .eq('card_id', cardId)
@@ -88,7 +88,7 @@ export async function getPriceHistory(cardId: string): Promise<PriceDataPoint[]>
 /**
  * Get population data for a card
  */
-export async function getPopulationHistory(cardId: string): Promise<PopulationDataPoint[]> {
+export async function getPopulationHistory(_cardId: string): Promise<PopulationDataPoint[]> {
   try {
     // For now, generate sample population data since we don't have real PSA population data
     const populationData: PopulationDataPoint[] = []
