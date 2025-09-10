@@ -103,7 +103,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
     let cardsWithInsufficientHistory = 0
     
     for (const card of cards) {
-      const assets = card.card_assets as { image_url_small?: string; image_url_large?: string } | null
+      const assets = card.card_assets as { image_url_small?: string; image_url_large?: string; set_name?: string } | null
       
       // Get the most recent daily facts for this card
       const { data: recentFacts, error: factsError } = await supabase
@@ -338,11 +338,11 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       cardData.push({
         card_id: card.card_id,
         name: card.name,
-        set_name: assets.set_name,
+        set_name: assets?.set_name || '',
         number: card.number,
         rarity: card.rarity,
-        image_url_small: assets.image_url_small,
-        image_url_large: assets.image_url_large,
+        image_url_small: assets?.image_url_small || '',
+        image_url_large: assets?.image_url_large || '',
         raw_price: rawPrice,
         psa10_price: psa10Price,
         spread_after_fees: spreadAfterFees,
