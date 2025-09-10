@@ -152,7 +152,6 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         try {
           const pptClient = createPPTClient()
           cardWithHistory = await pptClient.getCardWithHistory(card.card_id)
-          // priceHistory = cardWithHistory.priceHistory?.conditions?.Near_Mint?.history || []
           // Add delay to avoid rate limits
           await new Promise(resolve => setTimeout(resolve, 300))
         } catch (error) {

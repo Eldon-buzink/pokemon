@@ -50,7 +50,7 @@ export class EBayClient {
   /**
    * Get recent PSA 10 sold listings for a card
    */
-  async getPSA10SoldListings(cardId: string, cardName: string): Promise<EBaySoldListing[]> {
+  async getPSA10SoldListings(_cardId: string, _cardName: string): Promise<EBaySoldListing[]> {
     try {
       // TODO: Implement actual eBay API call
       // For now, return empty array
@@ -64,7 +64,7 @@ export class EBayClient {
   /**
    * Search for PSA 10 listings by card name
    */
-  async searchPSA10Listings(cardName: string, set?: string): Promise<EBaySoldListing[]> {
+  async searchPSA10Listings(_cardName: string, _set?: string): Promise<EBaySoldListing[]> {
     try {
       // TODO: Implement actual eBay API call
       // For now, return empty array

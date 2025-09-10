@@ -261,7 +261,7 @@ async function computeMockDailyFacts() {
       const nPsa10Sales = psa10Sales?.length || 0
       
       // Calculate confidence score based on sales volume
-      const confidenceScore = Math.min(1, (nRawSales + nPsa10Sales) / 20) // Max confidence at 20+ sales
+      const _confidenceScore = Math.min(1, (nRawSales + nPsa10Sales) / 20) // Max confidence at 20+ sales
       
       // Insert daily facts
       const { error } = await supabase

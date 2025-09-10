@@ -51,22 +51,22 @@ export interface DataSourceAdapter extends PriceDataAdapter, PopulationDataAdapt
 export class CardmarketAdapter implements DataSourceAdapter {
   readonly sourceName = 'cardmarket'
   
-  async getRawPrices(cardId: string, days: number): Promise<PriceData[]> {
+  async getRawPrices(_cardId: string, _days: number): Promise<PriceData[]> {
     // TODO: Implement Cardmarket API integration
     return []
   }
   
-  async getGradedSales(cardId: string, grade: number, days: number): Promise<GradedSale[]> {
+  async getGradedSales(_cardId: string, _grade: number, _days: number): Promise<GradedSale[]> {
     // TODO: Implement Cardmarket graded sales
     return []
   }
   
-  async getRecentPrices(days: number): Promise<PriceData[]> {
+  async getRecentPrices(_days: number): Promise<PriceData[]> {
     // TODO: Implement Cardmarket recent prices
     return []
   }
   
-  async getPopulationData(cardId: string): Promise<PopulationData[]> {
+  async getPopulationData(_cardId: string): Promise<PopulationData[]> {
     // Cardmarket doesn't have population data
     return []
   }
@@ -80,22 +80,22 @@ export class CardmarketAdapter implements DataSourceAdapter {
 export class EbayAdapter implements DataSourceAdapter {
   readonly sourceName = 'ebay'
   
-  async getRawPrices(cardId: string, days: number): Promise<PriceData[]> {
+  async getRawPrices(_cardId: string, _days: number): Promise<PriceData[]> {
     // TODO: Implement eBay sold listings API
     return []
   }
   
-  async getGradedSales(cardId: string, grade: number, days: number): Promise<GradedSale[]> {
+  async getGradedSales(_cardId: string, _grade: number, _days: number): Promise<GradedSale[]> {
     // TODO: Implement eBay graded sales
     return []
   }
   
-  async getRecentPrices(days: number): Promise<PriceData[]> {
+  async getRecentPrices(_days: number): Promise<PriceData[]> {
     // TODO: Implement eBay recent prices
     return []
   }
   
-  async getPopulationData(cardId: string): Promise<PopulationData[]> {
+  async getPopulationData(_cardId: string): Promise<PopulationData[]> {
     // eBay doesn't have population data
     return []
   }
@@ -109,21 +109,21 @@ export class EbayAdapter implements DataSourceAdapter {
 export class PSAAdapter implements DataSourceAdapter {
   readonly sourceName = 'psa'
   
-  async getRawPrices(cardId: string, days: number): Promise<PriceData[]> {
+  async getRawPrices(_cardId: string, _days: number): Promise<PriceData[]> {
     // PSA doesn't have raw price data
     return []
   }
   
-  async getGradedSales(cardId: string, grade: number, days: number): Promise<GradedSale[]> {
+  async getGradedSales(_cardId: string, _grade: number, _days: number): Promise<GradedSale[]> {
     // TODO: Implement PSA sales data
     return []
   }
   
-  async getRecentPrices(days: number): Promise<PriceData[]> {
+  async getRecentPrices(_days: number): Promise<PriceData[]> {
     return []
   }
   
-  async getPopulationData(cardId: string): Promise<PopulationData[]> {
+  async getPopulationData(_cardId: string): Promise<PopulationData[]> {
     // TODO: Implement PSA population data
     return []
   }

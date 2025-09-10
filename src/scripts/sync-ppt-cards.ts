@@ -20,22 +20,22 @@ process.env.PPT_BASE_URL = 'https://www.pokemonpricetracker.com';
 
 const pptClient = createPPTClient();
 
-interface PPTCard {
-  id: string;
-  tcgPlayerId: string;
-  setId: string;
-  setName: string;
-  name: string;
-  cardNumber: string;
-  totalSetNumber: string;
-  rarity: string;
-  cardType: string;
-  imageUrl: string;
-  prices: {
-    market: number;
-    lastUpdated: string;
-  };
-}
+// interface PPTCard {
+//   id: string;
+//   tcgPlayerId: string;
+//   setId: string;
+//   setName: string;
+//   name: string;
+//   cardNumber: string;
+//   totalSetNumber: string;
+//   rarity: string;
+//   cardType: string;
+//   imageUrl: string;
+//   prices: {
+//     market: number;
+//     lastUpdated: string;
+//   };
+// }
 
 async function syncPPTCards() {
   console.log('🔄 Starting PPT Card Sync...\n');

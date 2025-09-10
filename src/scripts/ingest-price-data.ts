@@ -16,28 +16,28 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-interface PriceData {
-  card_id: string
-  date: string
-  median_price: number
-  n_sales: number
-  source: 'ppt'
-}
+// interface PriceData {
+//   card_id: string
+//   date: string
+//   median_price: number
+//   n_sales: number
+//   source: 'ppt'
+// }
 
-interface GradedSale {
-  card_id: string
-  grade: number
-  sold_date: string
-  price: number
-  listing_id?: string
-}
+// interface GradedSale {
+//   card_id: string
+//   grade: number
+//   sold_date: string
+//   price: number
+//   listing_id?: string
+// }
 
-interface PSAPopulation {
-  card_id: string
-  grade: number
-  pop_count: number
-  snapshot_date: string
-}
+// interface PSAPopulation {
+//   card_id: string
+//   grade: number
+//   pop_count: number
+//   snapshot_date: string
+// }
 
 async function getCardsFromDatabase() {
   console.log('📋 Fetching cards from database...')

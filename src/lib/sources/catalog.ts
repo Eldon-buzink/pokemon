@@ -54,7 +54,7 @@ export class CatalogClient {
   /**
    * Get all cards for a specific set
    */
-  async getCardsBySet(setId: string): Promise<CatalogCard[]> {
+  async getCardsBySet(_setId: string): Promise<CatalogCard[]> {
     // TODO: Implement Pokemon TCG API calls
     // This is a placeholder structure
     return []
@@ -63,7 +63,7 @@ export class CatalogClient {
   /**
    * Get specific card by ID
    */
-  async getCard(cardId: string): Promise<CatalogCard | null> {
+  async getCard(_cardId: string): Promise<CatalogCard | null> {
     // TODO: Implement Pokemon TCG API calls
     // This is a placeholder structure
     return null
@@ -72,7 +72,7 @@ export class CatalogClient {
   /**
    * Search cards by name or other criteria
    */
-  async searchCards(query: string): Promise<CatalogCard[]> {
+  async searchCards(_query: string): Promise<CatalogCard[]> {
     // TODO: Implement Pokemon TCG API search
     // This is a placeholder structure
     return []

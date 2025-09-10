@@ -352,7 +352,7 @@ export class PPTClient {
    * Note: PPT API doesn't provide population data in the current structure
    * This is a placeholder for future implementation
    */
-  async getPSAPopulation(cardId: string): Promise<PSAPopulationData[]> {
+  async getPSAPopulation(_cardId: string): Promise<PSAPopulationData[]> {
     // PPT API doesn't currently provide population data
     // Return empty array for now
     return []
@@ -362,7 +362,7 @@ export class PPTClient {
    * Get recent price changes for all cards (high quota usage - use sparingly)
    * This would require multiple API calls and is not efficient with current API structure
    */
-  async getAllRecentPrices(days: number = 7): Promise<PPTPriceData[]> {
+  async getAllRecentPrices(_days: number = 7): Promise<PPTPriceData[]> {
     // This would require fetching all cards and extracting price data
     // Not efficient with current API structure - return empty array for now
     return []

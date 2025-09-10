@@ -5,8 +5,8 @@
 
 import { supabaseAdmin } from '@/lib/supabase'
 import { emailService } from '@/lib/services/email-service'
-import { calculateDailyAggregates, calculateDelta5d } from '@/lib/compute/aggregates'
-import { calculateRankingScore, calculateConfidence } from '@/lib/compute/score'
+// import { calculateDailyAggregates, calculateDelta5d } from '@/lib/compute/aggregates'
+// import { calculateRankingScore, calculateConfidence } from '@/lib/compute/score'
 
 interface WeeklyUpdateConfig {
   periods: number[] // [7, 30, 90] days
