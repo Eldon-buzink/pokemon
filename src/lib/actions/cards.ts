@@ -99,6 +99,9 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
     const limitedCardBatch = cardBatch.slice(0, 10)
     const psa10DataMap = await psa10Service.getPSA10DataBatch(limitedCardBatch)
     
+    // Track cards with insufficient PSA 10 history for summary
+    let cardsWithInsufficientHistory = 0
+    
     for (const card of cards) {
       const assets = card.card_assets as { image_url_small?: string; image_url_large?: string } | null
       
@@ -266,7 +269,9 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
               psa10Delta90d = ((latestPsa10.average - psa10History[ninetyDaysAgoPsa10].average) / psa10History[ninetyDaysAgoPsa10].average) * 100
             }
           } else {
-            console.log(`Not enough PSA 10 history for ${card.card_id}: ${psa10Dates.length} dates`)
+            // Not enough PSA 10 history data available - this is expected for many cards
+            // Delta calculations will remain at 0
+            cardsWithInsufficientHistory++
           }
         }
       } catch (error) {
@@ -454,6 +459,11 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         break
       default:
         filteredCards.sort((a, b) => b.spread_after_fees - a.spread_after_fees)
+    }
+
+    // Log summary of cards with insufficient PSA 10 history
+    if (cardsWithInsufficientHistory > 0) {
+      console.log(`📊 Data Summary: ${cardsWithInsufficientHistory} cards have insufficient PSA 10 history (delta calculations = 0)`)
     }
 
     return filteredCards
