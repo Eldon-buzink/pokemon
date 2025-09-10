@@ -1,7 +1,7 @@
 'use client'
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import { type PriceDataPoint } from '@/lib/services/chart-data'
+import { type PriceDataPoint } from '@/lib/actions/chart-data'
 
 interface PriceChartProps {
   data: PriceDataPoint[]

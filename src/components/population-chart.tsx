@@ -1,7 +1,7 @@
 'use client'
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import { type PopulationDataPoint } from '@/lib/services/chart-data'
+import { type PopulationDataPoint } from '@/lib/actions/chart-data'
 
 interface PopulationChartProps {
   data: PopulationDataPoint[]
