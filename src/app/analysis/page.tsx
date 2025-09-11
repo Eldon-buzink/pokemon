@@ -6,65 +6,37 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const runtime = 'nodejs';
 
-interface MetricsData {
-  card: { set: string; number: string };
-  markets: {
-    raw?: {
-      median5d: number;
-      median30d: number;
-      median90d: number;
-      pct5d: number;
-      pct30d: number;
-      sales5d: number;
-      sales30d: number;
-      sales90d: number;
-      volatility30d: number;
-      L: number;
-      S: number;
-      momentum: number;
-      removedOutliersCount?: number;
-      ev?: {
-        p10: number;
-        method: string;
-        confidence: number;
-        evGrade: number;
-        net: number;
-        upside: number;
-      };
-    };
-    psa9?: {
-      median5d: number;
-      median30d: number;
-      median90d: number;
-      pct5d: number;
-      pct30d: number;
-      sales5d: number;
-      sales30d: number;
-      sales90d: number;
-      volatility30d: number;
-      L: number;
-      S: number;
-      momentum: number;
-      removedOutliersCount?: number;
-    };
-    psa10?: {
-      median5d: number;
-      median30d: number;
-      median90d: number;
-      pct5d: number;
-      pct30d: number;
-      sales5d: number;
-      sales30d: number;
-      sales90d: number;
-      volatility30d: number;
-      L: number;
-      S: number;
-      momentum: number;
-      removedOutliersCount?: number;
-    };
-  };
-  headlineMomentum: number;
+// Define types for the card data
+interface CardData {
+  card_id: string;
+  name: string;
+  set_name: string;
+  number: string;
+  rarity: string;
+  image_url_small: string;
+  image_url_large: string;
+  raw_price: number;
+  psa10_price: number;
+  spread_after_fees: number;
+  profit_loss: number;
+  confidence: 'High' | 'Speculative' | 'Noisy';
+  volume_score: number;
+  raw_delta_5d: number;
+  raw_delta_30d: number;
+  raw_delta_90d: number;
+  psa10_delta_5d: number;
+  psa10_delta_30d: number;
+  psa10_delta_90d: number;
+  psa9_count: number;
+  psa10_count: number;
+  total_psa_count: number;
+  price_volatility: number;
+  grading_recommendation: 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid';
+  psa10_probability: number;
+  ev_grade: number;
+  upside_potential: number;
   badges: string[];
+  headline_momentum: number;
 }
 
 export default async function AnalysisPage({
@@ -80,21 +52,77 @@ export default async function AnalysisPage({
   const _market = (params.market as string) || 'raw';
   const _days = timePeriod === 5 ? 30 : timePeriod === 30 ? 90 : 90;
   
-  // Fetch data from our new metrics API
+  // Fetch real data from Supabase
   const startTime = Date.now();
-  let results: MetricsData[] = [];
+  let cards: CardData[] = [];
   let loadTime = 0;
   
   try {
-    // For server components, we can call the API function directly instead of fetch
-    // This avoids URL construction issues
+    // Import the real data fetching function
+    const { getCards } = await import('@/lib/actions/cards')
+    
+    // Fetch real card data from Supabase
+    const realCards = await getCards({
+      timePeriod,
+      sortBy: (params.sortBy as string) || 'profit_loss',
+      set: (params.set as string) || 'All Sets',
+      rarity: (params.rarity as string) || 'All Rarities',
+      minSales: parseInt(params.minSales as string) || 3,
+      minPrice: parseFloat(params.minPrice as string) || 0,
+      minProfitLoss: parseFloat(params.minProfitLoss as string) || 0,
+      psa10Only: params.psa10Only === 'true',
+      highConfidenceOnly: params.highConfidenceOnly === 'true',
+      minRawDelta: parseFloat(params.minRawDelta as string) || 0,
+      minPsa10Delta: parseFloat(params.minPsa10Delta as string) || 0,
+      maxVolatility: parseFloat(params.maxVolatility as string) || 0,
+      gradingRecommendation: (params.gradingRecommendation as string) || 'All',
+    });
+    
+    // Transform real card data to match our interface
+    cards = realCards.map((card) => ({
+      card_id: card.card_id,
+      name: card.name,
+      set_name: card.set_name,
+      number: card.number,
+      rarity: card.rarity,
+      image_url_small: card.image_url_small,
+      image_url_large: card.image_url_large,
+      raw_price: card.raw_price,
+      psa10_price: card.psa10_price,
+      spread_after_fees: card.spread_after_fees,
+      profit_loss: card.spread_after_fees,
+      confidence: card.confidence,
+      volume_score: card.volume_score,
+      raw_delta_5d: card.raw_delta_5d,
+      raw_delta_30d: card.raw_delta_30d,
+      raw_delta_90d: card.raw_delta_90d,
+      psa10_delta_5d: card.psa10_delta_5d,
+      psa10_delta_30d: card.psa10_delta_30d,
+      psa10_delta_90d: card.psa10_delta_90d,
+      psa9_count: card.psa9_count,
+      psa10_count: card.psa10_count,
+      total_psa_count: card.total_psa_count,
+      price_volatility: card.price_volatility,
+      grading_recommendation: card.grading_recommendation,
+      psa10_probability: 0.25, // Placeholder - will be calculated from real data
+      ev_grade: card.raw_price * 0.3, // Placeholder
+      upside_potential: card.spread_after_fees / card.raw_price,
+      badges: card.raw_delta_5d > 20 ? ['HOT'] : card.raw_delta_5d > 10 ? ['GRADE_EV'] : [],
+      headline_momentum: card.raw_delta_5d,
+    }));
+    
+    loadTime = Date.now() - startTime;
+    console.log(`📊 Real data loaded in ${loadTime}ms: ${cards.length} cards`);
+    
+  } catch (error) {
+    console.error('Error fetching real data:', error);
+    
+    // Fallback to seed cards if real data fails
     const { SEED_CARDS } = await import('@/data/seedCards')
     
-    // Generate mock data directly (same as batch API)
-    // Use deterministic seed for consistent SSR/client rendering
-    const seed = 12345; // Fixed seed for consistent data
+    // Generate mock data as fallback
+    const seed = 12345;
     const mockResults = SEED_CARDS.map((card, index) => {
-      // Simple seeded random function
       const seededRandom = (seed: number) => {
         const x = Math.sin(seed) * 10000;
         return x - Math.floor(x);
@@ -106,119 +134,42 @@ export default async function AnalysisPage({
       const momentum = (seededRandom(seed + index + 300) - 0.5) * 0.4;
       
       return {
-        card: { set: card.set, number: card.number },
-        markets: {
-          raw: {
-            median5d: basePrice * (1 + momentum * 0.1),
-            median30d: basePrice,
-            median90d: basePrice * (1 - momentum * 0.2),
-            pct5d: momentum * 0.1,
-            pct30d: momentum * 0.3,
-            sales5d: 5 + Math.floor(seededRandom(seed + index + 400) * 10),
-            sales30d: 15 + Math.floor(seededRandom(seed + index + 500) * 20),
-            sales90d: 30 + Math.floor(seededRandom(seed + index + 600) * 40),
-            volatility30d: volatility,
-            L: 0.5 + seededRandom(seed + index + 700) * 0.5,
-            S: 0.3 + seededRandom(seed + index + 800) * 0.4,
-            momentum: momentum,
-            ev: {
-              p10: 0.2 + seededRandom(seed + index + 900) * 0.3,
-              method: 'pop-proxy',
-              confidence: 0.6 + seededRandom(seed + index + 1000) * 0.3,
-              evGrade: psa10Price * (0.2 + seededRandom(seed + index + 1100) * 0.3),
-              net: psa10Price * (0.2 + seededRandom(seed + index + 1200) * 0.3) - basePrice,
-              upside: (psa10Price * (0.2 + seededRandom(seed + index + 1300) * 0.3) - basePrice) / basePrice
-            }
-          },
-          psa10: {
-            median5d: psa10Price * (1 + momentum * 0.05),
-            median30d: psa10Price,
-            median90d: psa10Price * (1 - momentum * 0.1),
-            pct5d: momentum * 0.05,
-            pct30d: momentum * 0.15,
-            sales5d: 2 + Math.floor(seededRandom(seed + index + 1400) * 5),
-            sales30d: 5 + Math.floor(seededRandom(seed + index + 1500) * 10),
-            sales90d: 10 + Math.floor(seededRandom(seed + index + 1600) * 20),
-            volatility30d: volatility * 0.8,
-            L: 0.3 + seededRandom(seed + index + 1700) * 0.4,
-            S: 0.4 + seededRandom(seed + index + 1800) * 0.3,
-            momentum: momentum * 0.5
-          }
-        },
-        headlineMomentum: momentum,
-        badges: momentum > 0.2 ? ['HOT'] : momentum > 0.1 ? ['GRADE_EV'] : []
+        card_id: `${card.set}-${card.number}`,
+        name: card.name,
+        set_name: card.set,
+        number: card.number,
+        rarity: 'Unknown',
+        image_url_small: '',
+        image_url_large: '',
+        raw_price: basePrice,
+        psa10_price: psa10Price,
+        spread_after_fees: psa10Price * 0.3 - basePrice,
+        profit_loss: psa10Price * 0.3 - basePrice,
+        confidence: 'Noisy' as 'High' | 'Speculative' | 'Noisy',
+        volume_score: 0.5,
+        raw_delta_5d: momentum * 10,
+        raw_delta_30d: momentum * 30,
+        raw_delta_90d: momentum * 50,
+        psa10_delta_5d: momentum * 5,
+        psa10_delta_30d: momentum * 15,
+        psa10_delta_90d: momentum * 25,
+        psa9_count: 0,
+        psa10_count: 0,
+        total_psa_count: 0,
+        price_volatility: volatility,
+        grading_recommendation: (momentum > 0.2 ? 'Strong Buy' : momentum > 0.1 ? 'Buy' : 'Hold') as 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid',
+        psa10_probability: 0.25,
+        ev_grade: basePrice * 0.3,
+        upside_potential: momentum,
+        badges: momentum > 0.2 ? ['HOT'] : momentum > 0.1 ? ['GRADE_EV'] : [],
+        headline_momentum: momentum,
       };
     });
     
-    results = mockResults;
+    cards = mockResults;
     loadTime = Date.now() - startTime;
-    
-    console.log(`📊 Mock data generated in ${loadTime}ms`);
-    
-  } catch (error) {
-    console.error('Error generating mock data:', error);
-    // Fallback to empty results if generation fails
-    results = [];
-    loadTime = Date.now() - startTime;
+    console.log(`📊 Fallback mock data generated in ${loadTime}ms: ${cards.length} cards`);
   }
-  
-  // Transform data to match existing CardTable interface
-  const cards = results.map((result: MetricsData) => {
-    const raw = result.markets.raw;
-    const psa10 = result.markets.psa10;
-    
-    if (!raw) return null;
-    
-    return {
-      card_id: `${result.card.set}-${result.card.number}`,
-      name: result.card.number,
-      set_name: result.card.set,
-      number: result.card.number,
-      rarity: 'Unknown', // We'll need to add this to our seed data
-      image_url_small: '', // We'll need to add this to our seed data
-      image_url_large: '', // We'll need to add this to our seed data
-      
-      // Price data
-      raw_price: raw.median30d,
-      psa10_price: psa10?.median30d || 0,
-      
-      // Deltas
-      raw_delta_5d: raw.pct5d * 100,
-      raw_delta_30d: raw.pct30d * 100,
-      raw_delta_90d: 0, // We'll calculate this
-      psa10_delta_5d: (psa10?.pct5d || 0) * 100,
-      psa10_delta_30d: (psa10?.pct30d || 0) * 100,
-      psa10_delta_90d: 0, // We'll calculate this
-      
-      // Spread and profit
-      spread_after_fees: raw.ev?.net || 0,
-      profit_loss: raw.ev?.net || 0,
-      
-      // Confidence and volume
-      confidence: (raw.ev?.confidence ? 
-        (raw.ev.confidence > 0.7 ? 'High' : raw.ev.confidence > 0.4 ? 'Speculative' : 'Noisy') : 
-        'Noisy') as 'High' | 'Speculative' | 'Noisy',
-      volume_score: raw.L,
-      
-      // PSA data
-      psa9_count: 0, // We'll add this
-      psa10_count: 0, // We'll add this
-      total_psa_count: 0, // We'll add this
-      
-      // Analysis
-      price_volatility: raw.volatility30d,
-      grading_recommendation: ((raw.ev?.upside || 0) > 0.5 ? 'Strong Buy' : 
-                            (raw.ev?.upside || 0) > 0.2 ? 'Buy' : 
-                            (raw.ev?.upside || 0) > 0 ? 'Hold' : 'Avoid') as 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid',
-      
-      // New metrics
-      psa10_probability: raw.ev?.p10 || 0,
-      ev_grade: raw.ev?.evGrade || 0,
-      upside_potential: raw.ev?.upside || 0,
-      badges: result.badges,
-      headline_momentum: result.headlineMomentum,
-    };
-  }).filter((card): card is NonNullable<typeof card> => card !== null);
   
   // Mock sets and rarities for now
   const sets = ['All Sets', 'Crown Zenith', 'Paldean Fates', '151', 'Brilliant Stars', 'Lost Origin', 'Celebrations'];
@@ -288,7 +239,7 @@ export default async function AnalysisPage({
 
           {/* Results */}
           <div className="lg:col-span-3">
-            {results.length === 0 ? (
+            {cards.length === 0 ? (
               <div className="bg-white rounded-lg border p-8">
                 <LoadingSpinner 
                   size="lg" 

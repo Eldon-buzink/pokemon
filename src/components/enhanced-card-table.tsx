@@ -136,7 +136,7 @@ export function EnhancedCardTable({ cards, currentSort: _currentSort }: Enhanced
     <>
       <div className="bg-white rounded-lg border overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-[1200px]">
             <thead className="bg-gray-50 border-b">
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

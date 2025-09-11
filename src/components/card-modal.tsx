@@ -91,13 +91,22 @@ export function CardModal({ card, isOpen, onClose }: CardModalProps) {
             {/* Card Image */}
             <div className="flex-shrink-0">
               <div className="relative w-64 h-80 bg-muted rounded-lg overflow-hidden">
-                <Image
-                  src={card.image_url_small}
-                  alt={card.name}
-                  fill
-                  className="object-contain"
-                  sizes="256px"
-                />
+                {card.image_url_small ? (
+                  <Image
+                    src={card.image_url_small}
+                    alt={card.name}
+                    fill
+                    className="object-contain"
+                    sizes="256px"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-muted-foreground">
+                    <div className="text-center">
+                      <div className="text-4xl mb-2">🃏</div>
+                      <div className="text-sm">No Image Available</div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             
