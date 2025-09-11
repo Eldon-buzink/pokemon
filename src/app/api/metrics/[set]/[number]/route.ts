@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { MockSalesProvider, getSeries } from '@/lib/sales';
+import { getSeries } from '@/lib/sales'
+import { HybridSalesProvider } from '@/lib/sales-providers/ppt-provider';
 import { computeBasicStats } from '@/lib/metrics';
 import { estimateGemRate } from '@/lib/gemRate';
 import { daysSinceRelease } from '@/lib/releaseDates';
@@ -10,10 +11,10 @@ const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { set: string; number: string } }
+  { params }: { params: Promise<{ set: string; number: string }> }
 ) {
   try {
-    const { set, number } = params;
+    const { set, number } = await params;
     const { searchParams } = new URL(request.url);
     
     const market = (searchParams.get('market') as 'raw' | 'psa9' | 'psa10') || 'raw';
@@ -34,8 +35,8 @@ export async function GET(
     // Create card key
     const cardKey = { set, number, name: `${set} ${number}` };
     
-    // Use mock provider for now
-    const provider = new MockSalesProvider();
+    // Use hybrid provider (real data + mock fallback)
+    const provider = new HybridSalesProvider();
     
     // Fetch data for all markets
     const [rawSeries, psa9Series, psa10Series] = await Promise.all([
