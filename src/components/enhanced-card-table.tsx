@@ -104,15 +104,21 @@ export function EnhancedCardTable({ cards, currentSort: _currentSort }: Enhanced
     }
   }
 
-  // Generate mock sparkline data
+  // Generate deterministic sparkline data to avoid hydration mismatch
   const generateSparklineData = (basePrice: number, volatility: number) => {
     const data = []
     const now = new Date()
     
+    // Use a simple seeded random function based on basePrice for consistency
+    const seededRandom = (seed: number) => {
+      const x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    };
+    
     for (let i = 29; i >= 0; i--) {
       const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000)
       const trend = Math.sin((30 - i) * Math.PI / 30) * 0.1
-      const noise = (Math.random() - 0.5) * volatility
+      const noise = (seededRandom(basePrice * 1000 + i) - 0.5) * volatility
       const price = basePrice * (1 + trend + noise)
       
       data.push({

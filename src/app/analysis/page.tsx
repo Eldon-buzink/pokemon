@@ -91,11 +91,19 @@ export default async function AnalysisPage({
     const { SEED_CARDS } = await import('@/data/seedCards')
     
     // Generate mock data directly (same as batch API)
+    // Use deterministic seed for consistent SSR/client rendering
+    const seed = 12345; // Fixed seed for consistent data
     const mockResults = SEED_CARDS.map((card, index) => {
-      const basePrice = 10 + (index * 5) + Math.random() * 20;
-      const psa10Price = basePrice * (8 + Math.random() * 12);
-      const volatility = 0.1 + Math.random() * 0.3;
-      const momentum = (Math.random() - 0.5) * 0.4;
+      // Simple seeded random function
+      const seededRandom = (seed: number) => {
+        const x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+      };
+      
+      const basePrice = 10 + (index * 5) + seededRandom(seed + index) * 20;
+      const psa10Price = basePrice * (8 + seededRandom(seed + index + 100) * 12);
+      const volatility = 0.1 + seededRandom(seed + index + 200) * 0.3;
+      const momentum = (seededRandom(seed + index + 300) - 0.5) * 0.4;
       
       return {
         card: { set: card.set, number: card.number },
@@ -106,20 +114,20 @@ export default async function AnalysisPage({
             median90d: basePrice * (1 - momentum * 0.2),
             pct5d: momentum * 0.1,
             pct30d: momentum * 0.3,
-            sales5d: 5 + Math.floor(Math.random() * 10),
-            sales30d: 15 + Math.floor(Math.random() * 20),
-            sales90d: 30 + Math.floor(Math.random() * 40),
+            sales5d: 5 + Math.floor(seededRandom(seed + index + 400) * 10),
+            sales30d: 15 + Math.floor(seededRandom(seed + index + 500) * 20),
+            sales90d: 30 + Math.floor(seededRandom(seed + index + 600) * 40),
             volatility30d: volatility,
-            L: 0.5 + Math.random() * 0.5,
-            S: 0.3 + Math.random() * 0.4,
+            L: 0.5 + seededRandom(seed + index + 700) * 0.5,
+            S: 0.3 + seededRandom(seed + index + 800) * 0.4,
             momentum: momentum,
             ev: {
-              p10: 0.2 + Math.random() * 0.3,
+              p10: 0.2 + seededRandom(seed + index + 900) * 0.3,
               method: 'pop-proxy',
-              confidence: 0.6 + Math.random() * 0.3,
-              evGrade: psa10Price * (0.2 + Math.random() * 0.3),
-              net: psa10Price * (0.2 + Math.random() * 0.3) - basePrice,
-              upside: (psa10Price * (0.2 + Math.random() * 0.3) - basePrice) / basePrice
+              confidence: 0.6 + seededRandom(seed + index + 1000) * 0.3,
+              evGrade: psa10Price * (0.2 + seededRandom(seed + index + 1100) * 0.3),
+              net: psa10Price * (0.2 + seededRandom(seed + index + 1200) * 0.3) - basePrice,
+              upside: (psa10Price * (0.2 + seededRandom(seed + index + 1300) * 0.3) - basePrice) / basePrice
             }
           },
           psa10: {
@@ -128,12 +136,12 @@ export default async function AnalysisPage({
             median90d: psa10Price * (1 - momentum * 0.1),
             pct5d: momentum * 0.05,
             pct30d: momentum * 0.15,
-            sales5d: 2 + Math.floor(Math.random() * 5),
-            sales30d: 5 + Math.floor(Math.random() * 10),
-            sales90d: 10 + Math.floor(Math.random() * 20),
+            sales5d: 2 + Math.floor(seededRandom(seed + index + 1400) * 5),
+            sales30d: 5 + Math.floor(seededRandom(seed + index + 1500) * 10),
+            sales90d: 10 + Math.floor(seededRandom(seed + index + 1600) * 20),
             volatility30d: volatility * 0.8,
-            L: 0.3 + Math.random() * 0.4,
-            S: 0.4 + Math.random() * 0.3,
+            L: 0.3 + seededRandom(seed + index + 1700) * 0.4,
+            S: 0.4 + seededRandom(seed + index + 1800) * 0.3,
             momentum: momentum * 0.5
           }
         },
