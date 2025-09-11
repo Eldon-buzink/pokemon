@@ -1,5 +1,6 @@
 import { EnhancedCardTable } from '@/components/enhanced-card-table'
 import { Filters } from '@/components/filters'
+import { LoadingSpinner } from '@/components/loading-spinner'
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -81,18 +82,29 @@ export default async function AnalysisPage({
   
   // Fetch data from our new metrics API
   const startTime = Date.now();
-  const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/api/metrics/batch?market=${market}&days=${days}`, {
-    cache: 'no-store' // Always get fresh data
-  });
+  let results: MetricsData[] = [];
+  let loadTime = 0;
   
-  if (!response.ok) {
-    throw new Error('Failed to fetch metrics data');
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'}/api/metrics/batch?market=${market}&days=${days}`, {
+      cache: 'no-store' // Always get fresh data
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch metrics data');
+    }
+    
+    const data = await response.json();
+    results = data.results || [];
+    loadTime = Date.now() - startTime;
+    
+    console.log(`📊 Metrics API loaded in ${loadTime}ms`);
+  } catch (error) {
+    console.error('Error fetching metrics data:', error);
+    // Fallback to empty results if API fails
+    results = [];
+    loadTime = Date.now() - startTime;
   }
-  
-  const { results } = await response.json();
-  const loadTime = Date.now() - startTime;
-  
-  console.log(`📊 Metrics API loaded in ${loadTime}ms`);
   
   // Transform data to match existing CardTable interface
   const cards = results.map((result: MetricsData) => {
@@ -127,9 +139,9 @@ export default async function AnalysisPage({
       profit_loss: raw.ev?.net || 0,
       
       // Confidence and volume
-      confidence: raw.ev?.confidence ? 
+      confidence: (raw.ev?.confidence ? 
         (raw.ev.confidence > 0.7 ? 'High' : raw.ev.confidence > 0.4 ? 'Speculative' : 'Noisy') : 
-        'Noisy',
+        'Noisy') as 'High' | 'Speculative' | 'Noisy',
       volume_score: raw.L,
       
       // PSA data
@@ -139,9 +151,9 @@ export default async function AnalysisPage({
       
       // Analysis
       price_volatility: raw.volatility30d,
-      grading_recommendation: (raw.ev?.upside || 0) > 0.5 ? 'Strong Buy' : 
+      grading_recommendation: ((raw.ev?.upside || 0) > 0.5 ? 'Strong Buy' : 
                             (raw.ev?.upside || 0) > 0.2 ? 'Buy' : 
-                            (raw.ev?.upside || 0) > 0 ? 'Hold' : 'Avoid',
+                            (raw.ev?.upside || 0) > 0 ? 'Hold' : 'Avoid') as 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid',
       
       // New metrics
       psa10_probability: raw.ev?.p10 || 0,
@@ -150,7 +162,7 @@ export default async function AnalysisPage({
       badges: result.badges,
       headline_momentum: result.headlineMomentum,
     };
-  }).filter(Boolean);
+  }).filter((card): card is NonNullable<typeof card> => card !== null);
   
   // Mock sets and rarities for now
   const sets = ['All Sets', 'Crown Zenith', 'Paldean Fates', '151', 'Brilliant Stars', 'Lost Origin', 'Celebrations'];
@@ -220,7 +232,20 @@ export default async function AnalysisPage({
 
           {/* Results */}
           <div className="lg:col-span-3">
-            <EnhancedCardTable cards={cards} currentSort={filters.sortBy} />
+            {results.length === 0 ? (
+              <div className="bg-white rounded-lg border p-8">
+                <LoadingSpinner 
+                  size="lg" 
+                  text="Analyzing card data and computing metrics..." 
+                  className="py-12"
+                />
+                <div className="mt-4 text-center text-sm text-gray-500">
+                  This may take a few seconds while we process the data...
+                </div>
+              </div>
+            ) : (
+              <EnhancedCardTable cards={cards} currentSort={filters.sortBy} />
+            )}
           </div>
         </div>
       </div>
