@@ -7,14 +7,14 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/" className="text-xl font-bold">
-              Pokémon Movers
+              Pokémon Analysis
             </Link>
             <div className="hidden md:flex items-center space-x-6">
               <Link 
-                href="/movers" 
+                href="/analysis" 
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
-                5-Day Movers
+                Analysis
               </Link>
               <Link 
                 href="/about" 

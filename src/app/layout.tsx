@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pokémon Card Movers",
+  title: "Pokémon Card Analysis",
   description: "Track Pokémon card price movements and identify grading opportunities",
 };
 

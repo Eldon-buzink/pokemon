@@ -21,7 +21,7 @@ export function CardTable({ cards, currentSort }: CardTableProps) {
   const handleSortChange = (sortBy: string) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('sortBy', sortBy)
-    router.push(`/movers?${params.toString()}`)
+    router.push(`/analysis?${params.toString()}`)
   }
 
   const handleCardClick = (card: CardData) => {

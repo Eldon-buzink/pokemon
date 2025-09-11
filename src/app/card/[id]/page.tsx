@@ -12,7 +12,7 @@ export default async function CardDetailPage({ params }: CardDetailPageProps) {
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <nav className="text-sm text-muted-foreground mb-4">
-            <a href="/movers" className="hover:text-foreground">Movers</a> / Card Details
+            <a href="/analysis" className="hover:text-foreground">Analysis</a> / Card Details
           </nav>
           
           <div className="flex items-start gap-6">

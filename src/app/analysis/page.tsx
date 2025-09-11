@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const runtime = 'nodejs';
 
-export default async function MoversPage({
+export default async function AnalysisPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -43,9 +43,9 @@ export default async function MoversPage({
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight">Card Movers</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Card Analysis</h1>
           <p className="text-muted-foreground mt-2">
-            Pokémon cards with significant price movements and profit opportunities
+            Comprehensive analysis of Pokémon cards with price movements and grading opportunities
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export default async function MoversPage({
               <div className="bg-card rounded-lg border p-4">
                 <h3 className="font-semibold mb-3">📧 Weekly Market Updates</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Get the top 5 movers every Monday based on your current filter settings
+                  Get the top 5 analysis insights every Monday based on your current filter settings
                 </p>
                 <div className="space-y-3">
                   <input 
@@ -76,7 +76,7 @@ export default async function MoversPage({
                   </button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
-                  We&apos;ll send you the top 5 profit/loss movers every Monday. Unsubscribe anytime.
+                  We&apos;ll send you the top 5 analysis insights every Monday. Unsubscribe anytime.
                 </p>
               </div>
             </div>

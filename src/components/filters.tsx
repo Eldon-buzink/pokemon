@@ -36,7 +36,7 @@ export function Filters({ sets, rarities, currentFilters }: FiltersProps) {
     // Update URL with new filters
     const params = new URLSearchParams(searchParams.toString())
     params.set(key, value.toString())
-    router.push(`/movers?${params.toString()}`)
+    router.push(`/analysis?${params.toString()}`)
   }
 
   const resetFilters = () => {
@@ -57,7 +57,7 @@ export function Filters({ sets, rarities, currentFilters }: FiltersProps) {
       gradingRecommendation: 'All',
     }
     setFilters(defaultFilters)
-    router.push('/movers')
+    router.push('/analysis')
   }
 
   return (

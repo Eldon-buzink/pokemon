@@ -14,7 +14,7 @@ export function SortControls({ currentSort, cardCount }: SortControlsProps) {
   const handleSortChange = (sortBy: string) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('sortBy', sortBy)
-    router.push(`/movers?${params.toString()}`)
+    router.push(`/analysis?${params.toString()}`)
   }
 
   return (
