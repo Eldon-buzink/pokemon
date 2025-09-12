@@ -1,4 +1,4 @@
-export type SourceName = 'ppt' | 'tcgplayer' | 'pricecharting';
+export type SourceName = 'tcgplayer' | 'cardmarket' | 'ppt';
 export interface CardKey {
   setId: string;    // canonical set id, e.g., 'swsh35'
   number: string;   // e.g., '2', '114'
