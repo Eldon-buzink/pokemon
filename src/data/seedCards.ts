@@ -69,6 +69,36 @@ export const SEED_CARDS = [
     set: 'Lost Origin',
     number: 'TG05',
     url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Lost-Origin/Pikachu-V2-LORTG05'
+  },
+  {
+    name: 'Charizard',
+    set: 'Celebrations',
+    number: '4',
+    url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Celebrations/Charizard-4'
+  },
+  {
+    name: 'Pikachu V-Union',
+    set: 'Celebrations',
+    number: '29',
+    url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Celebrations/Pikachu-V-Union-29'
+  },
+  {
+    name: 'Mew ex',
+    set: 'Celebrations',
+    number: '25',
+    url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Celebrations/Mew-ex-25'
+  },
+  {
+    name: 'Venusaur',
+    set: 'Celebrations',
+    number: '2',
+    url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Celebrations/Venusaur-2'
+  },
+  {
+    name: 'Blastoise',
+    set: 'Celebrations',
+    number: '3',
+    url: 'https://www.cardmarket.com/en/Pokemon/Products/Singles/Celebrations/Blastoise-3'
   }
 ];
 

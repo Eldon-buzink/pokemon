@@ -22,6 +22,7 @@ export interface CardData {
   raw_price: number
   psa10_price: number
   spread_after_fees: number
+  profit_loss: number
   confidence: 'High' | 'Speculative' | 'Noisy'
   volume_score: number
   // Time period deltas
@@ -35,9 +36,14 @@ export interface CardData {
   psa9_count: number
   psa10_count: number
   total_psa_count: number
+  psa10_probability: number
   // Market analysis
   price_volatility: number
   grading_recommendation: 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid'
+  // Badges
+  badges: string[]
+  // Sparkline data
+  sparkline_data: { date: string; price: number }[]
 }
 
 export interface FilterOptions {
@@ -71,6 +77,11 @@ interface CardWithAssets {
 
 export async function getCards(filters: FilterOptions): Promise<CardData[]> {
   try {
+    // Check if we have Supabase environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      throw new Error('Supabase environment variables not configured')
+    }
+    
     // Get cards with real price data from facts_daily and facts_5d
     const supabase = getServerSupabase()
     const { data: cards, error } = await supabase
@@ -350,6 +361,15 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         gradingRecommendation = 'Avoid'
       }
       
+      // Calculate PSA 10 probability (simplified estimation)
+      const psa10Probability = totalPsaCount > 0 ? psa10Count / totalPsaCount : 0.25
+      
+      // Generate badges based on card characteristics
+      const badges: string[] = []
+      if (psa10Delta5d > 20) badges.push('HOT')
+      if (spreadAfterFees > 50) badges.push('GRADE_EV')
+      if (rawPrice < 100 && psa10Price > rawPrice * 3) badges.push('EARLY')
+      
       cardData.push({
         card_id: card.card_id,
         name: card.name,
@@ -361,6 +381,7 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         raw_price: rawPrice,
         psa10_price: psa10Price,
         spread_after_fees: spreadAfterFees,
+        profit_loss: spreadAfterFees, // Same as spread_after_fees for now
         confidence,
         volume_score: volumeScore,
         psa10_delta_5d: psa10Delta5d,
@@ -372,8 +393,10 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
         psa9_count: psa9Count,
         psa10_count: psa10Count,
         total_psa_count: totalPsaCount,
+        psa10_probability: psa10Probability,
         price_volatility: priceVolatility,
-        grading_recommendation: gradingRecommendation
+        grading_recommendation: gradingRecommendation,
+        badges
       })
     }
 

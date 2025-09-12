@@ -71,8 +71,8 @@ export function CardModal({ card, isOpen, onClose }: CardModalProps) {
       
       {/* Modal Content */}
       <div className="relative bg-background rounded-xl shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto scrollbar-hide">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
+        {/* Sticky Header */}
+        <div className="sticky top-0 z-10 bg-background flex items-center justify-between p-6 border-b">
           <div>
             <h2 className="text-2xl font-bold">{card.name}</h2>
             <p className="text-muted-foreground">{card.set_name} • #{card.number}</p>

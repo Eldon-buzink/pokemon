@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 
 interface BadgeProps {
-  type: 'HOT' | 'GRADE_EV' | 'EARLY'
+  type: 'HOT' | 'GRADE_EV' | 'MOMENTUM' | 'VINTAGE' | 'EARLY'
   className?: string
 }
 
@@ -16,6 +16,16 @@ const badgeConfig = {
     label: 'GRADE EV',
     className: 'bg-blue-100 text-blue-800 border-blue-200',
   },
+  MOMENTUM: {
+    icon: '📈',
+    label: 'MOMENTUM',
+    className: 'bg-green-100 text-green-800 border-green-200',
+  },
+  VINTAGE: {
+    icon: '⭐',
+    label: 'VINTAGE',
+    className: 'bg-purple-100 text-purple-800 border-purple-200',
+  },
   EARLY: {
     icon: '🧪',
     label: 'EARLY',
@@ -25,6 +35,11 @@ const badgeConfig = {
 
 export function Badge({ type, className }: BadgeProps) {
   const config = badgeConfig[type]
+  
+  if (!config) {
+    console.warn(`Unknown badge type: ${type}`)
+    return null
+  }
   
   return (
     <span
@@ -46,7 +61,7 @@ export function BadgeList({ badges }: { badges: string[] }) {
   return (
     <div className="flex flex-wrap gap-1">
       {badges.map((badge, index) => (
-        <Badge key={index} type={badge as 'HOT' | 'GRADE_EV' | 'EARLY'} />
+        <Badge key={index} type={badge as 'HOT' | 'GRADE_EV' | 'MOMENTUM' | 'VINTAGE' | 'EARLY'} />
       ))}
     </div>
   )

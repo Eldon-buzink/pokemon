@@ -1,6 +1,8 @@
 import { EnhancedCardTable } from '@/components/enhanced-card-table'
 import { Filters } from '@/components/filters'
 import { LoadingSpinner } from '@/components/loading-spinner'
+import { getCards } from '@/lib/actions/cards'
+import { getCelebrationsCards } from '@/lib/actions/celebrations'
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -37,6 +39,7 @@ interface CardData {
   upside_potential: number;
   badges: string[];
   headline_momentum: number;
+  sparkline_data: { date: string; price: number }[];
 }
 
 export default async function AnalysisPage({
@@ -52,136 +55,15 @@ export default async function AnalysisPage({
   const _market = (params.market as string) || 'raw';
   const _days = timePeriod === 5 ? 30 : timePeriod === 30 ? 90 : 90;
   
-  // Fetch real data from Supabase
-  const startTime = Date.now();
-  let cards: CardData[] = [];
-  let loadTime = 0;
-  
-  try {
-    // Import the real data fetching function
-    const { getCards } = await import('@/lib/actions/cards')
-    
-    // Fetch real card data from Supabase
-    const realCards = await getCards({
-      timePeriod,
-      sortBy: (params.sortBy as string) || 'profit_loss',
-      set: (params.set as string) || 'All Sets',
-      rarity: (params.rarity as string) || 'All Rarities',
-      minSales: parseInt(params.minSales as string) || 3,
-      minPrice: parseFloat(params.minPrice as string) || 0,
-      minProfitLoss: parseFloat(params.minProfitLoss as string) || 0,
-      psa10Only: params.psa10Only === 'true',
-      highConfidenceOnly: params.highConfidenceOnly === 'true',
-      minRawDelta: parseFloat(params.minRawDelta as string) || 0,
-      minPsa10Delta: parseFloat(params.minPsa10Delta as string) || 0,
-      maxVolatility: parseFloat(params.maxVolatility as string) || 0,
-      gradingRecommendation: (params.gradingRecommendation as string) || 'All',
-    });
-    
-    // Transform real card data to match our interface
-    cards = realCards.map((card) => ({
-      card_id: card.card_id,
-      name: card.name,
-      set_name: card.set_name,
-      number: card.number,
-      rarity: card.rarity,
-      image_url_small: card.image_url_small,
-      image_url_large: card.image_url_large,
-      raw_price: card.raw_price,
-      psa10_price: card.psa10_price,
-      spread_after_fees: card.spread_after_fees,
-      profit_loss: card.spread_after_fees,
-      confidence: card.confidence,
-      volume_score: card.volume_score,
-      raw_delta_5d: card.raw_delta_5d,
-      raw_delta_30d: card.raw_delta_30d,
-      raw_delta_90d: card.raw_delta_90d,
-      psa10_delta_5d: card.psa10_delta_5d,
-      psa10_delta_30d: card.psa10_delta_30d,
-      psa10_delta_90d: card.psa10_delta_90d,
-      psa9_count: card.psa9_count,
-      psa10_count: card.psa10_count,
-      total_psa_count: card.total_psa_count,
-      price_volatility: card.price_volatility,
-      grading_recommendation: card.grading_recommendation,
-      psa10_probability: 0.25, // Placeholder - will be calculated from real data
-      ev_grade: card.raw_price * 0.3, // Placeholder
-      upside_potential: card.spread_after_fees / card.raw_price,
-      badges: card.raw_delta_5d > 20 ? ['HOT'] : card.raw_delta_5d > 10 ? ['GRADE_EV'] : [],
-      headline_momentum: card.raw_delta_5d,
-    }));
-    
-    loadTime = Date.now() - startTime;
-    console.log(`📊 Real data loaded in ${loadTime}ms: ${cards.length} cards`);
-    
-  } catch (error) {
-    console.error('Error fetching real data:', error);
-    
-    // Fallback to seed cards if real data fails
-    const { SEED_CARDS } = await import('@/data/seedCards')
-    
-    // Generate mock data as fallback
-    const seed = 12345;
-    const mockResults = SEED_CARDS.map((card, index) => {
-      const seededRandom = (seed: number) => {
-        const x = Math.sin(seed) * 10000;
-        return x - Math.floor(x);
-      };
-      
-      const basePrice = 10 + (index * 5) + seededRandom(seed + index) * 20;
-      const psa10Price = basePrice * (8 + seededRandom(seed + index + 100) * 12);
-      const volatility = 0.1 + seededRandom(seed + index + 200) * 0.3;
-      const momentum = (seededRandom(seed + index + 300) - 0.5) * 0.4;
-      
-      return {
-        card_id: `${card.set}-${card.number}`,
-        name: card.name,
-        set_name: card.set,
-        number: card.number,
-        rarity: 'Unknown',
-        image_url_small: '',
-        image_url_large: '',
-        raw_price: basePrice,
-        psa10_price: psa10Price,
-        spread_after_fees: psa10Price * 0.3 - basePrice,
-        profit_loss: psa10Price * 0.3 - basePrice,
-        confidence: 'Noisy' as 'High' | 'Speculative' | 'Noisy',
-        volume_score: 0.5,
-        raw_delta_5d: momentum * 10,
-        raw_delta_30d: momentum * 30,
-        raw_delta_90d: momentum * 50,
-        psa10_delta_5d: momentum * 5,
-        psa10_delta_30d: momentum * 15,
-        psa10_delta_90d: momentum * 25,
-        psa9_count: 0,
-        psa10_count: 0,
-        total_psa_count: 0,
-        price_volatility: volatility,
-        grading_recommendation: (momentum > 0.2 ? 'Strong Buy' : momentum > 0.1 ? 'Buy' : 'Hold') as 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid',
-        psa10_probability: 0.25,
-        ev_grade: basePrice * 0.3,
-        upside_potential: momentum,
-        badges: momentum > 0.2 ? ['HOT'] : momentum > 0.1 ? ['GRADE_EV'] : [],
-        headline_momentum: momentum,
-      };
-    });
-    
-    cards = mockResults;
-    loadTime = Date.now() - startTime;
-    console.log(`📊 Fallback mock data generated in ${loadTime}ms: ${cards.length} cards`);
-  }
-  
-  // Mock sets and rarities for now
-  const sets = ['All Sets', 'Crown Zenith', 'Paldean Fates', '151', 'Brilliant Stars', 'Lost Origin', 'Celebrations'];
-  const rarities = ['All Rarities', 'Common', 'Uncommon', 'Rare', 'Holo Rare', 'Ultra Rare'];
-  
+  // Define filters object
   const filters = {
     timePeriod,
     sortBy: (params.sortBy as string) || 'profit_loss',
-    set: (params.set as string) || 'All Sets',
+    set: (params.set as string) || 'Celebrations',
     rarity: (params.rarity as string) || 'All Rarities',
     minSales: parseInt(params.minSales as string) || 3,
     minPrice: parseFloat(params.minPrice as string) || 0,
+    maxPrice: parseFloat(params.maxPrice as string) || 10000,
     minProfitLoss: parseFloat(params.minProfitLoss as string) || 0,
     psa10Only: params.psa10Only === 'true',
     highConfidenceOnly: params.highConfidenceOnly === 'true',
@@ -190,10 +72,91 @@ export default async function AnalysisPage({
     maxVolatility: parseFloat(params.maxVolatility as string) || 0,
     gradingRecommendation: (params.gradingRecommendation as string) || 'All',
   };
+  
+  // Try to fetch real data first, fallback to mock data
+  const startTime = Date.now();
+  let cards: CardData[] = [];
+  let loadTime = 0;
+
+  // Skip database calls to avoid API rate limits
+  console.log('📊 Loading Celebrations data from Pokemon TCG API...');
+  
+  try {
+    
+    try {
+      // Try to fetch real Celebrations data from Pokemon TCG API
+      const celebrationsCards = await getCelebrationsCards();
+      
+      // Filter to Celebrations set if needed
+      let filteredCards = celebrationsCards;
+      if (filters.set !== 'All Sets' && filters.set !== 'Celebrations') {
+        filteredCards = celebrationsCards.filter((card: any) => card.set_name === filters.set);
+      }
+      
+      cards = filteredCards;
+      loadTime = Date.now() - startTime;
+      console.log(`✅ Loaded ${cards.length} Celebrations cards from API in ${loadTime}ms`);
+    } catch (apiError) {
+      console.error('❌ Failed to load real Celebrations data:', apiError);
+      
+      // Show error message to user instead of falling back to mock data
+      return (
+        <div className="min-h-screen bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="bg-red-50 border border-red-200 rounded-md p-4">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-red-800">
+                    Unable to Load Celebrations Data
+                  </h3>
+                  <div className="mt-2 text-sm text-red-700">
+                    <p>
+                      We couldn't fetch the latest Celebrations card data from the Pokemon TCG API. 
+                      This could be due to:
+                    </p>
+                    <ul className="list-disc list-inside mt-2 space-y-1">
+                      <li>Network connectivity issues</li>
+                      <li>API rate limiting</li>
+                      <li>Service temporarily unavailable</li>
+                    </ul>
+                    <p className="mt-2">
+                      Please check your internet connection and try refreshing the page.
+                    </p>
+                  </div>
+                  <div className="mt-4">
+                  <a
+                    href="/analysis"
+                    className="bg-red-100 text-red-800 px-3 py-2 rounded-md text-sm font-medium hover:bg-red-200 transition-colors inline-block"
+                  >
+                    Refresh Page
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  } catch (error) {
+    console.error('❌ Error loading Celebrations data:', error);
+    // Fall back to empty array if all else fails
+    cards = [];
+  }
+  
+  // Get actual sets from the loaded cards
+  const actualSets = Array.from(new Set(cards.map(card => card.set_name))).sort();
+  const sets = ['All Sets', ...actualSets];
+  const rarities = ['All Rarities', 'Common', 'Uncommon', 'Rare', 'Holo Rare', 'Ultra Rare', 'Special Illustration Rare'];
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-full mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight">Card Analysis</h1>
           <p className="text-muted-foreground mt-2">
@@ -208,11 +171,11 @@ export default async function AnalysisPage({
           {/* Filters Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-4 space-y-4">
-              <Filters 
-                sets={sets}
-                rarities={rarities}
-                currentFilters={filters}
-              />
+            <Filters 
+              sets={sets}
+              rarities={rarities}
+              currentFilters={filters}
+            />
               
               {/* Email Subscription Section */}
               <div className="bg-card rounded-lg border p-4">
@@ -251,7 +214,10 @@ export default async function AnalysisPage({
                 </div>
               </div>
             ) : (
-              <EnhancedCardTable cards={cards} currentSort={filters.sortBy} />
+              <EnhancedCardTable 
+                cards={cards} 
+                currentSort={filters.sortBy}
+              />
             )}
           </div>
         </div>

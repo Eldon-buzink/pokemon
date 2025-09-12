@@ -1,0 +1,7768 @@
+{
+  "cards": [
+    {
+      "card_id": "cel25-1",
+      "name": "Ho-Oh",
+      "set_name": "Celebrations",
+      "number": "1",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/1.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/1_hires.png",
+      "raw_price": 3.24,
+      "psa10_price": 25.78,
+      "spread_after_fees": -10.2,
+      "profit_loss": -10.2,
+      "confidence": "Speculative",
+      "volume_score": 0.601,
+      "raw_delta_5d": -6.1,
+      "raw_delta_30d": -22.7,
+      "raw_delta_90d": -19.6,
+      "psa10_delta_5d": -3.7,
+      "psa10_delta_30d": -13.6,
+      "psa10_delta_90d": -11.7,
+      "psa9_count": 61,
+      "psa10_count": 29,
+      "total_psa_count": 221,
+      "price_volatility": 0.227,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.131,
+      "ev_grade": -3.15,
+      "upside_potential": 7.96,
+      "badges": [],
+      "headline_momentum": -6.1,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 3.174548028032759
+        },
+        {
+          "date": "2025-08-15",
+          "price": 3.211484870235967
+        },
+        {
+          "date": "2025-08-16",
+          "price": 3.203090503396718
+        },
+        {
+          "date": "2025-08-17",
+          "price": 3.2627427967036184
+        },
+        {
+          "date": "2025-08-18",
+          "price": 3.258133112773662
+        },
+        {
+          "date": "2025-08-19",
+          "price": 3.3295386335242667
+        },
+        {
+          "date": "2025-08-20",
+          "price": 3.2655625635479617
+        },
+        {
+          "date": "2025-08-21",
+          "price": 3.345150493954205
+        },
+        {
+          "date": "2025-08-22",
+          "price": 3.2912400371904873
+        },
+        {
+          "date": "2025-08-23",
+          "price": 3.373083663770969
+        },
+        {
+          "date": "2025-08-24",
+          "price": 3.481592067417246
+        },
+        {
+          "date": "2025-08-25",
+          "price": 3.5447296896517173
+        },
+        {
+          "date": "2025-08-26",
+          "price": 3.7200329621649186
+        },
+        {
+          "date": "2025-08-27",
+          "price": 3.5675012585820096
+        },
+        {
+          "date": "2025-08-28",
+          "price": 3.523736895288201
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.4245932439696016
+        },
+        {
+          "date": "2025-08-30",
+          "price": 3.479653143763891
+        },
+        {
+          "date": "2025-08-31",
+          "price": 3.330748577863642
+        },
+        {
+          "date": "2025-09-01",
+          "price": 3.291733792737579
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.263959196404005
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.323067036060467
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.369655665970082
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.353158504383308
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.4269823803938273
+        },
+        {
+          "date": "2025-09-07",
+          "price": 3.4811895042279537
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.4614782774766524
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.581642824811338
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.6653322991816184
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.6701946242704047
+        },
+        {
+          "date": "2025-09-12",
+          "price": 2.979421357649205
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-2",
+      "name": "Reshiram",
+      "set_name": "Celebrations",
+      "number": "2",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/2.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/2_hires.png",
+      "raw_price": 5.68,
+      "psa10_price": 22.96,
+      "spread_after_fees": -14.61,
+      "profit_loss": -14.61,
+      "confidence": "Speculative",
+      "volume_score": 0.824,
+      "raw_delta_5d": 1.3,
+      "raw_delta_30d": 3.9,
+      "raw_delta_90d": 4.5,
+      "psa10_delta_5d": 0.8,
+      "psa10_delta_30d": 2.4,
+      "psa10_delta_90d": 2.7,
+      "psa9_count": 406,
+      "psa10_count": 116,
+      "total_psa_count": 1863,
+      "price_volatility": 0.347,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.062,
+      "ev_grade": -2.57,
+      "upside_potential": 4.04,
+      "badges": [],
+      "headline_momentum": 1.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 5.437520795689166
+        },
+        {
+          "date": "2025-08-15",
+          "price": 5.342260626382885
+        },
+        {
+          "date": "2025-08-16",
+          "price": 5.246444438080838
+        },
+        {
+          "date": "2025-08-17",
+          "price": 5.320798432131678
+        },
+        {
+          "date": "2025-08-18",
+          "price": 5.189153337207844
+        },
+        {
+          "date": "2025-08-19",
+          "price": 5.348025565598863
+        },
+        {
+          "date": "2025-08-20",
+          "price": 5.351988419007879
+        },
+        {
+          "date": "2025-08-21",
+          "price": 5.348854542132247
+        },
+        {
+          "date": "2025-08-22",
+          "price": 5.5676079266694405
+        },
+        {
+          "date": "2025-08-23",
+          "price": 5.459257495110513
+        },
+        {
+          "date": "2025-08-24",
+          "price": 5.217334097568349
+        },
+        {
+          "date": "2025-08-25",
+          "price": 5.347092317957921
+        },
+        {
+          "date": "2025-08-26",
+          "price": 5.382048035774177
+        },
+        {
+          "date": "2025-08-27",
+          "price": 5.359475326066873
+        },
+        {
+          "date": "2025-08-28",
+          "price": 5.5528734644839375
+        },
+        {
+          "date": "2025-08-29",
+          "price": 5.762111680447956
+        },
+        {
+          "date": "2025-08-30",
+          "price": 5.998264192340614
+        },
+        {
+          "date": "2025-08-31",
+          "price": 6.125515762483282
+        },
+        {
+          "date": "2025-09-01",
+          "price": 6.295829605039076
+        },
+        {
+          "date": "2025-09-02",
+          "price": 6.34142977446595
+        },
+        {
+          "date": "2025-09-03",
+          "price": 6.418960970179776
+        },
+        {
+          "date": "2025-09-04",
+          "price": 6.443568533647351
+        },
+        {
+          "date": "2025-09-05",
+          "price": 6.217997469499582
+        },
+        {
+          "date": "2025-09-06",
+          "price": 6.297206484995356
+        },
+        {
+          "date": "2025-09-07",
+          "price": 5.98675092270231
+        },
+        {
+          "date": "2025-09-08",
+          "price": 6.1389142354663475
+        },
+        {
+          "date": "2025-09-09",
+          "price": 6.403221748981665
+        },
+        {
+          "date": "2025-09-10",
+          "price": 6.171426277705649
+        },
+        {
+          "date": "2025-09-11",
+          "price": 6.392140013851847
+        },
+        {
+          "date": "2025-09-12",
+          "price": 5.507040918664224
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-3",
+      "name": "Kyogre",
+      "set_name": "Celebrations",
+      "number": "3",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/3.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/3_hires.png",
+      "raw_price": 6.13,
+      "psa10_price": 37.54,
+      "spread_after_fees": -4.86,
+      "profit_loss": -4.86,
+      "confidence": "Noisy",
+      "volume_score": 0.63,
+      "raw_delta_5d": 4.9,
+      "raw_delta_30d": -4.9,
+      "raw_delta_90d": 9.1,
+      "psa10_delta_5d": 2.9,
+      "psa10_delta_30d": -2.9,
+      "psa10_delta_90d": 5.4,
+      "psa9_count": 274,
+      "psa10_count": 180,
+      "total_psa_count": 930,
+      "price_volatility": 0.356,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.194,
+      "ev_grade": -0.79,
+      "upside_potential": 6.12,
+      "badges": [
+        "GRADE_EV"
+      ],
+      "headline_momentum": 4.9,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 6.171483572233852
+        },
+        {
+          "date": "2025-08-15",
+          "price": 5.961979846393863
+        },
+        {
+          "date": "2025-08-16",
+          "price": 6.094491307457797
+        },
+        {
+          "date": "2025-08-17",
+          "price": 6.262638423914562
+        },
+        {
+          "date": "2025-08-18",
+          "price": 6.295045001143912
+        },
+        {
+          "date": "2025-08-19",
+          "price": 6.526964919799305
+        },
+        {
+          "date": "2025-08-20",
+          "price": 6.4719176975728425
+        },
+        {
+          "date": "2025-08-21",
+          "price": 6.566844086781475
+        },
+        {
+          "date": "2025-08-22",
+          "price": 6.417353807165076
+        },
+        {
+          "date": "2025-08-23",
+          "price": 6.718878349305286
+        },
+        {
+          "date": "2025-08-24",
+          "price": 6.511601282114281
+        },
+        {
+          "date": "2025-08-25",
+          "price": 6.445063073014931
+        },
+        {
+          "date": "2025-08-26",
+          "price": 6.30542240955162
+        },
+        {
+          "date": "2025-08-27",
+          "price": 6.159543295591362
+        },
+        {
+          "date": "2025-08-28",
+          "price": 6.333686088135148
+        },
+        {
+          "date": "2025-08-29",
+          "price": 6.625078367585106
+        },
+        {
+          "date": "2025-08-30",
+          "price": 6.625356109564422
+        },
+        {
+          "date": "2025-08-31",
+          "price": 6.455575285331083
+        },
+        {
+          "date": "2025-09-01",
+          "price": 6.199563605374241
+        },
+        {
+          "date": "2025-09-02",
+          "price": 6.106460084535304
+        },
+        {
+          "date": "2025-09-03",
+          "price": 6.130731998236286
+        },
+        {
+          "date": "2025-09-04",
+          "price": 5.833172294905227
+        },
+        {
+          "date": "2025-09-05",
+          "price": 5.785168438816547
+        },
+        {
+          "date": "2025-09-06",
+          "price": 5.646262403421137
+        },
+        {
+          "date": "2025-09-07",
+          "price": 5.420164035739994
+        },
+        {
+          "date": "2025-09-08",
+          "price": 5.354813809091732
+        },
+        {
+          "date": "2025-09-09",
+          "price": 5.512015145144439
+        },
+        {
+          "date": "2025-09-10",
+          "price": 5.355701810393895
+        },
+        {
+          "date": "2025-09-11",
+          "price": 5.208312366292963
+        },
+        {
+          "date": "2025-09-12",
+          "price": 6.4742854411375115
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-4",
+      "name": "Palkia",
+      "set_name": "Celebrations",
+      "number": "4",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/4.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/4_hires.png",
+      "raw_price": 6.36,
+      "psa10_price": 27.57,
+      "spread_after_fees": -12.06,
+      "profit_loss": -12.06,
+      "confidence": "Speculative",
+      "volume_score": 0.911,
+      "raw_delta_5d": -2,
+      "raw_delta_30d": 4.9,
+      "raw_delta_90d": -8.4,
+      "psa10_delta_5d": -1.2,
+      "psa10_delta_30d": 2.9,
+      "psa10_delta_90d": -5,
+      "psa9_count": 190,
+      "psa10_count": 107,
+      "total_psa_count": 782,
+      "price_volatility": 0.295,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.137,
+      "ev_grade": -1.9,
+      "upside_potential": 4.34,
+      "badges": [],
+      "headline_momentum": -2,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 6.147485559532987
+        },
+        {
+          "date": "2025-08-15",
+          "price": 6.168444544895519
+        },
+        {
+          "date": "2025-08-16",
+          "price": 5.879807167373418
+        },
+        {
+          "date": "2025-08-17",
+          "price": 5.724625485499748
+        },
+        {
+          "date": "2025-08-18",
+          "price": 5.8576105091595165
+        },
+        {
+          "date": "2025-08-19",
+          "price": 5.923673401489528
+        },
+        {
+          "date": "2025-08-20",
+          "price": 5.823617285709842
+        },
+        {
+          "date": "2025-08-21",
+          "price": 5.665666236449605
+        },
+        {
+          "date": "2025-08-22",
+          "price": 5.692760374307306
+        },
+        {
+          "date": "2025-08-23",
+          "price": 5.596795580970265
+        },
+        {
+          "date": "2025-08-24",
+          "price": 5.554304430320301
+        },
+        {
+          "date": "2025-08-25",
+          "price": 5.449338099838818
+        },
+        {
+          "date": "2025-08-26",
+          "price": 5.656665368520766
+        },
+        {
+          "date": "2025-08-27",
+          "price": 5.505581014038237
+        },
+        {
+          "date": "2025-08-28",
+          "price": 5.24910784488078
+        },
+        {
+          "date": "2025-08-29",
+          "price": 5.253368693458922
+        },
+        {
+          "date": "2025-08-30",
+          "price": 5.435678519561198
+        },
+        {
+          "date": "2025-08-31",
+          "price": 5.34818016117809
+        },
+        {
+          "date": "2025-09-01",
+          "price": 5.160145749160603
+        },
+        {
+          "date": "2025-09-02",
+          "price": 4.998327935504166
+        },
+        {
+          "date": "2025-09-03",
+          "price": 5.027012702343483
+        },
+        {
+          "date": "2025-09-04",
+          "price": 5.007426622347151
+        },
+        {
+          "date": "2025-09-05",
+          "price": 5.119949589467542
+        },
+        {
+          "date": "2025-09-06",
+          "price": 5.016226032729377
+        },
+        {
+          "date": "2025-09-07",
+          "price": 4.783196405253219
+        },
+        {
+          "date": "2025-09-08",
+          "price": 4.7776720780958275
+        },
+        {
+          "date": "2025-09-09",
+          "price": 4.601893618128801
+        },
+        {
+          "date": "2025-09-10",
+          "price": 4.762125531384003
+        },
+        {
+          "date": "2025-09-11",
+          "price": 4.912306688975062
+        },
+        {
+          "date": "2025-09-12",
+          "price": 6.021507738336741
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-5",
+      "name": "Pikachu",
+      "set_name": "Celebrations",
+      "number": "5",
+      "rarity": "Rare Holo",
+      "image_url_small": "https://images.pokemontcg.io/cel25/5.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/5_hires.png",
+      "raw_price": 8.99,
+      "psa10_price": 71.92,
+      "spread_after_fees": 16.35,
+      "profit_loss": 16.35,
+      "confidence": "Noisy",
+      "volume_score": 0.659,
+      "raw_delta_5d": 18.6,
+      "raw_delta_30d": 30,
+      "raw_delta_90d": 30.9,
+      "psa10_delta_5d": 11.2,
+      "psa10_delta_30d": 18,
+      "psa10_delta_90d": 18.5,
+      "psa9_count": 865,
+      "psa10_count": 337,
+      "total_psa_count": 2184,
+      "price_volatility": 0.365,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.154,
+      "ev_grade": 1.82,
+      "upside_potential": 8,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "MOMENTUM"
+      ],
+      "headline_momentum": 18.6,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 9.2202999216184
+        },
+        {
+          "date": "2025-08-15",
+          "price": 8.841979258445619
+        },
+        {
+          "date": "2025-08-16",
+          "price": 8.81629581202476
+        },
+        {
+          "date": "2025-08-17",
+          "price": 8.968932347264529
+        },
+        {
+          "date": "2025-08-18",
+          "price": 8.821821566164484
+        },
+        {
+          "date": "2025-08-19",
+          "price": 8.76274936300092
+        },
+        {
+          "date": "2025-08-20",
+          "price": 8.499061018283067
+        },
+        {
+          "date": "2025-08-21",
+          "price": 8.63517199976059
+        },
+        {
+          "date": "2025-08-22",
+          "price": 8.448426554277898
+        },
+        {
+          "date": "2025-08-23",
+          "price": 8.358997005817217
+        },
+        {
+          "date": "2025-08-24",
+          "price": 7.99158723561268
+        },
+        {
+          "date": "2025-08-25",
+          "price": 7.819921095288547
+        },
+        {
+          "date": "2025-08-26",
+          "price": 7.916968888762706
+        },
+        {
+          "date": "2025-08-27",
+          "price": 7.815629267427812
+        },
+        {
+          "date": "2025-08-28",
+          "price": 7.538021699130154
+        },
+        {
+          "date": "2025-08-29",
+          "price": 7.795902083575504
+        },
+        {
+          "date": "2025-08-30",
+          "price": 7.744766198185755
+        },
+        {
+          "date": "2025-08-31",
+          "price": 7.912396972691014
+        },
+        {
+          "date": "2025-09-01",
+          "price": 7.767861017864756
+        },
+        {
+          "date": "2025-09-02",
+          "price": 7.952971745240193
+        },
+        {
+          "date": "2025-09-03",
+          "price": 8.186488804561591
+        },
+        {
+          "date": "2025-09-04",
+          "price": 8.42521556648387
+        },
+        {
+          "date": "2025-09-05",
+          "price": 8.465431158607716
+        },
+        {
+          "date": "2025-09-06",
+          "price": 8.195504030905616
+        },
+        {
+          "date": "2025-09-07",
+          "price": 7.8150102617779265
+        },
+        {
+          "date": "2025-09-08",
+          "price": 7.589458662834561
+        },
+        {
+          "date": "2025-09-09",
+          "price": 7.328344846581158
+        },
+        {
+          "date": "2025-09-10",
+          "price": 7.53222735819575
+        },
+        {
+          "date": "2025-09-11",
+          "price": 7.176628187788419
+        },
+        {
+          "date": "2025-09-12",
+          "price": 10.93583879802922
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-6",
+      "name": "Flying Pikachu V",
+      "set_name": "Celebrations",
+      "number": "6",
+      "rarity": "Rare Holo V",
+      "image_url_small": "https://images.pokemontcg.io/cel25/6.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/6_hires.png",
+      "raw_price": 5.18,
+      "psa10_price": 51.39,
+      "spread_after_fees": 5.8,
+      "profit_loss": 5.8,
+      "confidence": "Speculative",
+      "volume_score": 0.028,
+      "raw_delta_5d": -20.6,
+      "raw_delta_30d": -20.8,
+      "raw_delta_90d": -36.8,
+      "psa10_delta_5d": -12.4,
+      "psa10_delta_30d": -12.5,
+      "psa10_delta_90d": -22.1,
+      "psa9_count": 282,
+      "psa10_count": 141,
+      "total_psa_count": 1223,
+      "price_volatility": 0.225,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.115,
+      "ev_grade": 1.12,
+      "upside_potential": 9.93,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": -20.6,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 4.926401929859296
+        },
+        {
+          "date": "2025-08-15",
+          "price": 4.82176224226617
+        },
+        {
+          "date": "2025-08-16",
+          "price": 4.60086412683605
+        },
+        {
+          "date": "2025-08-17",
+          "price": 4.578232137038087
+        },
+        {
+          "date": "2025-08-18",
+          "price": 4.463853026322183
+        },
+        {
+          "date": "2025-08-19",
+          "price": 4.505604994132823
+        },
+        {
+          "date": "2025-08-20",
+          "price": 4.401148683682775
+        },
+        {
+          "date": "2025-08-21",
+          "price": 4.6164705135396815
+        },
+        {
+          "date": "2025-08-22",
+          "price": 4.428292515669485
+        },
+        {
+          "date": "2025-08-23",
+          "price": 4.413233063406376
+        },
+        {
+          "date": "2025-08-24",
+          "price": 4.441409626759339
+        },
+        {
+          "date": "2025-08-25",
+          "price": 4.231505326013102
+        },
+        {
+          "date": "2025-08-26",
+          "price": 4.186278158518686
+        },
+        {
+          "date": "2025-08-27",
+          "price": 4.077189070285303
+        },
+        {
+          "date": "2025-08-28",
+          "price": 3.9852395733091117
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.918567337068439
+        },
+        {
+          "date": "2025-08-30",
+          "price": 4.033149463182638
+        },
+        {
+          "date": "2025-08-31",
+          "price": 4.068331143366397
+        },
+        {
+          "date": "2025-09-01",
+          "price": 4.046527632060724
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.8463148577715636
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.8265047002148878
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.8376006207317293
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.708078720415413
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.524608816883749
+        },
+        {
+          "date": "2025-09-07",
+          "price": 3.417797343256114
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.414797995633892
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.5231013505379125
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.691592016300695
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.525698762182842
+        },
+        {
+          "date": "2025-09-12",
+          "price": 3.9123037234816387
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-7",
+      "name": "Flying Pikachu VMAX",
+      "set_name": "Celebrations",
+      "number": "7",
+      "rarity": "Rare Holo VMAX",
+      "image_url_small": "https://images.pokemontcg.io/cel25/7.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/7_hires.png",
+      "raw_price": 12.99,
+      "psa10_price": 129.9,
+      "spread_after_fees": 52.94,
+      "profit_loss": 52.94,
+      "confidence": "Speculative",
+      "volume_score": 0.918,
+      "raw_delta_5d": 13,
+      "raw_delta_30d": 21.8,
+      "raw_delta_90d": 40.7,
+      "psa10_delta_5d": 7.8,
+      "psa10_delta_30d": 13.1,
+      "psa10_delta_90d": 24.4,
+      "psa9_count": 73,
+      "psa10_count": 31,
+      "total_psa_count": 259,
+      "price_volatility": 0.154,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.12,
+      "ev_grade": 4.08,
+      "upside_potential": 10,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": 13,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 12.944555568338869
+        },
+        {
+          "date": "2025-08-15",
+          "price": 12.79910384029726
+        },
+        {
+          "date": "2025-08-16",
+          "price": 12.679048228382749
+        },
+        {
+          "date": "2025-08-17",
+          "price": 13.142715415105707
+        },
+        {
+          "date": "2025-08-18",
+          "price": 12.501251482366898
+        },
+        {
+          "date": "2025-08-19",
+          "price": 12.179374276157919
+        },
+        {
+          "date": "2025-08-20",
+          "price": 12.111204966522983
+        },
+        {
+          "date": "2025-08-21",
+          "price": 11.69298293316869
+        },
+        {
+          "date": "2025-08-22",
+          "price": 11.328067511050792
+        },
+        {
+          "date": "2025-08-23",
+          "price": 11.44933502256123
+        },
+        {
+          "date": "2025-08-24",
+          "price": 10.960328901407806
+        },
+        {
+          "date": "2025-08-25",
+          "price": 11.037866185001146
+        },
+        {
+          "date": "2025-08-26",
+          "price": 11.154965681695902
+        },
+        {
+          "date": "2025-08-27",
+          "price": 10.916603051805351
+        },
+        {
+          "date": "2025-08-28",
+          "price": 10.744688583513392
+        },
+        {
+          "date": "2025-08-29",
+          "price": 10.944567791591512
+        },
+        {
+          "date": "2025-08-30",
+          "price": 10.932938468299259
+        },
+        {
+          "date": "2025-08-31",
+          "price": 10.809799689395337
+        },
+        {
+          "date": "2025-09-01",
+          "price": 10.356171263632104
+        },
+        {
+          "date": "2025-09-02",
+          "price": 10.453296904116485
+        },
+        {
+          "date": "2025-09-03",
+          "price": 10.070508502858228
+        },
+        {
+          "date": "2025-09-04",
+          "price": 9.574561910636817
+        },
+        {
+          "date": "2025-09-05",
+          "price": 9.142352813410639
+        },
+        {
+          "date": "2025-09-06",
+          "price": 9.41052025979349
+        },
+        {
+          "date": "2025-09-07",
+          "price": 9.579809779196541
+        },
+        {
+          "date": "2025-09-08",
+          "price": 9.728586273677516
+        },
+        {
+          "date": "2025-09-09",
+          "price": 9.9387444287865
+        },
+        {
+          "date": "2025-09-10",
+          "price": 10.197401507073517
+        },
+        {
+          "date": "2025-09-11",
+          "price": 10.43206390834086
+        },
+        {
+          "date": "2025-09-12",
+          "price": 14.633754025090296
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-8",
+      "name": "Surfing Pikachu V",
+      "set_name": "Celebrations",
+      "number": "8",
+      "rarity": "Rare Holo V",
+      "image_url_small": "https://images.pokemontcg.io/cel25/8.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/8_hires.png",
+      "raw_price": 11.49,
+      "psa10_price": 135.65,
+      "spread_after_fees": 58.46,
+      "profit_loss": 58.46,
+      "confidence": "Speculative",
+      "volume_score": 0.438,
+      "raw_delta_5d": -1.5,
+      "raw_delta_30d": -11.9,
+      "raw_delta_90d": 3.9,
+      "psa10_delta_5d": -0.9,
+      "psa10_delta_30d": -7.2,
+      "psa10_delta_90d": 2.3,
+      "psa9_count": 600,
+      "psa10_count": 78,
+      "total_psa_count": 1530,
+      "price_volatility": 0.307,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.051,
+      "ev_grade": 5.09,
+      "upside_potential": 11.8,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": -1.5,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 11.46173153086182
+        },
+        {
+          "date": "2025-08-15",
+          "price": 11.624705477703131
+        },
+        {
+          "date": "2025-08-16",
+          "price": 11.420576082625086
+        },
+        {
+          "date": "2025-08-17",
+          "price": 11.608355977055622
+        },
+        {
+          "date": "2025-08-18",
+          "price": 11.04875642315862
+        },
+        {
+          "date": "2025-08-19",
+          "price": 10.613525281744861
+        },
+        {
+          "date": "2025-08-20",
+          "price": 10.09375797860383
+        },
+        {
+          "date": "2025-08-21",
+          "price": 10.47001281183324
+        },
+        {
+          "date": "2025-08-22",
+          "price": 9.98940813484821
+        },
+        {
+          "date": "2025-08-23",
+          "price": 10.05337135128441
+        },
+        {
+          "date": "2025-08-24",
+          "price": 9.68531504226467
+        },
+        {
+          "date": "2025-08-25",
+          "price": 9.99819332132898
+        },
+        {
+          "date": "2025-08-26",
+          "price": 9.923536569736823
+        },
+        {
+          "date": "2025-08-27",
+          "price": 9.861470319698082
+        },
+        {
+          "date": "2025-08-28",
+          "price": 10.290734581175034
+        },
+        {
+          "date": "2025-08-29",
+          "price": 10.068217964753321
+        },
+        {
+          "date": "2025-08-30",
+          "price": 10.016260919689632
+        },
+        {
+          "date": "2025-08-31",
+          "price": 9.914815701276593
+        },
+        {
+          "date": "2025-09-01",
+          "price": 9.643940204689569
+        },
+        {
+          "date": "2025-09-02",
+          "price": 10.048111312523151
+        },
+        {
+          "date": "2025-09-03",
+          "price": 9.77870452522877
+        },
+        {
+          "date": "2025-09-04",
+          "price": 9.564574435513583
+        },
+        {
+          "date": "2025-09-05",
+          "price": 9.291038988693174
+        },
+        {
+          "date": "2025-09-06",
+          "price": 9.204310313496187
+        },
+        {
+          "date": "2025-09-07",
+          "price": 9.316213333400349
+        },
+        {
+          "date": "2025-09-08",
+          "price": 9.70753324711928
+        },
+        {
+          "date": "2025-09-09",
+          "price": 9.576001442472753
+        },
+        {
+          "date": "2025-09-10",
+          "price": 9.584208970234794
+        },
+        {
+          "date": "2025-09-11",
+          "price": 9.55767763175377
+        },
+        {
+          "date": "2025-09-12",
+          "price": 11.287524546893993
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-9",
+      "name": "Surfing Pikachu VMAX",
+      "set_name": "Celebrations",
+      "number": "9",
+      "rarity": "Rare Holo VMAX",
+      "image_url_small": "https://images.pokemontcg.io/cel25/9.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/9_hires.png",
+      "raw_price": 24,
+      "psa10_price": 163.04,
+      "spread_after_fees": 65.13,
+      "profit_loss": 65.13,
+      "confidence": "Noisy",
+      "volume_score": 0.476,
+      "raw_delta_5d": 5.1,
+      "raw_delta_30d": -5.9,
+      "raw_delta_90d": 16.3,
+      "psa10_delta_5d": 3.1,
+      "psa10_delta_30d": -3.6,
+      "psa10_delta_90d": 9.8,
+      "psa9_count": 501,
+      "psa10_count": 230,
+      "total_psa_count": 1974,
+      "price_volatility": 0.39,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.117,
+      "ev_grade": 2.71,
+      "upside_potential": 6.79,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": 5.1,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 24.04395048468833
+        },
+        {
+          "date": "2025-08-15",
+          "price": 23.15142330591835
+        },
+        {
+          "date": "2025-08-16",
+          "price": 23.84309050409431
+        },
+        {
+          "date": "2025-08-17",
+          "price": 24.747482529161605
+        },
+        {
+          "date": "2025-08-18",
+          "price": 24.767797030237023
+        },
+        {
+          "date": "2025-08-19",
+          "price": 25.811704835186283
+        },
+        {
+          "date": "2025-08-20",
+          "price": 26.318394788307472
+        },
+        {
+          "date": "2025-08-21",
+          "price": 27.618367971214752
+        },
+        {
+          "date": "2025-08-22",
+          "price": 27.385288918665545
+        },
+        {
+          "date": "2025-08-23",
+          "price": 26.892392636299608
+        },
+        {
+          "date": "2025-08-24",
+          "price": 28.196597348515077
+        },
+        {
+          "date": "2025-08-25",
+          "price": 27.10650732992285
+        },
+        {
+          "date": "2025-08-26",
+          "price": 25.821266305191052
+        },
+        {
+          "date": "2025-08-27",
+          "price": 26.521337854732906
+        },
+        {
+          "date": "2025-08-28",
+          "price": 26.994304559919055
+        },
+        {
+          "date": "2025-08-29",
+          "price": 27.602906649032818
+        },
+        {
+          "date": "2025-08-30",
+          "price": 26.76942054088588
+        },
+        {
+          "date": "2025-08-31",
+          "price": 25.6232039093385
+        },
+        {
+          "date": "2025-09-01",
+          "price": 25.954875574886564
+        },
+        {
+          "date": "2025-09-02",
+          "price": 25.43946977282848
+        },
+        {
+          "date": "2025-09-03",
+          "price": 25.647992034404545
+        },
+        {
+          "date": "2025-09-04",
+          "price": 25.99133941976369
+        },
+        {
+          "date": "2025-09-05",
+          "price": 26.827958800569892
+        },
+        {
+          "date": "2025-09-06",
+          "price": 28.098165313531073
+        },
+        {
+          "date": "2025-09-07",
+          "price": 29.487225069932375
+        },
+        {
+          "date": "2025-09-08",
+          "price": 28.500897271372438
+        },
+        {
+          "date": "2025-09-09",
+          "price": 29.55169520785939
+        },
+        {
+          "date": "2025-09-10",
+          "price": 29.65432723491105
+        },
+        {
+          "date": "2025-09-11",
+          "price": 28.290103409027072
+        },
+        {
+          "date": "2025-09-12",
+          "price": 25.278872673031383
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-10",
+      "name": "Zekrom",
+      "set_name": "Celebrations",
+      "number": "10",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/10.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/10_hires.png",
+      "raw_price": 4.22,
+      "psa10_price": 30.38,
+      "spread_after_fees": -7.95,
+      "profit_loss": -7.95,
+      "confidence": "Speculative",
+      "volume_score": 0.823,
+      "raw_delta_5d": 6.1,
+      "raw_delta_30d": 10.7,
+      "raw_delta_90d": 39.2,
+      "psa10_delta_5d": 3.7,
+      "psa10_delta_30d": 6.4,
+      "psa10_delta_90d": 23.5,
+      "psa9_count": 228,
+      "psa10_count": 85,
+      "total_psa_count": 726,
+      "price_volatility": 0.215,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.117,
+      "ev_grade": -1.88,
+      "upside_potential": 7.2,
+      "badges": [],
+      "headline_momentum": 6.1,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 4.0805818388678805
+        },
+        {
+          "date": "2025-08-15",
+          "price": 4.0492667587464615
+        },
+        {
+          "date": "2025-08-16",
+          "price": 3.850557423003128
+        },
+        {
+          "date": "2025-08-17",
+          "price": 3.7481455831470845
+        },
+        {
+          "date": "2025-08-18",
+          "price": 3.8276723812427393
+        },
+        {
+          "date": "2025-08-19",
+          "price": 3.7165323569253452
+        },
+        {
+          "date": "2025-08-20",
+          "price": 3.627907625860185
+        },
+        {
+          "date": "2025-08-21",
+          "price": 3.716762119620233
+        },
+        {
+          "date": "2025-08-22",
+          "price": 3.8004647435268435
+        },
+        {
+          "date": "2025-08-23",
+          "price": 3.7618111547056556
+        },
+        {
+          "date": "2025-08-24",
+          "price": 3.797907944946655
+        },
+        {
+          "date": "2025-08-25",
+          "price": 3.9818662146230643
+        },
+        {
+          "date": "2025-08-26",
+          "price": 3.906710527832733
+        },
+        {
+          "date": "2025-08-27",
+          "price": 3.74537892571496
+        },
+        {
+          "date": "2025-08-28",
+          "price": 3.610887977439569
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.436053525399018
+        },
+        {
+          "date": "2025-08-30",
+          "price": 3.571639585273907
+        },
+        {
+          "date": "2025-08-31",
+          "price": 3.740520978101388
+        },
+        {
+          "date": "2025-09-01",
+          "price": 3.6630686588043497
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.505206411589611
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.6206836255557713
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.6450901042391073
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.6590690110189827
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.6333971224454396
+        },
+        {
+          "date": "2025-09-07",
+          "price": 3.5084883438172985
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.6713485212500934
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.758107447962217
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.71616118138245
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.735758228001353
+        },
+        {
+          "date": "2025-09-12",
+          "price": 4.3301171908792595
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-11",
+      "name": "Mew",
+      "set_name": "Celebrations",
+      "number": "11",
+      "rarity": "Rare Holo",
+      "image_url_small": "https://images.pokemontcg.io/cel25/11.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/11_hires.png",
+      "raw_price": 3.03,
+      "psa10_price": 26.26,
+      "spread_after_fees": -9.65,
+      "profit_loss": -9.65,
+      "confidence": "Speculative",
+      "volume_score": 0.332,
+      "raw_delta_5d": 19.5,
+      "raw_delta_30d": 20.7,
+      "raw_delta_90d": 71.8,
+      "psa10_delta_5d": 11.7,
+      "psa10_delta_30d": 12.4,
+      "psa10_delta_90d": 43.1,
+      "psa9_count": 259,
+      "psa10_count": 329,
+      "total_psa_count": 1728,
+      "price_volatility": 0.329,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.19,
+      "ev_grade": -3.18,
+      "upside_potential": 8.66,
+      "badges": [
+        "GRADE_EV",
+        "MOMENTUM"
+      ],
+      "headline_momentum": 19.5,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 2.9815100252734474
+        },
+        {
+          "date": "2025-08-15",
+          "price": 3.0373908037084103
+        },
+        {
+          "date": "2025-08-16",
+          "price": 2.921337460437597
+        },
+        {
+          "date": "2025-08-17",
+          "price": 2.849011980495561
+        },
+        {
+          "date": "2025-08-18",
+          "price": 2.717566755222737
+        },
+        {
+          "date": "2025-08-19",
+          "price": 2.847350633175584
+        },
+        {
+          "date": "2025-08-20",
+          "price": 2.964447013711358
+        },
+        {
+          "date": "2025-08-21",
+          "price": 3.048000047896793
+        },
+        {
+          "date": "2025-08-22",
+          "price": 2.9885938051566288
+        },
+        {
+          "date": "2025-08-23",
+          "price": 2.9157808540418837
+        },
+        {
+          "date": "2025-08-24",
+          "price": 2.817435272072775
+        },
+        {
+          "date": "2025-08-25",
+          "price": 2.9435436971189346
+        },
+        {
+          "date": "2025-08-26",
+          "price": 2.950646968184863
+        },
+        {
+          "date": "2025-08-27",
+          "price": 2.934714700658108
+        },
+        {
+          "date": "2025-08-28",
+          "price": 2.8928624569683254
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.009410217417255
+        },
+        {
+          "date": "2025-08-30",
+          "price": 2.931822838041452
+        },
+        {
+          "date": "2025-08-31",
+          "price": 2.8834379709715168
+        },
+        {
+          "date": "2025-09-01",
+          "price": 3.0120427567154153
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.099435878109058
+        },
+        {
+          "date": "2025-09-03",
+          "price": 2.9475963725495427
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.04388344879203
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.0601416579176077
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.1402560220264237
+        },
+        {
+          "date": "2025-09-07",
+          "price": 2.984948049405358
+        },
+        {
+          "date": "2025-09-08",
+          "price": 2.9861883165734553
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.0471071551578413
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.052635205686359
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.0708093958497877
+        },
+        {
+          "date": "2025-09-12",
+          "price": 3.561568907502467
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-12",
+      "name": "Xerneas",
+      "set_name": "Celebrations",
+      "number": "12",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/12.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/12_hires.png",
+      "raw_price": 4.67,
+      "psa10_price": 26.55,
+      "spread_after_fees": -11.09,
+      "profit_loss": -11.09,
+      "confidence": "Speculative",
+      "volume_score": 0.558,
+      "raw_delta_5d": 2.7,
+      "raw_delta_30d": 12,
+      "raw_delta_90d": 2,
+      "psa10_delta_5d": 1.6,
+      "psa10_delta_30d": 7.2,
+      "psa10_delta_90d": 1.2,
+      "psa9_count": 98,
+      "psa10_count": 66,
+      "total_psa_count": 633,
+      "price_volatility": 0.315,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.104,
+      "ev_grade": -2.37,
+      "upside_potential": 5.68,
+      "badges": [],
+      "headline_momentum": 2.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 4.5610140095663025
+        },
+        {
+          "date": "2025-08-15",
+          "price": 4.45410877500737
+        },
+        {
+          "date": "2025-08-16",
+          "price": 4.3157239001908
+        },
+        {
+          "date": "2025-08-17",
+          "price": 4.322080639580645
+        },
+        {
+          "date": "2025-08-18",
+          "price": 4.156721600630593
+        },
+        {
+          "date": "2025-08-19",
+          "price": 4.282278759413816
+        },
+        {
+          "date": "2025-08-20",
+          "price": 4.119747471019397
+        },
+        {
+          "date": "2025-08-21",
+          "price": 4.162932795232097
+        },
+        {
+          "date": "2025-08-22",
+          "price": 4.021211815933612
+        },
+        {
+          "date": "2025-08-23",
+          "price": 4.081242799320621
+        },
+        {
+          "date": "2025-08-24",
+          "price": 4.158464564770303
+        },
+        {
+          "date": "2025-08-25",
+          "price": 4.033554203259045
+        },
+        {
+          "date": "2025-08-26",
+          "price": 4.196939938520717
+        },
+        {
+          "date": "2025-08-27",
+          "price": 4.276923042474791
+        },
+        {
+          "date": "2025-08-28",
+          "price": 4.1015175261656305
+        },
+        {
+          "date": "2025-08-29",
+          "price": 4.214941905042999
+        },
+        {
+          "date": "2025-08-30",
+          "price": 4.253227931278842
+        },
+        {
+          "date": "2025-08-31",
+          "price": 4.129955999887208
+        },
+        {
+          "date": "2025-09-01",
+          "price": 4.1183942832756975
+        },
+        {
+          "date": "2025-09-02",
+          "price": 4.016062256734482
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.936651409155036
+        },
+        {
+          "date": "2025-09-04",
+          "price": 4.09054093390564
+        },
+        {
+          "date": "2025-09-05",
+          "price": 4.232983425856306
+        },
+        {
+          "date": "2025-09-06",
+          "price": 4.043109841159685
+        },
+        {
+          "date": "2025-09-07",
+          "price": 4.182924599272589
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.9928496304283887
+        },
+        {
+          "date": "2025-09-09",
+          "price": 4.186191889962436
+        },
+        {
+          "date": "2025-09-10",
+          "price": 4.355308076810386
+        },
+        {
+          "date": "2025-09-11",
+          "price": 4.199545201539032
+        },
+        {
+          "date": "2025-09-12",
+          "price": 4.68497921044622
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-13",
+      "name": "Cosmog",
+      "set_name": "Celebrations",
+      "number": "13",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/13.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/13_hires.png",
+      "raw_price": 4.37,
+      "psa10_price": 15.94,
+      "spread_after_fees": -18.21,
+      "profit_loss": -18.21,
+      "confidence": "Speculative",
+      "volume_score": 0.293,
+      "raw_delta_5d": 7.2,
+      "raw_delta_30d": 8.8,
+      "raw_delta_90d": 29,
+      "psa10_delta_5d": 4.3,
+      "psa10_delta_30d": 5.3,
+      "psa10_delta_90d": 17.4,
+      "psa9_count": 455,
+      "psa10_count": 180,
+      "total_psa_count": 1357,
+      "price_volatility": 0.341,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.133,
+      "ev_grade": -4.17,
+      "upside_potential": 3.65,
+      "badges": [],
+      "headline_momentum": 7.2,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 4.433589711614522
+        },
+        {
+          "date": "2025-08-15",
+          "price": 4.517047292584254
+        },
+        {
+          "date": "2025-08-16",
+          "price": 4.524692092477971
+        },
+        {
+          "date": "2025-08-17",
+          "price": 4.381167217514434
+        },
+        {
+          "date": "2025-08-18",
+          "price": 4.530812273571079
+        },
+        {
+          "date": "2025-08-19",
+          "price": 4.480115338208355
+        },
+        {
+          "date": "2025-08-20",
+          "price": 4.265932943239524
+        },
+        {
+          "date": "2025-08-21",
+          "price": 4.066080203311211
+        },
+        {
+          "date": "2025-08-22",
+          "price": 4.2655413828993245
+        },
+        {
+          "date": "2025-08-23",
+          "price": 4.298484552078237
+        },
+        {
+          "date": "2025-08-24",
+          "price": 4.11804206789962
+        },
+        {
+          "date": "2025-08-25",
+          "price": 3.9474790003227023
+        },
+        {
+          "date": "2025-08-26",
+          "price": 3.8239470710445778
+        },
+        {
+          "date": "2025-08-27",
+          "price": 3.8584923732037573
+        },
+        {
+          "date": "2025-08-28",
+          "price": 3.96102370850684
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.8197695932121767
+        },
+        {
+          "date": "2025-08-30",
+          "price": 3.8413721502140503
+        },
+        {
+          "date": "2025-08-31",
+          "price": 3.721474781703624
+        },
+        {
+          "date": "2025-09-01",
+          "price": 3.5843887739589406
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.698281298465594
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.5560937879911116
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.720093848151814
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.636521206639115
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.4799733634032632
+        },
+        {
+          "date": "2025-09-07",
+          "price": 3.414955472121738
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.49047270647758
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.444358436964857
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.6020747259006245
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.649115410140869
+        },
+        {
+          "date": "2025-09-12",
+          "price": 4.752952003900587
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-14",
+      "name": "Cosmoem",
+      "set_name": "Celebrations",
+      "number": "14",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/14.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/14_hires.png",
+      "raw_price": 5.59,
+      "psa10_price": 37.88,
+      "spread_after_fees": -4.08,
+      "profit_loss": -4.08,
+      "confidence": "Speculative",
+      "volume_score": 0.161,
+      "raw_delta_5d": -5.3,
+      "raw_delta_30d": -14,
+      "raw_delta_90d": -26.8,
+      "psa10_delta_5d": -3.2,
+      "psa10_delta_30d": -8.4,
+      "psa10_delta_90d": -16.1,
+      "psa9_count": 642,
+      "psa10_count": 126,
+      "total_psa_count": 2018,
+      "price_volatility": 0.297,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.062,
+      "ev_grade": -0.73,
+      "upside_potential": 6.77,
+      "badges": [],
+      "headline_momentum": -5.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 5.6820764552115275
+        },
+        {
+          "date": "2025-08-15",
+          "price": 5.736504920033883
+        },
+        {
+          "date": "2025-08-16",
+          "price": 5.49214089845158
+        },
+        {
+          "date": "2025-08-17",
+          "price": 5.356512514146155
+        },
+        {
+          "date": "2025-08-18",
+          "price": 5.133161383315125
+        },
+        {
+          "date": "2025-08-19",
+          "price": 5.267995964566605
+        },
+        {
+          "date": "2025-08-20",
+          "price": 5.241651340458105
+        },
+        {
+          "date": "2025-08-21",
+          "price": 5.144919194660887
+        },
+        {
+          "date": "2025-08-22",
+          "price": 4.9951110914001875
+        },
+        {
+          "date": "2025-08-23",
+          "price": 5.225519709223568
+        },
+        {
+          "date": "2025-08-24",
+          "price": 4.988409239766822
+        },
+        {
+          "date": "2025-08-25",
+          "price": 4.938970456514713
+        },
+        {
+          "date": "2025-08-26",
+          "price": 4.940515328957266
+        },
+        {
+          "date": "2025-08-27",
+          "price": 5.153361428519077
+        },
+        {
+          "date": "2025-08-28",
+          "price": 5.0657638425961204
+        },
+        {
+          "date": "2025-08-29",
+          "price": 5.0337527962587965
+        },
+        {
+          "date": "2025-08-30",
+          "price": 4.83193723023027
+        },
+        {
+          "date": "2025-08-31",
+          "price": 4.879839981099347
+        },
+        {
+          "date": "2025-09-01",
+          "price": 5.10542317354368
+        },
+        {
+          "date": "2025-09-02",
+          "price": 5.2625214844939086
+        },
+        {
+          "date": "2025-09-03",
+          "price": 5.458577914039038
+        },
+        {
+          "date": "2025-09-04",
+          "price": 5.329296449901178
+        },
+        {
+          "date": "2025-09-05",
+          "price": 5.222481711628992
+        },
+        {
+          "date": "2025-09-06",
+          "price": 5.463103624414205
+        },
+        {
+          "date": "2025-09-07",
+          "price": 5.45801231112514
+        },
+        {
+          "date": "2025-09-08",
+          "price": 5.68116190805618
+        },
+        {
+          "date": "2025-09-09",
+          "price": 5.575797251549705
+        },
+        {
+          "date": "2025-09-10",
+          "price": 5.835792117633384
+        },
+        {
+          "date": "2025-09-11",
+          "price": 5.983331468116698
+        },
+        {
+          "date": "2025-09-12",
+          "price": 5.3805864536062495
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-15",
+      "name": "Lunala",
+      "set_name": "Celebrations",
+      "number": "15",
+      "rarity": "Rare Holo",
+      "image_url_small": "https://images.pokemontcg.io/cel25/15.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/15_hires.png",
+      "raw_price": 12.52,
+      "psa10_price": 75.18,
+      "spread_after_fees": 15.1,
+      "profit_loss": 15.1,
+      "confidence": "Noisy",
+      "volume_score": 0.021,
+      "raw_delta_5d": 6.4,
+      "raw_delta_30d": 15.5,
+      "raw_delta_90d": 4,
+      "psa10_delta_5d": 3.8,
+      "psa10_delta_30d": 9.3,
+      "psa10_delta_90d": 2.4,
+      "psa9_count": 575,
+      "psa10_count": 310,
+      "total_psa_count": 2117,
+      "price_volatility": 0.378,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.146,
+      "ev_grade": 1.21,
+      "upside_potential": 6,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": 6.4,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 12.514598676755877
+        },
+        {
+          "date": "2025-08-15",
+          "price": 12.048833067267877
+        },
+        {
+          "date": "2025-08-16",
+          "price": 12.092027451010514
+        },
+        {
+          "date": "2025-08-17",
+          "price": 12.028307150788907
+        },
+        {
+          "date": "2025-08-18",
+          "price": 12.510982715881887
+        },
+        {
+          "date": "2025-08-19",
+          "price": 11.981981527486743
+        },
+        {
+          "date": "2025-08-20",
+          "price": 11.639947997019206
+        },
+        {
+          "date": "2025-08-21",
+          "price": 11.192733204460911
+        },
+        {
+          "date": "2025-08-22",
+          "price": 11.145985897679497
+        },
+        {
+          "date": "2025-08-23",
+          "price": 11.399259248046427
+        },
+        {
+          "date": "2025-08-24",
+          "price": 10.929391438948388
+        },
+        {
+          "date": "2025-08-25",
+          "price": 10.5525582151763
+        },
+        {
+          "date": "2025-08-26",
+          "price": 10.280066082433944
+        },
+        {
+          "date": "2025-08-27",
+          "price": 10.292057103533633
+        },
+        {
+          "date": "2025-08-28",
+          "price": 9.8342173922319
+        },
+        {
+          "date": "2025-08-29",
+          "price": 9.998112318646664
+        },
+        {
+          "date": "2025-08-30",
+          "price": 9.935241144984928
+        },
+        {
+          "date": "2025-08-31",
+          "price": 9.988112183298052
+        },
+        {
+          "date": "2025-09-01",
+          "price": 10.258011010233316
+        },
+        {
+          "date": "2025-09-02",
+          "price": 10.161382510220756
+        },
+        {
+          "date": "2025-09-03",
+          "price": 10.338985594588221
+        },
+        {
+          "date": "2025-09-04",
+          "price": 10.524481801717103
+        },
+        {
+          "date": "2025-09-05",
+          "price": 10.845664351758817
+        },
+        {
+          "date": "2025-09-06",
+          "price": 10.817730270516304
+        },
+        {
+          "date": "2025-09-07",
+          "price": 11.192200418386724
+        },
+        {
+          "date": "2025-09-08",
+          "price": 11.744793589479656
+        },
+        {
+          "date": "2025-09-09",
+          "price": 12.060242612756946
+        },
+        {
+          "date": "2025-09-10",
+          "price": 11.661059985749178
+        },
+        {
+          "date": "2025-09-11",
+          "price": 11.212232204770443
+        },
+        {
+          "date": "2025-09-12",
+          "price": 13.31209342876687
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-16",
+      "name": "Zacian V",
+      "set_name": "Celebrations",
+      "number": "16",
+      "rarity": "Rare Holo V",
+      "image_url_small": "https://images.pokemontcg.io/cel25/16.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/16_hires.png",
+      "raw_price": 6.73,
+      "psa10_price": 65.86,
+      "spread_after_fees": 14.38,
+      "profit_loss": 14.38,
+      "confidence": "Speculative",
+      "volume_score": 0.408,
+      "raw_delta_5d": 12.9,
+      "raw_delta_30d": 14,
+      "raw_delta_90d": 13.6,
+      "psa10_delta_5d": 7.7,
+      "psa10_delta_30d": 8.4,
+      "psa10_delta_90d": 8.1,
+      "psa9_count": 388,
+      "psa10_count": 116,
+      "total_psa_count": 1764,
+      "price_volatility": 0.207,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.066,
+      "ev_grade": 2.14,
+      "upside_potential": 9.79,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": 12.9,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 6.522553296610479
+        },
+        {
+          "date": "2025-08-15",
+          "price": 6.224071029748736
+        },
+        {
+          "date": "2025-08-16",
+          "price": 6.408816304521711
+        },
+        {
+          "date": "2025-08-17",
+          "price": 6.335935485514517
+        },
+        {
+          "date": "2025-08-18",
+          "price": 6.39404892128889
+        },
+        {
+          "date": "2025-08-19",
+          "price": 6.558059572910556
+        },
+        {
+          "date": "2025-08-20",
+          "price": 6.718053598348407
+        },
+        {
+          "date": "2025-08-21",
+          "price": 6.857212284071184
+        },
+        {
+          "date": "2025-08-22",
+          "price": 6.640154014731095
+        },
+        {
+          "date": "2025-08-23",
+          "price": 6.78202827298056
+        },
+        {
+          "date": "2025-08-24",
+          "price": 6.655907356933555
+        },
+        {
+          "date": "2025-08-25",
+          "price": 6.8473220901159575
+        },
+        {
+          "date": "2025-08-26",
+          "price": 6.856094084033261
+        },
+        {
+          "date": "2025-08-27",
+          "price": 6.688610351578663
+        },
+        {
+          "date": "2025-08-28",
+          "price": 7.014772392252981
+        },
+        {
+          "date": "2025-08-29",
+          "price": 7.154930737221084
+        },
+        {
+          "date": "2025-08-30",
+          "price": 7.409460513788618
+        },
+        {
+          "date": "2025-08-31",
+          "price": 7.286175094269893
+        },
+        {
+          "date": "2025-09-01",
+          "price": 7.105092266824066
+        },
+        {
+          "date": "2025-09-02",
+          "price": 7.002794849557838
+        },
+        {
+          "date": "2025-09-03",
+          "price": 6.9011795610752475
+        },
+        {
+          "date": "2025-09-04",
+          "price": 7.085342451344241
+        },
+        {
+          "date": "2025-09-05",
+          "price": 7.063410387114135
+        },
+        {
+          "date": "2025-09-06",
+          "price": 7.370770273995947
+        },
+        {
+          "date": "2025-09-07",
+          "price": 7.280097476589088
+        },
+        {
+          "date": "2025-09-08",
+          "price": 7.552664367615451
+        },
+        {
+          "date": "2025-09-09",
+          "price": 7.2706427345555
+        },
+        {
+          "date": "2025-09-10",
+          "price": 7.237829233982403
+        },
+        {
+          "date": "2025-09-11",
+          "price": 6.964368721624842
+        },
+        {
+          "date": "2025-09-12",
+          "price": 7.2156646435869645
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-17",
+      "name": "Groudon",
+      "set_name": "Celebrations",
+      "number": "17",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/17.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/17_hires.png",
+      "raw_price": 8.65,
+      "psa10_price": 29,
+      "spread_after_fees": -13.35,
+      "profit_loss": -13.35,
+      "confidence": "Speculative",
+      "volume_score": 0.703,
+      "raw_delta_5d": -10.8,
+      "raw_delta_30d": -23.3,
+      "raw_delta_90d": -25.4,
+      "psa10_delta_5d": -6.5,
+      "psa10_delta_30d": -14,
+      "psa10_delta_90d": -15.2,
+      "psa9_count": 232,
+      "psa10_count": 203,
+      "total_psa_count": 1326,
+      "price_volatility": 0.22,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.153,
+      "ev_grade": -1.54,
+      "upside_potential": 3.35,
+      "badges": [
+        "GRADE_EV"
+      ],
+      "headline_momentum": -10.8,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 8.65610233738645
+        },
+        {
+          "date": "2025-08-15",
+          "price": 8.440696155231425
+        },
+        {
+          "date": "2025-08-16",
+          "price": 8.105714343731243
+        },
+        {
+          "date": "2025-08-17",
+          "price": 7.740499080614778
+        },
+        {
+          "date": "2025-08-18",
+          "price": 7.883212421774213
+        },
+        {
+          "date": "2025-08-19",
+          "price": 7.779267844992777
+        },
+        {
+          "date": "2025-08-20",
+          "price": 8.162637215747033
+        },
+        {
+          "date": "2025-08-21",
+          "price": 8.060544212585945
+        },
+        {
+          "date": "2025-08-22",
+          "price": 7.723169902569102
+        },
+        {
+          "date": "2025-08-23",
+          "price": 8.016038444651548
+        },
+        {
+          "date": "2025-08-24",
+          "price": 8.325783708650437
+        },
+        {
+          "date": "2025-08-25",
+          "price": 8.548400674389669
+        },
+        {
+          "date": "2025-08-26",
+          "price": 8.808481987890875
+        },
+        {
+          "date": "2025-08-27",
+          "price": 8.839787897150277
+        },
+        {
+          "date": "2025-08-28",
+          "price": 8.680218326481462
+        },
+        {
+          "date": "2025-08-29",
+          "price": 8.771184545543681
+        },
+        {
+          "date": "2025-08-30",
+          "price": 8.787525528453614
+        },
+        {
+          "date": "2025-08-31",
+          "price": 9.044249839798239
+        },
+        {
+          "date": "2025-09-01",
+          "price": 8.754917934320774
+        },
+        {
+          "date": "2025-09-02",
+          "price": 8.472218431249033
+        },
+        {
+          "date": "2025-09-03",
+          "price": 8.412551636220455
+        },
+        {
+          "date": "2025-09-04",
+          "price": 8.288617507892821
+        },
+        {
+          "date": "2025-09-05",
+          "price": 8.447833543334243
+        },
+        {
+          "date": "2025-09-06",
+          "price": 8.05707029341592
+        },
+        {
+          "date": "2025-09-07",
+          "price": 8.30653192648689
+        },
+        {
+          "date": "2025-09-08",
+          "price": 8.238083625083437
+        },
+        {
+          "date": "2025-09-09",
+          "price": 8.182547055876222
+        },
+        {
+          "date": "2025-09-10",
+          "price": 8.066624274765477
+        },
+        {
+          "date": "2025-09-11",
+          "price": 7.953621387946806
+        },
+        {
+          "date": "2025-09-12",
+          "price": 8.121900317969066
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-18",
+      "name": "Zamazenta V",
+      "set_name": "Celebrations",
+      "number": "18",
+      "rarity": "Rare Holo V",
+      "image_url_small": "https://images.pokemontcg.io/cel25/18.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/18_hires.png",
+      "raw_price": 17.45,
+      "psa10_price": 146.61,
+      "spread_after_fees": 60.17,
+      "profit_loss": 60.17,
+      "confidence": "High",
+      "volume_score": 0.17,
+      "raw_delta_5d": 9.2,
+      "raw_delta_30d": 1.8,
+      "raw_delta_90d": 3.6,
+      "psa10_delta_5d": 5.5,
+      "psa10_delta_30d": 1.1,
+      "psa10_delta_90d": 2.1,
+      "psa9_count": 184,
+      "psa10_count": 80,
+      "total_psa_count": 1002,
+      "price_volatility": 0.166,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.08,
+      "ev_grade": 3.45,
+      "upside_potential": 8.4,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": 9.2,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 16.935529379895197
+        },
+        {
+          "date": "2025-08-15",
+          "price": 17.375112773034353
+        },
+        {
+          "date": "2025-08-16",
+          "price": 17.63717736767286
+        },
+        {
+          "date": "2025-08-17",
+          "price": 17.096256787396136
+        },
+        {
+          "date": "2025-08-18",
+          "price": 17.62973757642351
+        },
+        {
+          "date": "2025-08-19",
+          "price": 17.93858350974187
+        },
+        {
+          "date": "2025-08-20",
+          "price": 18.40904578158781
+        },
+        {
+          "date": "2025-08-21",
+          "price": 18.68493624891238
+        },
+        {
+          "date": "2025-08-22",
+          "price": 19.475958645644692
+        },
+        {
+          "date": "2025-08-23",
+          "price": 19.004597069374515
+        },
+        {
+          "date": "2025-08-24",
+          "price": 18.939088034444712
+        },
+        {
+          "date": "2025-08-25",
+          "price": 18.571171095262454
+        },
+        {
+          "date": "2025-08-26",
+          "price": 18.98872970749389
+        },
+        {
+          "date": "2025-08-27",
+          "price": 19.398365390407736
+        },
+        {
+          "date": "2025-08-28",
+          "price": 18.960523959016186
+        },
+        {
+          "date": "2025-08-29",
+          "price": 18.938950251974425
+        },
+        {
+          "date": "2025-08-30",
+          "price": 18.00917507291907
+        },
+        {
+          "date": "2025-08-31",
+          "price": 17.590518556554212
+        },
+        {
+          "date": "2025-09-01",
+          "price": 18.212463476689184
+        },
+        {
+          "date": "2025-09-02",
+          "price": 17.538149157414853
+        },
+        {
+          "date": "2025-09-03",
+          "price": 18.324887423730267
+        },
+        {
+          "date": "2025-09-04",
+          "price": 18.75228824590164
+        },
+        {
+          "date": "2025-09-05",
+          "price": 19.681952898445235
+        },
+        {
+          "date": "2025-09-06",
+          "price": 19.080592561108848
+        },
+        {
+          "date": "2025-09-07",
+          "price": 19.97827397177607
+        },
+        {
+          "date": "2025-09-08",
+          "price": 19.68369785339843
+        },
+        {
+          "date": "2025-09-09",
+          "price": 20.064230932108938
+        },
+        {
+          "date": "2025-09-10",
+          "price": 20.497548486364582
+        },
+        {
+          "date": "2025-09-11",
+          "price": 19.899851284361592
+        },
+        {
+          "date": "2025-09-12",
+          "price": 18.49516353620318
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-19",
+      "name": "Yveltal",
+      "set_name": "Celebrations",
+      "number": "19",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/19.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/19_hires.png",
+      "raw_price": 4.29,
+      "psa10_price": 28.65,
+      "spread_after_fees": -9.24,
+      "profit_loss": -9.24,
+      "confidence": "Speculative",
+      "volume_score": 0.553,
+      "raw_delta_5d": 4.6,
+      "raw_delta_30d": 9.9,
+      "raw_delta_90d": 29.8,
+      "psa10_delta_5d": 2.8,
+      "psa10_delta_30d": 6,
+      "psa10_delta_90d": 17.9,
+      "psa9_count": 200,
+      "psa10_count": 85,
+      "total_psa_count": 1224,
+      "price_volatility": 0.227,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.069,
+      "ev_grade": -2.15,
+      "upside_potential": 6.67,
+      "badges": [],
+      "headline_momentum": 4.6,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 4.153862803768388
+        },
+        {
+          "date": "2025-08-15",
+          "price": 4.168633086440884
+        },
+        {
+          "date": "2025-08-16",
+          "price": 4.2198064665805575
+        },
+        {
+          "date": "2025-08-17",
+          "price": 4.376726353691081
+        },
+        {
+          "date": "2025-08-18",
+          "price": 4.478734199209003
+        },
+        {
+          "date": "2025-08-19",
+          "price": 4.295719808567115
+        },
+        {
+          "date": "2025-08-20",
+          "price": 4.330583911173116
+        },
+        {
+          "date": "2025-08-21",
+          "price": 4.203781736791488
+        },
+        {
+          "date": "2025-08-22",
+          "price": 4.170217352910584
+        },
+        {
+          "date": "2025-08-23",
+          "price": 4.26324702057436
+        },
+        {
+          "date": "2025-08-24",
+          "price": 4.3794585375408355
+        },
+        {
+          "date": "2025-08-25",
+          "price": 4.4815870090936
+        },
+        {
+          "date": "2025-08-26",
+          "price": 4.462705073253755
+        },
+        {
+          "date": "2025-08-27",
+          "price": 4.2992227819937385
+        },
+        {
+          "date": "2025-08-28",
+          "price": 4.390443334016901
+        },
+        {
+          "date": "2025-08-29",
+          "price": 4.38945497585645
+        },
+        {
+          "date": "2025-08-30",
+          "price": 4.356216507655065
+        },
+        {
+          "date": "2025-08-31",
+          "price": 4.227717648855628
+        },
+        {
+          "date": "2025-09-01",
+          "price": 4.196070478122216
+        },
+        {
+          "date": "2025-09-02",
+          "price": 4.388066389203539
+        },
+        {
+          "date": "2025-09-03",
+          "price": 4.224946494377667
+        },
+        {
+          "date": "2025-09-04",
+          "price": 4.149691313599657
+        },
+        {
+          "date": "2025-09-05",
+          "price": 4.3179544717348435
+        },
+        {
+          "date": "2025-09-06",
+          "price": 4.2414620528971225
+        },
+        {
+          "date": "2025-09-07",
+          "price": 4.322569080184007
+        },
+        {
+          "date": "2025-09-08",
+          "price": 4.117193185097274
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.942728070413733
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.939191923764892
+        },
+        {
+          "date": "2025-09-11",
+          "price": 4.02461833488189
+        },
+        {
+          "date": "2025-09-12",
+          "price": 4.217483670157943
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-20",
+      "name": "Dialga",
+      "set_name": "Celebrations",
+      "number": "20",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/20.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/20_hires.png",
+      "raw_price": 3,
+      "psa10_price": 22.14,
+      "spread_after_fees": -12.5,
+      "profit_loss": -12.5,
+      "confidence": "Speculative",
+      "volume_score": 0.354,
+      "raw_delta_5d": 1.7,
+      "raw_delta_30d": -2.6,
+      "raw_delta_90d": -8.4,
+      "psa10_delta_5d": 1,
+      "psa10_delta_30d": -1.6,
+      "psa10_delta_90d": -5,
+      "psa9_count": 353,
+      "psa10_count": 206,
+      "total_psa_count": 1677,
+      "price_volatility": 0.276,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.123,
+      "ev_grade": -4.17,
+      "upside_potential": 7.39,
+      "badges": [],
+      "headline_momentum": 1.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 2.907030022754669
+        },
+        {
+          "date": "2025-08-15",
+          "price": 3.010058014167736
+        },
+        {
+          "date": "2025-08-16",
+          "price": 2.9115755652708466
+        },
+        {
+          "date": "2025-08-17",
+          "price": 3.0404345460467197
+        },
+        {
+          "date": "2025-08-18",
+          "price": 3.054916857727794
+        },
+        {
+          "date": "2025-08-19",
+          "price": 2.974405139253235
+        },
+        {
+          "date": "2025-08-20",
+          "price": 3.0474792199480247
+        },
+        {
+          "date": "2025-08-21",
+          "price": 3.1199303025862117
+        },
+        {
+          "date": "2025-08-22",
+          "price": 3.1882911262567695
+        },
+        {
+          "date": "2025-08-23",
+          "price": 3.2020207478570746
+        },
+        {
+          "date": "2025-08-24",
+          "price": 3.2484957557541314
+        },
+        {
+          "date": "2025-08-25",
+          "price": 3.233461490077803
+        },
+        {
+          "date": "2025-08-26",
+          "price": 3.2595379707684855
+        },
+        {
+          "date": "2025-08-27",
+          "price": 3.274132765687064
+        },
+        {
+          "date": "2025-08-28",
+          "price": 3.1136665780244246
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.1615168456963265
+        },
+        {
+          "date": "2025-08-30",
+          "price": 3.156629808887248
+        },
+        {
+          "date": "2025-08-31",
+          "price": 3.1577517219856404
+        },
+        {
+          "date": "2025-09-01",
+          "price": 3.267693827357194
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.1854804492687356
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.204753920994525
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.195183441521896
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.315685046117426
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.4059332605236823
+        },
+        {
+          "date": "2025-09-07",
+          "price": 3.3933436432430972
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.3733558288314867
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.2970728538378156
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.25990597798906
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.3950716256468874
+        },
+        {
+          "date": "2025-09-12",
+          "price": 2.957626444068488
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-21",
+      "name": "Solgaleo",
+      "set_name": "Celebrations",
+      "number": "21",
+      "rarity": "Rare Holo",
+      "image_url_small": "https://images.pokemontcg.io/cel25/21.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/21_hires.png",
+      "raw_price": 10.64,
+      "psa10_price": 71.08,
+      "spread_after_fees": 14.12,
+      "profit_loss": 14.12,
+      "confidence": "Speculative",
+      "volume_score": 0.992,
+      "raw_delta_5d": 4.3,
+      "raw_delta_30d": 4.2,
+      "raw_delta_90d": 14.8,
+      "psa10_delta_5d": 2.6,
+      "psa10_delta_30d": 2.5,
+      "psa10_delta_90d": 8.9,
+      "psa9_count": 401,
+      "psa10_count": 128,
+      "total_psa_count": 1919,
+      "price_volatility": 0.273,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.067,
+      "ev_grade": 1.33,
+      "upside_potential": 6.68,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": 4.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 10.49311608360442
+        },
+        {
+          "date": "2025-08-15",
+          "price": 10.411286098566794
+        },
+        {
+          "date": "2025-08-16",
+          "price": 10.434688659208863
+        },
+        {
+          "date": "2025-08-17",
+          "price": 10.58128395226122
+        },
+        {
+          "date": "2025-08-18",
+          "price": 10.817705229522833
+        },
+        {
+          "date": "2025-08-19",
+          "price": 10.461617832055529
+        },
+        {
+          "date": "2025-08-20",
+          "price": 10.167557265859635
+        },
+        {
+          "date": "2025-08-21",
+          "price": 10.118567733702827
+        },
+        {
+          "date": "2025-08-22",
+          "price": 10.279528375820307
+        },
+        {
+          "date": "2025-08-23",
+          "price": 10.14124142939113
+        },
+        {
+          "date": "2025-08-24",
+          "price": 10.253828663794232
+        },
+        {
+          "date": "2025-08-25",
+          "price": 10.272196363724005
+        },
+        {
+          "date": "2025-08-26",
+          "price": 10.231920887439879
+        },
+        {
+          "date": "2025-08-27",
+          "price": 10.242615379163182
+        },
+        {
+          "date": "2025-08-28",
+          "price": 10.27933660796463
+        },
+        {
+          "date": "2025-08-29",
+          "price": 10.29208896462173
+        },
+        {
+          "date": "2025-08-30",
+          "price": 10.199025481824613
+        },
+        {
+          "date": "2025-08-31",
+          "price": 10.072448134652996
+        },
+        {
+          "date": "2025-09-01",
+          "price": 9.68101900957601
+        },
+        {
+          "date": "2025-09-02",
+          "price": 9.247069984456639
+        },
+        {
+          "date": "2025-09-03",
+          "price": 9.167088347645858
+        },
+        {
+          "date": "2025-09-04",
+          "price": 9.573855576297326
+        },
+        {
+          "date": "2025-09-05",
+          "price": 9.35005368930054
+        },
+        {
+          "date": "2025-09-06",
+          "price": 9.308866249870327
+        },
+        {
+          "date": "2025-09-07",
+          "price": 9.310529993784426
+        },
+        {
+          "date": "2025-09-08",
+          "price": 9.219676948181505
+        },
+        {
+          "date": "2025-09-09",
+          "price": 9.018383683105103
+        },
+        {
+          "date": "2025-09-10",
+          "price": 9.056599770242707
+        },
+        {
+          "date": "2025-09-11",
+          "price": 9.084581239264816
+        },
+        {
+          "date": "2025-09-12",
+          "price": 10.947695421150513
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-22",
+      "name": "Lugia",
+      "set_name": "Celebrations",
+      "number": "22",
+      "rarity": "Rare",
+      "image_url_small": "https://images.pokemontcg.io/cel25/22.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/22_hires.png",
+      "raw_price": 3.92,
+      "psa10_price": 13.56,
+      "spread_after_fees": -19.43,
+      "profit_loss": -19.43,
+      "confidence": "Speculative",
+      "volume_score": 0.948,
+      "raw_delta_5d": 2.3,
+      "raw_delta_30d": -4.4,
+      "raw_delta_90d": 4.5,
+      "psa10_delta_5d": 1.4,
+      "psa10_delta_30d": -2.6,
+      "psa10_delta_90d": 2.7,
+      "psa9_count": 824,
+      "psa10_count": 288,
+      "total_psa_count": 2172,
+      "price_volatility": 0.294,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.133,
+      "ev_grade": -4.95,
+      "upside_potential": 3.46,
+      "badges": [],
+      "headline_momentum": 2.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 3.924452157848212
+        },
+        {
+          "date": "2025-08-15",
+          "price": 3.7989172590737073
+        },
+        {
+          "date": "2025-08-16",
+          "price": 3.9399310365555387
+        },
+        {
+          "date": "2025-08-17",
+          "price": 4.037821189895341
+        },
+        {
+          "date": "2025-08-18",
+          "price": 3.956911109573851
+        },
+        {
+          "date": "2025-08-19",
+          "price": 4.074316588088492
+        },
+        {
+          "date": "2025-08-20",
+          "price": 3.895961129983055
+        },
+        {
+          "date": "2025-08-21",
+          "price": 3.868486593803626
+        },
+        {
+          "date": "2025-08-22",
+          "price": 3.958874317625339
+        },
+        {
+          "date": "2025-08-23",
+          "price": 3.989544368778736
+        },
+        {
+          "date": "2025-08-24",
+          "price": 3.9355628905517492
+        },
+        {
+          "date": "2025-08-25",
+          "price": 4.026456941264799
+        },
+        {
+          "date": "2025-08-26",
+          "price": 3.8949582892601726
+        },
+        {
+          "date": "2025-08-27",
+          "price": 3.82669990295645
+        },
+        {
+          "date": "2025-08-28",
+          "price": 3.7205344354013694
+        },
+        {
+          "date": "2025-08-29",
+          "price": 3.6978509817462073
+        },
+        {
+          "date": "2025-08-30",
+          "price": 3.703097546659143
+        },
+        {
+          "date": "2025-08-31",
+          "price": 3.5842459513006384
+        },
+        {
+          "date": "2025-09-01",
+          "price": 3.6596789519492217
+        },
+        {
+          "date": "2025-09-02",
+          "price": 3.796321637541269
+        },
+        {
+          "date": "2025-09-03",
+          "price": 3.788909801037331
+        },
+        {
+          "date": "2025-09-04",
+          "price": 3.720260660020701
+        },
+        {
+          "date": "2025-09-05",
+          "price": 3.550029393508322
+        },
+        {
+          "date": "2025-09-06",
+          "price": 3.4239497941283497
+        },
+        {
+          "date": "2025-09-07",
+          "price": 3.3335964827019575
+        },
+        {
+          "date": "2025-09-08",
+          "price": 3.3591677233156845
+        },
+        {
+          "date": "2025-09-09",
+          "price": 3.5162633590725805
+        },
+        {
+          "date": "2025-09-10",
+          "price": 3.622007593957381
+        },
+        {
+          "date": "2025-09-11",
+          "price": 3.6051398521095512
+        },
+        {
+          "date": "2025-09-12",
+          "price": 4.013886403560458
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-23",
+      "name": "Professor's Research (Professor Oak)",
+      "set_name": "Celebrations",
+      "number": "23",
+      "rarity": "Rare Holo",
+      "image_url_small": "https://images.pokemontcg.io/cel25/23.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/23_hires.png",
+      "raw_price": 3.09,
+      "psa10_price": 22.77,
+      "spread_after_fees": -12.15,
+      "profit_loss": -12.15,
+      "confidence": "Speculative",
+      "volume_score": 0.555,
+      "raw_delta_5d": 8.8,
+      "raw_delta_30d": -1.8,
+      "raw_delta_90d": 27,
+      "psa10_delta_5d": 5.3,
+      "psa10_delta_30d": -1.1,
+      "psa10_delta_90d": 16.2,
+      "psa9_count": 466,
+      "psa10_count": 299,
+      "total_psa_count": 2080,
+      "price_volatility": 0.317,
+      "grading_recommendation": "Avoid",
+      "psa10_probability": 0.144,
+      "ev_grade": -3.94,
+      "upside_potential": 7.38,
+      "badges": [],
+      "headline_momentum": 8.8,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 3.121888325714325
+        },
+        {
+          "date": "2025-08-15",
+          "price": 3.098004996223672
+        },
+        {
+          "date": "2025-08-16",
+          "price": 3.100199938371413
+        },
+        {
+          "date": "2025-08-17",
+          "price": 3.183476226001349
+        },
+        {
+          "date": "2025-08-18",
+          "price": 3.0307360107905414
+        },
+        {
+          "date": "2025-08-19",
+          "price": 3.1795905527483437
+        },
+        {
+          "date": "2025-08-20",
+          "price": 3.2525742367104336
+        },
+        {
+          "date": "2025-08-21",
+          "price": 3.1021122606110785
+        },
+        {
+          "date": "2025-08-22",
+          "price": 3.1017073585652466
+        },
+        {
+          "date": "2025-08-23",
+          "price": 2.998400493468505
+        },
+        {
+          "date": "2025-08-24",
+          "price": 2.978683050768474
+        },
+        {
+          "date": "2025-08-25",
+          "price": 2.9946968846401463
+        },
+        {
+          "date": "2025-08-26",
+          "price": 2.859010353843966
+        },
+        {
+          "date": "2025-08-27",
+          "price": 2.752605436369874
+        },
+        {
+          "date": "2025-08-28",
+          "price": 2.6265874152188493
+        },
+        {
+          "date": "2025-08-29",
+          "price": 2.738019347808196
+        },
+        {
+          "date": "2025-08-30",
+          "price": 2.6189058593319285
+        },
+        {
+          "date": "2025-08-31",
+          "price": 2.7080041501193026
+        },
+        {
+          "date": "2025-09-01",
+          "price": 2.6272332870925936
+        },
+        {
+          "date": "2025-09-02",
+          "price": 2.624493483114384
+        },
+        {
+          "date": "2025-09-03",
+          "price": 2.558933396157066
+        },
+        {
+          "date": "2025-09-04",
+          "price": 2.6450454805715458
+        },
+        {
+          "date": "2025-09-05",
+          "price": 2.6033119632860506
+        },
+        {
+          "date": "2025-09-06",
+          "price": 2.487694732093979
+        },
+        {
+          "date": "2025-09-07",
+          "price": 2.3896859597351687
+        },
+        {
+          "date": "2025-09-08",
+          "price": 2.276571732339556
+        },
+        {
+          "date": "2025-09-09",
+          "price": 2.3189434475936537
+        },
+        {
+          "date": "2025-09-10",
+          "price": 2.343951423367972
+        },
+        {
+          "date": "2025-09-11",
+          "price": 2.3082066432281763
+        },
+        {
+          "date": "2025-09-12",
+          "price": 3.396052651506456
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-24",
+      "name": "Professor's Research (Professor Oak)",
+      "set_name": "Celebrations",
+      "number": "24",
+      "rarity": "Rare Ultra",
+      "image_url_small": "https://images.pokemontcg.io/cel25/24.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/24_hires.png",
+      "raw_price": 12.96,
+      "psa10_price": 151.57,
+      "spread_after_fees": 68.15,
+      "profit_loss": 68.15,
+      "confidence": "Speculative",
+      "volume_score": 0.453,
+      "raw_delta_5d": -9.2,
+      "raw_delta_30d": -4.3,
+      "raw_delta_90d": -43.3,
+      "psa10_delta_5d": -5.5,
+      "psa10_delta_30d": -2.6,
+      "psa10_delta_90d": -26,
+      "psa9_count": 311,
+      "psa10_count": 130,
+      "total_psa_count": 1572,
+      "price_volatility": 0.322,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.083,
+      "ev_grade": 5.26,
+      "upside_potential": 11.7,
+      "badges": [
+        "HOT"
+      ],
+      "headline_momentum": -9.2,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 12.605426873140942
+        },
+        {
+          "date": "2025-08-15",
+          "price": 13.16959364167668
+        },
+        {
+          "date": "2025-08-16",
+          "price": 13.523083222250287
+        },
+        {
+          "date": "2025-08-17",
+          "price": 14.14594787856891
+        },
+        {
+          "date": "2025-08-18",
+          "price": 14.737861407065852
+        },
+        {
+          "date": "2025-08-19",
+          "price": 14.596625053275128
+        },
+        {
+          "date": "2025-08-20",
+          "price": 14.176743009740623
+        },
+        {
+          "date": "2025-08-21",
+          "price": 14.062482522686036
+        },
+        {
+          "date": "2025-08-22",
+          "price": 14.527087910668715
+        },
+        {
+          "date": "2025-08-23",
+          "price": 15.023586576240676
+        },
+        {
+          "date": "2025-08-24",
+          "price": 14.651631156960953
+        },
+        {
+          "date": "2025-08-25",
+          "price": 14.317462960087962
+        },
+        {
+          "date": "2025-08-26",
+          "price": 14.891387401616235
+        },
+        {
+          "date": "2025-08-27",
+          "price": 14.40977177543949
+        },
+        {
+          "date": "2025-08-28",
+          "price": 13.746455112853024
+        },
+        {
+          "date": "2025-08-29",
+          "price": 14.33986806616655
+        },
+        {
+          "date": "2025-08-30",
+          "price": 14.85156275067081
+        },
+        {
+          "date": "2025-08-31",
+          "price": 14.410230485788833
+        },
+        {
+          "date": "2025-09-01",
+          "price": 13.932897126149149
+        },
+        {
+          "date": "2025-09-02",
+          "price": 13.64954538080707
+        },
+        {
+          "date": "2025-09-03",
+          "price": 13.944439917196872
+        },
+        {
+          "date": "2025-09-04",
+          "price": 13.561629080059824
+        },
+        {
+          "date": "2025-09-05",
+          "price": 14.178073206793771
+        },
+        {
+          "date": "2025-09-06",
+          "price": 14.554082504890026
+        },
+        {
+          "date": "2025-09-07",
+          "price": 14.491785424820595
+        },
+        {
+          "date": "2025-09-08",
+          "price": 15.010253219592606
+        },
+        {
+          "date": "2025-09-09",
+          "price": 14.319654584656897
+        },
+        {
+          "date": "2025-09-10",
+          "price": 14.600245425445273
+        },
+        {
+          "date": "2025-09-11",
+          "price": 14.318801355190713
+        },
+        {
+          "date": "2025-09-12",
+          "price": 11.441903349853586
+        }
+      ]
+    },
+    {
+      "card_id": "cel25-25",
+      "name": "Mew",
+      "set_name": "Celebrations",
+      "number": "25",
+      "rarity": "Rare Holo",
+      "image_url_small": "https://images.pokemontcg.io/cel25/25.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25/25_hires.png",
+      "raw_price": 11.5,
+      "psa10_price": 84.54,
+      "spread_after_fees": 22.68,
+      "profit_loss": 22.68,
+      "confidence": "Noisy",
+      "volume_score": 0.041,
+      "raw_delta_5d": 0.7,
+      "raw_delta_30d": -5.2,
+      "raw_delta_90d": -10.1,
+      "psa10_delta_5d": 0.4,
+      "psa10_delta_30d": -3.1,
+      "psa10_delta_90d": -6.1,
+      "psa9_count": 352,
+      "psa10_count": 135,
+      "total_psa_count": 892,
+      "price_volatility": 0.376,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.151,
+      "ev_grade": 1.97,
+      "upside_potential": 7.35,
+      "badges": [
+        "HOT",
+        "GRADE_EV"
+      ],
+      "headline_momentum": 0.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 11.202640357570843
+        },
+        {
+          "date": "2025-08-15",
+          "price": 10.715037085411721
+        },
+        {
+          "date": "2025-08-16",
+          "price": 11.186657278015218
+        },
+        {
+          "date": "2025-08-17",
+          "price": 11.523627059355876
+        },
+        {
+          "date": "2025-08-18",
+          "price": 12.007858077054863
+        },
+        {
+          "date": "2025-08-19",
+          "price": 11.982072449542718
+        },
+        {
+          "date": "2025-08-20",
+          "price": 12.035546800318919
+        },
+        {
+          "date": "2025-08-21",
+          "price": 12.159487508131942
+        },
+        {
+          "date": "2025-08-22",
+          "price": 11.773228570702992
+        },
+        {
+          "date": "2025-08-23",
+          "price": 11.343155210318647
+        },
+        {
+          "date": "2025-08-24",
+          "price": 11.750127510513952
+        },
+        {
+          "date": "2025-08-25",
+          "price": 11.834620803240973
+        },
+        {
+          "date": "2025-08-26",
+          "price": 11.59059176586033
+        },
+        {
+          "date": "2025-08-27",
+          "price": 12.145063854673488
+        },
+        {
+          "date": "2025-08-28",
+          "price": 12.34216217307494
+        },
+        {
+          "date": "2025-08-29",
+          "price": 12.481121758140759
+        },
+        {
+          "date": "2025-08-30",
+          "price": 12.1317197267453
+        },
+        {
+          "date": "2025-08-31",
+          "price": 12.72121426529321
+        },
+        {
+          "date": "2025-09-01",
+          "price": 12.435531106923097
+        },
+        {
+          "date": "2025-09-02",
+          "price": 12.5199706885973
+        },
+        {
+          "date": "2025-09-03",
+          "price": 12.614669800578895
+        },
+        {
+          "date": "2025-09-04",
+          "price": 12.906902112638269
+        },
+        {
+          "date": "2025-09-05",
+          "price": 13.251419402266484
+        },
+        {
+          "date": "2025-09-06",
+          "price": 13.414986093752127
+        },
+        {
+          "date": "2025-09-07",
+          "price": 13.975265796266218
+        },
+        {
+          "date": "2025-09-08",
+          "price": 14.317573816305536
+        },
+        {
+          "date": "2025-09-09",
+          "price": 14.369866528367083
+        },
+        {
+          "date": "2025-09-10",
+          "price": 14.58402843315008
+        },
+        {
+          "date": "2025-09-11",
+          "price": 14.418005747518736
+        },
+        {
+          "date": "2025-09-12",
+          "price": 11.280923443156208
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-1",
+      "name": "Venusaur",
+      "set_name": "Celebrations Classic Collection",
+      "number": "1",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/1_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/1_A_hires.png",
+      "raw_price": 22.97,
+      "psa10_price": 226.87,
+      "spread_after_fees": 110.84,
+      "profit_loss": 110.84,
+      "confidence": "Speculative",
+      "volume_score": 0.473,
+      "raw_delta_5d": 5.7,
+      "raw_delta_30d": 6.5,
+      "raw_delta_90d": 0.6,
+      "psa10_delta_5d": 3.4,
+      "psa10_delta_30d": 3.9,
+      "psa10_delta_90d": 0.4,
+      "psa9_count": 335,
+      "psa10_count": 47,
+      "total_psa_count": 917,
+      "price_volatility": 0.291,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.051,
+      "ev_grade": 4.83,
+      "upside_potential": 9.88,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 5.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 23.709811039348804
+        },
+        {
+          "date": "2025-08-15",
+          "price": 23.0162914547069
+        },
+        {
+          "date": "2025-08-16",
+          "price": 22.503271859345507
+        },
+        {
+          "date": "2025-08-17",
+          "price": 22.698989161577767
+        },
+        {
+          "date": "2025-08-18",
+          "price": 22.579382069329554
+        },
+        {
+          "date": "2025-08-19",
+          "price": 21.722201319410527
+        },
+        {
+          "date": "2025-08-20",
+          "price": 21.927157744026516
+        },
+        {
+          "date": "2025-08-21",
+          "price": 22.04558039605174
+        },
+        {
+          "date": "2025-08-22",
+          "price": 22.355450701161836
+        },
+        {
+          "date": "2025-08-23",
+          "price": 23.313905228501486
+        },
+        {
+          "date": "2025-08-24",
+          "price": 23.339869055703304
+        },
+        {
+          "date": "2025-08-25",
+          "price": 23.84748077079648
+        },
+        {
+          "date": "2025-08-26",
+          "price": 23.22672933799528
+        },
+        {
+          "date": "2025-08-27",
+          "price": 22.968939057022904
+        },
+        {
+          "date": "2025-08-28",
+          "price": 23.62114190252941
+        },
+        {
+          "date": "2025-08-29",
+          "price": 24.127021239762378
+        },
+        {
+          "date": "2025-08-30",
+          "price": 23.95050871055566
+        },
+        {
+          "date": "2025-08-31",
+          "price": 24.272432830151406
+        },
+        {
+          "date": "2025-09-01",
+          "price": 25.22742370009314
+        },
+        {
+          "date": "2025-09-02",
+          "price": 25.92261304668886
+        },
+        {
+          "date": "2025-09-03",
+          "price": 27.178179619831823
+        },
+        {
+          "date": "2025-09-04",
+          "price": 28.277310166890267
+        },
+        {
+          "date": "2025-09-05",
+          "price": 27.30789555369221
+        },
+        {
+          "date": "2025-09-06",
+          "price": 27.704521610770872
+        },
+        {
+          "date": "2025-09-07",
+          "price": 28.904374145012454
+        },
+        {
+          "date": "2025-09-08",
+          "price": 28.277246032073375
+        },
+        {
+          "date": "2025-09-09",
+          "price": 27.474022320776648
+        },
+        {
+          "date": "2025-09-10",
+          "price": 27.87560781948367
+        },
+        {
+          "date": "2025-09-11",
+          "price": 26.813929375399844
+        },
+        {
+          "date": "2025-09-12",
+          "price": 25.066489005570165
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-2",
+      "name": "Blastoise",
+      "set_name": "Celebrations Classic Collection",
+      "number": "2",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/2_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/2_A_hires.png",
+      "raw_price": 70.2,
+      "psa10_price": 1156.38,
+      "spread_after_fees": 714.26,
+      "profit_loss": 714.26,
+      "confidence": "High",
+      "volume_score": 0.687,
+      "raw_delta_5d": 3,
+      "raw_delta_30d": 13.7,
+      "raw_delta_90d": 5,
+      "psa10_delta_5d": 1.8,
+      "psa10_delta_30d": 8.2,
+      "psa10_delta_90d": 3,
+      "psa9_count": 404,
+      "psa10_count": 177,
+      "total_psa_count": 1138,
+      "price_volatility": 0.163,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.156,
+      "ev_grade": 10.17,
+      "upside_potential": 16.47,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "VINTAGE"
+      ],
+      "headline_momentum": 3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 70.28618175722862
+        },
+        {
+          "date": "2025-08-15",
+          "price": 68.89866996617057
+        },
+        {
+          "date": "2025-08-16",
+          "price": 66.59247295544174
+        },
+        {
+          "date": "2025-08-17",
+          "price": 68.4120293221757
+        },
+        {
+          "date": "2025-08-18",
+          "price": 67.15543167464969
+        },
+        {
+          "date": "2025-08-19",
+          "price": 67.23331775810973
+        },
+        {
+          "date": "2025-08-20",
+          "price": 70.53818345419906
+        },
+        {
+          "date": "2025-08-21",
+          "price": 71.5152269772992
+        },
+        {
+          "date": "2025-08-22",
+          "price": 73.69783768490835
+        },
+        {
+          "date": "2025-08-23",
+          "price": 77.31513560735738
+        },
+        {
+          "date": "2025-08-24",
+          "price": 77.60139906217081
+        },
+        {
+          "date": "2025-08-25",
+          "price": 78.10676965953674
+        },
+        {
+          "date": "2025-08-26",
+          "price": 75.67279085028927
+        },
+        {
+          "date": "2025-08-27",
+          "price": 78.33662595887172
+        },
+        {
+          "date": "2025-08-28",
+          "price": 74.72143314460044
+        },
+        {
+          "date": "2025-08-29",
+          "price": 76.0442580479318
+        },
+        {
+          "date": "2025-08-30",
+          "price": 74.83189507098174
+        },
+        {
+          "date": "2025-08-31",
+          "price": 74.71221420352049
+        },
+        {
+          "date": "2025-09-01",
+          "price": 75.81794210561769
+        },
+        {
+          "date": "2025-09-02",
+          "price": 73.16307388277153
+        },
+        {
+          "date": "2025-09-03",
+          "price": 73.34296108235563
+        },
+        {
+          "date": "2025-09-04",
+          "price": 72.47701796816132
+        },
+        {
+          "date": "2025-09-05",
+          "price": 73.91719932079292
+        },
+        {
+          "date": "2025-09-06",
+          "price": 76.42460746844264
+        },
+        {
+          "date": "2025-09-07",
+          "price": 76.1993544399551
+        },
+        {
+          "date": "2025-09-08",
+          "price": 79.84506425873424
+        },
+        {
+          "date": "2025-09-09",
+          "price": 79.28582564673623
+        },
+        {
+          "date": "2025-09-10",
+          "price": 77.08555173195734
+        },
+        {
+          "date": "2025-09-11",
+          "price": 79.534550308394
+        },
+        {
+          "date": "2025-09-12",
+          "price": 72.42570452143849
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-3",
+      "name": "Charizard",
+      "set_name": "Celebrations Classic Collection",
+      "number": "3",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/3_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/3_A_hires.png",
+      "raw_price": 45.99,
+      "psa10_price": 689.85,
+      "spread_after_fees": 411.91,
+      "profit_loss": 411.91,
+      "confidence": "Speculative",
+      "volume_score": 0.464,
+      "raw_delta_5d": -18.5,
+      "raw_delta_30d": -36,
+      "raw_delta_90d": -35.4,
+      "psa10_delta_5d": -11.1,
+      "psa10_delta_30d": -21.6,
+      "psa10_delta_90d": -21.2,
+      "psa9_count": 240,
+      "psa10_count": 194,
+      "total_psa_count": 1387,
+      "price_volatility": 0.208,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.14,
+      "ev_grade": 8.96,
+      "upside_potential": 15,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -18.5,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 47.458621240335404
+        },
+        {
+          "date": "2025-08-15",
+          "price": 45.888148316634535
+        },
+        {
+          "date": "2025-08-16",
+          "price": 45.380193595298145
+        },
+        {
+          "date": "2025-08-17",
+          "price": 44.89442440574285
+        },
+        {
+          "date": "2025-08-18",
+          "price": 43.032625765541695
+        },
+        {
+          "date": "2025-08-19",
+          "price": 43.226534010649964
+        },
+        {
+          "date": "2025-08-20",
+          "price": 41.09170438045293
+        },
+        {
+          "date": "2025-08-21",
+          "price": 40.55224576863674
+        },
+        {
+          "date": "2025-08-22",
+          "price": 40.0078979204463
+        },
+        {
+          "date": "2025-08-23",
+          "price": 39.64145748788776
+        },
+        {
+          "date": "2025-08-24",
+          "price": 40.980764295822375
+        },
+        {
+          "date": "2025-08-25",
+          "price": 39.37548835287921
+        },
+        {
+          "date": "2025-08-26",
+          "price": 37.96593626382866
+        },
+        {
+          "date": "2025-08-27",
+          "price": 36.58009904514469
+        },
+        {
+          "date": "2025-08-28",
+          "price": 38.382148394612585
+        },
+        {
+          "date": "2025-08-29",
+          "price": 38.80562052845808
+        },
+        {
+          "date": "2025-08-30",
+          "price": 37.97823121988488
+        },
+        {
+          "date": "2025-08-31",
+          "price": 38.47880917265359
+        },
+        {
+          "date": "2025-09-01",
+          "price": 37.9671059499621
+        },
+        {
+          "date": "2025-09-02",
+          "price": 38.15136859408307
+        },
+        {
+          "date": "2025-09-03",
+          "price": 36.46324917395061
+        },
+        {
+          "date": "2025-09-04",
+          "price": 34.7081410906257
+        },
+        {
+          "date": "2025-09-05",
+          "price": 35.7775082863622
+        },
+        {
+          "date": "2025-09-06",
+          "price": 36.72700389447715
+        },
+        {
+          "date": "2025-09-07",
+          "price": 36.68180749253352
+        },
+        {
+          "date": "2025-09-08",
+          "price": 36.271616219692945
+        },
+        {
+          "date": "2025-09-09",
+          "price": 34.899104432060405
+        },
+        {
+          "date": "2025-09-10",
+          "price": 33.378968947730456
+        },
+        {
+          "date": "2025-09-11",
+          "price": 31.971893556247714
+        },
+        {
+          "date": "2025-09-12",
+          "price": 38.69747330967209
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-4",
+      "name": "Mewtwo",
+      "set_name": "Celebrations Classic Collection",
+      "number": "4",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/4_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/4_A_hires.png",
+      "raw_price": 17.17,
+      "psa10_price": 243.61,
+      "spread_after_fees": 128.36,
+      "profit_loss": 128.36,
+      "confidence": "Speculative",
+      "volume_score": 0.061,
+      "raw_delta_5d": -13.5,
+      "raw_delta_30d": -29.2,
+      "raw_delta_90d": -12.6,
+      "psa10_delta_5d": -8.1,
+      "psa10_delta_30d": -17.5,
+      "psa10_delta_90d": -7.6,
+      "psa9_count": 626,
+      "psa10_count": 325,
+      "total_psa_count": 1659,
+      "price_volatility": 0.247,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.196,
+      "ev_grade": 7.48,
+      "upside_potential": 14.19,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "VINTAGE"
+      ],
+      "headline_momentum": -13.5,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 16.638299218519133
+        },
+        {
+          "date": "2025-08-15",
+          "price": 16.282770121368124
+        },
+        {
+          "date": "2025-08-16",
+          "price": 15.633388839513191
+        },
+        {
+          "date": "2025-08-17",
+          "price": 15.145412988657673
+        },
+        {
+          "date": "2025-08-18",
+          "price": 14.769322012281924
+        },
+        {
+          "date": "2025-08-19",
+          "price": 14.940770695488899
+        },
+        {
+          "date": "2025-08-20",
+          "price": 14.975067029438176
+        },
+        {
+          "date": "2025-08-21",
+          "price": 14.43806452913311
+        },
+        {
+          "date": "2025-08-22",
+          "price": 14.607720532368752
+        },
+        {
+          "date": "2025-08-23",
+          "price": 15.337712533068698
+        },
+        {
+          "date": "2025-08-24",
+          "price": 15.249920561172187
+        },
+        {
+          "date": "2025-08-25",
+          "price": 14.968892580126052
+        },
+        {
+          "date": "2025-08-26",
+          "price": 15.036359538425106
+        },
+        {
+          "date": "2025-08-27",
+          "price": 14.895855713784965
+        },
+        {
+          "date": "2025-08-28",
+          "price": 15.457341895322289
+        },
+        {
+          "date": "2025-08-29",
+          "price": 15.96071910858779
+        },
+        {
+          "date": "2025-08-30",
+          "price": 16.465095481883047
+        },
+        {
+          "date": "2025-08-31",
+          "price": 16.360460479284818
+        },
+        {
+          "date": "2025-09-01",
+          "price": 16.499364757321516
+        },
+        {
+          "date": "2025-09-02",
+          "price": 16.852775538232116
+        },
+        {
+          "date": "2025-09-03",
+          "price": 17.104230040456358
+        },
+        {
+          "date": "2025-09-04",
+          "price": 16.451017548644817
+        },
+        {
+          "date": "2025-09-05",
+          "price": 17.057707301158526
+        },
+        {
+          "date": "2025-09-06",
+          "price": 17.744351481885825
+        },
+        {
+          "date": "2025-09-07",
+          "price": 17.57536853478859
+        },
+        {
+          "date": "2025-09-08",
+          "price": 17.906530683250892
+        },
+        {
+          "date": "2025-09-09",
+          "price": 18.232365463984795
+        },
+        {
+          "date": "2025-09-10",
+          "price": 18.507795442589877
+        },
+        {
+          "date": "2025-09-11",
+          "price": 17.90900357852283
+        },
+        {
+          "date": "2025-09-12",
+          "price": 14.39057058350129
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-5",
+      "name": "Mew",
+      "set_name": "Celebrations Classic Collection",
+      "number": "5",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/5_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/5_A_hires.png",
+      "raw_price": 25.99,
+      "psa10_price": 311.88,
+      "spread_after_fees": 167.33,
+      "profit_loss": 167.33,
+      "confidence": "Speculative",
+      "volume_score": 0.891,
+      "raw_delta_5d": -5.1,
+      "raw_delta_30d": -21,
+      "raw_delta_90d": -36.1,
+      "psa10_delta_5d": -3,
+      "psa10_delta_30d": -12.6,
+      "psa10_delta_90d": -21.6,
+      "psa9_count": 214,
+      "psa10_count": 128,
+      "total_psa_count": 948,
+      "price_volatility": 0.32,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.135,
+      "ev_grade": 6.44,
+      "upside_potential": 12,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -5.1,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 25.833950060357548
+        },
+        {
+          "date": "2025-08-15",
+          "price": 24.58563807649483
+        },
+        {
+          "date": "2025-08-16",
+          "price": 23.70947018065172
+        },
+        {
+          "date": "2025-08-17",
+          "price": 24.57619906940764
+        },
+        {
+          "date": "2025-08-18",
+          "price": 23.84437940859755
+        },
+        {
+          "date": "2025-08-19",
+          "price": 24.51706597219694
+        },
+        {
+          "date": "2025-08-20",
+          "price": 24.549238188889134
+        },
+        {
+          "date": "2025-08-21",
+          "price": 24.512792826050777
+        },
+        {
+          "date": "2025-08-22",
+          "price": 23.650342230951633
+        },
+        {
+          "date": "2025-08-23",
+          "price": 23.839039507143426
+        },
+        {
+          "date": "2025-08-24",
+          "price": 23.77034860076809
+        },
+        {
+          "date": "2025-08-25",
+          "price": 22.89481614034885
+        },
+        {
+          "date": "2025-08-26",
+          "price": 23.30936431086774
+        },
+        {
+          "date": "2025-08-27",
+          "price": 23.17774044734511
+        },
+        {
+          "date": "2025-08-28",
+          "price": 23.55358144474148
+        },
+        {
+          "date": "2025-08-29",
+          "price": 22.929097907713007
+        },
+        {
+          "date": "2025-08-30",
+          "price": 21.925177044366254
+        },
+        {
+          "date": "2025-08-31",
+          "price": 22.295448775227314
+        },
+        {
+          "date": "2025-09-01",
+          "price": 22.00355610565927
+        },
+        {
+          "date": "2025-09-02",
+          "price": 20.96260915185304
+        },
+        {
+          "date": "2025-09-03",
+          "price": 21.616267190701663
+        },
+        {
+          "date": "2025-09-04",
+          "price": 21.202594994334902
+        },
+        {
+          "date": "2025-09-05",
+          "price": 21.50034124527644
+        },
+        {
+          "date": "2025-09-06",
+          "price": 20.879463123914228
+        },
+        {
+          "date": "2025-09-07",
+          "price": 21.75614025650203
+        },
+        {
+          "date": "2025-09-08",
+          "price": 20.940041401823617
+        },
+        {
+          "date": "2025-09-09",
+          "price": 21.11140339218074
+        },
+        {
+          "date": "2025-09-10",
+          "price": 20.682357236360136
+        },
+        {
+          "date": "2025-09-11",
+          "price": 20.644981699158212
+        },
+        {
+          "date": "2025-09-12",
+          "price": 24.52520332753783
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-6",
+      "name": "Lugia",
+      "set_name": "Celebrations Classic Collection",
+      "number": "6",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/6_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/6_A_hires.png",
+      "raw_price": 64.95,
+      "psa10_price": 1058.03,
+      "spread_after_fees": 650.67,
+      "profit_loss": 650.67,
+      "confidence": "Speculative",
+      "volume_score": 0.557,
+      "raw_delta_5d": 21.1,
+      "raw_delta_30d": 16.8,
+      "raw_delta_90d": 64.5,
+      "psa10_delta_5d": 12.7,
+      "psa10_delta_30d": 10.1,
+      "psa10_delta_90d": 38.7,
+      "psa9_count": 508,
+      "psa10_count": 338,
+      "total_psa_count": 1994,
+      "price_volatility": 0.213,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.17,
+      "ev_grade": 10.02,
+      "upside_potential": 16.29,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "MOMENTUM",
+        "VINTAGE"
+      ],
+      "headline_momentum": 21.1,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 62.96568296431596
+        },
+        {
+          "date": "2025-08-15",
+          "price": 60.53513251558958
+        },
+        {
+          "date": "2025-08-16",
+          "price": 57.690768539980255
+        },
+        {
+          "date": "2025-08-17",
+          "price": 55.14408801963136
+        },
+        {
+          "date": "2025-08-18",
+          "price": 53.30739717939552
+        },
+        {
+          "date": "2025-08-19",
+          "price": 55.93145797716172
+        },
+        {
+          "date": "2025-08-20",
+          "price": 56.39629768808216
+        },
+        {
+          "date": "2025-08-21",
+          "price": 57.976167456912904
+        },
+        {
+          "date": "2025-08-22",
+          "price": 55.601088430109534
+        },
+        {
+          "date": "2025-08-23",
+          "price": 53.07635154044471
+        },
+        {
+          "date": "2025-08-24",
+          "price": 52.1503010694419
+        },
+        {
+          "date": "2025-08-25",
+          "price": 52.00323278900783
+        },
+        {
+          "date": "2025-08-26",
+          "price": 52.05119074082121
+        },
+        {
+          "date": "2025-08-27",
+          "price": 53.025036735886694
+        },
+        {
+          "date": "2025-08-28",
+          "price": 50.492694569202165
+        },
+        {
+          "date": "2025-08-29",
+          "price": 52.92736173612884
+        },
+        {
+          "date": "2025-08-30",
+          "price": 55.519465551846174
+        },
+        {
+          "date": "2025-08-31",
+          "price": 55.79321633806025
+        },
+        {
+          "date": "2025-09-01",
+          "price": 56.01385292700112
+        },
+        {
+          "date": "2025-09-02",
+          "price": 57.45546058490358
+        },
+        {
+          "date": "2025-09-03",
+          "price": 56.932604568961985
+        },
+        {
+          "date": "2025-09-04",
+          "price": 55.72836356616032
+        },
+        {
+          "date": "2025-09-05",
+          "price": 57.36614777499761
+        },
+        {
+          "date": "2025-09-06",
+          "price": 56.79583220285575
+        },
+        {
+          "date": "2025-09-07",
+          "price": 58.184254967188295
+        },
+        {
+          "date": "2025-09-08",
+          "price": 59.86889796295697
+        },
+        {
+          "date": "2025-09-09",
+          "price": 56.96166963784899
+        },
+        {
+          "date": "2025-09-10",
+          "price": 55.73723970446185
+        },
+        {
+          "date": "2025-09-11",
+          "price": 55.734511651506836
+        },
+        {
+          "date": "2025-09-12",
+          "price": 76.28053458093609
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-7",
+      "name": "Ho-Oh",
+      "set_name": "Celebrations Classic Collection",
+      "number": "7",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/7_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/7_A_hires.png",
+      "raw_price": 43.77,
+      "psa10_price": 364.74,
+      "spread_after_fees": 186.55,
+      "profit_loss": 186.55,
+      "confidence": "Speculative",
+      "volume_score": 0.255,
+      "raw_delta_5d": 5.9,
+      "raw_delta_30d": 3.3,
+      "raw_delta_90d": 38.5,
+      "psa10_delta_5d": 3.5,
+      "psa10_delta_30d": 2,
+      "psa10_delta_90d": 23.1,
+      "psa9_count": 867,
+      "psa10_count": 124,
+      "total_psa_count": 2177,
+      "price_volatility": 0.171,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.057,
+      "ev_grade": 4.26,
+      "upside_potential": 8.33,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 5.9,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 43.88680793075254
+        },
+        {
+          "date": "2025-08-15",
+          "price": 42.092725365573344
+        },
+        {
+          "date": "2025-08-16",
+          "price": 41.52927057038477
+        },
+        {
+          "date": "2025-08-17",
+          "price": 42.57979908793007
+        },
+        {
+          "date": "2025-08-18",
+          "price": 42.35185527209031
+        },
+        {
+          "date": "2025-08-19",
+          "price": 42.25988943398633
+        },
+        {
+          "date": "2025-08-20",
+          "price": 40.88412955322473
+        },
+        {
+          "date": "2025-08-21",
+          "price": 39.65885227753426
+        },
+        {
+          "date": "2025-08-22",
+          "price": 38.956146412880194
+        },
+        {
+          "date": "2025-08-23",
+          "price": 38.3053144083468
+        },
+        {
+          "date": "2025-08-24",
+          "price": 39.895919966108174
+        },
+        {
+          "date": "2025-08-25",
+          "price": 38.89714678104154
+        },
+        {
+          "date": "2025-08-26",
+          "price": 38.1172796231171
+        },
+        {
+          "date": "2025-08-27",
+          "price": 39.80635865978936
+        },
+        {
+          "date": "2025-08-28",
+          "price": 40.51182780574193
+        },
+        {
+          "date": "2025-08-29",
+          "price": 42.29287099452027
+        },
+        {
+          "date": "2025-08-30",
+          "price": 40.30741017237921
+        },
+        {
+          "date": "2025-08-31",
+          "price": 41.37011874359403
+        },
+        {
+          "date": "2025-09-01",
+          "price": 40.94085726151913
+        },
+        {
+          "date": "2025-09-02",
+          "price": 40.50457139284718
+        },
+        {
+          "date": "2025-09-03",
+          "price": 39.03618098843483
+        },
+        {
+          "date": "2025-09-04",
+          "price": 38.323359806324326
+        },
+        {
+          "date": "2025-09-05",
+          "price": 39.95764840248428
+        },
+        {
+          "date": "2025-09-06",
+          "price": 40.23958147248082
+        },
+        {
+          "date": "2025-09-07",
+          "price": 40.40695072492592
+        },
+        {
+          "date": "2025-09-08",
+          "price": 41.05549486089695
+        },
+        {
+          "date": "2025-09-09",
+          "price": 41.4234643830088
+        },
+        {
+          "date": "2025-09-10",
+          "price": 40.92056494964016
+        },
+        {
+          "date": "2025-09-11",
+          "price": 39.65835788714129
+        },
+        {
+          "date": "2025-09-12",
+          "price": 46.454371387960954
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-8",
+      "name": "Rayquaza",
+      "set_name": "Celebrations Classic Collection",
+      "number": "8",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/8_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/8_A_hires.png",
+      "raw_price": 60.16,
+      "psa10_price": 1107.69,
+      "spread_after_fees": 690.22,
+      "profit_loss": 690.22,
+      "confidence": "Speculative",
+      "volume_score": 0.421,
+      "raw_delta_5d": -14.8,
+      "raw_delta_30d": -24.1,
+      "raw_delta_90d": -57.1,
+      "psa10_delta_5d": -8.9,
+      "psa10_delta_30d": -14.4,
+      "psa10_delta_90d": -34.2,
+      "psa9_count": 309,
+      "psa10_count": 126,
+      "total_psa_count": 857,
+      "price_volatility": 0.248,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.147,
+      "ev_grade": 11.47,
+      "upside_potential": 18.41,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -14.8,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 59.35413703061033
+        },
+        {
+          "date": "2025-08-15",
+          "price": 59.44379294097914
+        },
+        {
+          "date": "2025-08-16",
+          "price": 61.51045593417944
+        },
+        {
+          "date": "2025-08-17",
+          "price": 60.9572987931284
+        },
+        {
+          "date": "2025-08-18",
+          "price": 63.108030357938596
+        },
+        {
+          "date": "2025-08-19",
+          "price": 60.63602216501007
+        },
+        {
+          "date": "2025-08-20",
+          "price": 60.43821741692378
+        },
+        {
+          "date": "2025-08-21",
+          "price": 57.54527486975858
+        },
+        {
+          "date": "2025-08-22",
+          "price": 59.74297843156146
+        },
+        {
+          "date": "2025-08-23",
+          "price": 57.6551901303555
+        },
+        {
+          "date": "2025-08-24",
+          "price": 59.24441366655773
+        },
+        {
+          "date": "2025-08-25",
+          "price": 59.48533084269992
+        },
+        {
+          "date": "2025-08-26",
+          "price": 58.53787302196582
+        },
+        {
+          "date": "2025-08-27",
+          "price": 60.76235769138428
+        },
+        {
+          "date": "2025-08-28",
+          "price": 62.17905313861686
+        },
+        {
+          "date": "2025-08-29",
+          "price": 62.544177265860455
+        },
+        {
+          "date": "2025-08-30",
+          "price": 64.92946063992792
+        },
+        {
+          "date": "2025-08-31",
+          "price": 62.5724969952632
+        },
+        {
+          "date": "2025-09-01",
+          "price": 60.365128488821625
+        },
+        {
+          "date": "2025-09-02",
+          "price": 60.63739128759915
+        },
+        {
+          "date": "2025-09-03",
+          "price": 61.1614786917056
+        },
+        {
+          "date": "2025-09-04",
+          "price": 62.518528343672365
+        },
+        {
+          "date": "2025-09-05",
+          "price": 62.472126767599555
+        },
+        {
+          "date": "2025-09-06",
+          "price": 60.53883498516026
+        },
+        {
+          "date": "2025-09-07",
+          "price": 63.32161299909534
+        },
+        {
+          "date": "2025-09-08",
+          "price": 64.08548092172173
+        },
+        {
+          "date": "2025-09-09",
+          "price": 62.61920564580923
+        },
+        {
+          "date": "2025-09-10",
+          "price": 62.294264532780225
+        },
+        {
+          "date": "2025-09-11",
+          "price": 60.36822658632154
+        },
+        {
+          "date": "2025-09-12",
+          "price": 50.556967306810066
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-9",
+      "name": "Garchomp",
+      "set_name": "Celebrations Classic Collection",
+      "number": "9",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/9_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/9_A_hires.png",
+      "raw_price": 27.46,
+      "psa10_price": 414.7,
+      "spread_after_fees": 237.83,
+      "profit_loss": 237.83,
+      "confidence": "High",
+      "volume_score": 0.374,
+      "raw_delta_5d": -12.2,
+      "raw_delta_30d": -26,
+      "raw_delta_90d": -53.4,
+      "psa10_delta_5d": -7.3,
+      "psa10_delta_30d": -15.6,
+      "psa10_delta_90d": -32,
+      "psa9_count": 193,
+      "psa10_count": 195,
+      "total_psa_count": 1093,
+      "price_volatility": 0.192,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.178,
+      "ev_grade": 8.66,
+      "upside_potential": 15.1,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "VINTAGE"
+      ],
+      "headline_momentum": -12.2,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 26.35849120132219
+        },
+        {
+          "date": "2025-08-15",
+          "price": 25.097627012689937
+        },
+        {
+          "date": "2025-08-16",
+          "price": 24.613335161966706
+        },
+        {
+          "date": "2025-08-17",
+          "price": 25.509790254391454
+        },
+        {
+          "date": "2025-08-18",
+          "price": 26.72294539371381
+        },
+        {
+          "date": "2025-08-19",
+          "price": 27.413692989706497
+        },
+        {
+          "date": "2025-08-20",
+          "price": 28.3954454241251
+        },
+        {
+          "date": "2025-08-21",
+          "price": 28.632526332706128
+        },
+        {
+          "date": "2025-08-22",
+          "price": 27.750032442908612
+        },
+        {
+          "date": "2025-08-23",
+          "price": 27.25114993714948
+        },
+        {
+          "date": "2025-08-24",
+          "price": 27.55306318803702
+        },
+        {
+          "date": "2025-08-25",
+          "price": 28.880472837955928
+        },
+        {
+          "date": "2025-08-26",
+          "price": 29.513234997876914
+        },
+        {
+          "date": "2025-08-27",
+          "price": 30.32119888698774
+        },
+        {
+          "date": "2025-08-28",
+          "price": 31.279016432142647
+        },
+        {
+          "date": "2025-08-29",
+          "price": 31.543881993080525
+        },
+        {
+          "date": "2025-08-30",
+          "price": 30.156100398693066
+        },
+        {
+          "date": "2025-08-31",
+          "price": 31.303362121828368
+        },
+        {
+          "date": "2025-09-01",
+          "price": 32.818444032562006
+        },
+        {
+          "date": "2025-09-02",
+          "price": 32.84814538737128
+        },
+        {
+          "date": "2025-09-03",
+          "price": 33.05823137483421
+        },
+        {
+          "date": "2025-09-04",
+          "price": 34.57634382608205
+        },
+        {
+          "date": "2025-09-05",
+          "price": 35.808398999532514
+        },
+        {
+          "date": "2025-09-06",
+          "price": 34.33085092252374
+        },
+        {
+          "date": "2025-09-07",
+          "price": 34.025160144327884
+        },
+        {
+          "date": "2025-09-08",
+          "price": 33.179526346433136
+        },
+        {
+          "date": "2025-09-09",
+          "price": 31.868210190728828
+        },
+        {
+          "date": "2025-09-10",
+          "price": 32.72837927479933
+        },
+        {
+          "date": "2025-09-11",
+          "price": 31.405412402480653
+        },
+        {
+          "date": "2025-09-12",
+          "price": 23.155599443433385
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-10",
+      "name": "Gardevoir",
+      "set_name": "Celebrations Classic Collection",
+      "number": "10",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/10_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/10_A_hires.png",
+      "raw_price": 54.97,
+      "psa10_price": 1053.4,
+      "spread_after_fees": 657.41,
+      "profit_loss": 657.41,
+      "confidence": "Speculative",
+      "volume_score": 0.669,
+      "raw_delta_5d": -8.9,
+      "raw_delta_30d": -25.7,
+      "raw_delta_90d": -46.8,
+      "psa10_delta_5d": -5.3,
+      "psa10_delta_30d": -15.4,
+      "psa10_delta_90d": -28.1,
+      "psa9_count": 459,
+      "psa10_count": 97,
+      "total_psa_count": 1525,
+      "price_volatility": 0.219,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.064,
+      "ev_grade": 11.96,
+      "upside_potential": 19.16,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -8.9,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 57.06682788153538
+        },
+        {
+          "date": "2025-08-15",
+          "price": 56.86753775592882
+        },
+        {
+          "date": "2025-08-16",
+          "price": 55.7365380086654
+        },
+        {
+          "date": "2025-08-17",
+          "price": 55.488597696040074
+        },
+        {
+          "date": "2025-08-18",
+          "price": 55.460274816497304
+        },
+        {
+          "date": "2025-08-19",
+          "price": 56.158676972486255
+        },
+        {
+          "date": "2025-08-20",
+          "price": 58.96024832594167
+        },
+        {
+          "date": "2025-08-21",
+          "price": 60.92270249642846
+        },
+        {
+          "date": "2025-08-22",
+          "price": 58.916078968385534
+        },
+        {
+          "date": "2025-08-23",
+          "price": 57.883227190354965
+        },
+        {
+          "date": "2025-08-24",
+          "price": 60.253086195292916
+        },
+        {
+          "date": "2025-08-25",
+          "price": 59.802494903020154
+        },
+        {
+          "date": "2025-08-26",
+          "price": 57.446399346791424
+        },
+        {
+          "date": "2025-08-27",
+          "price": 58.283126059394455
+        },
+        {
+          "date": "2025-08-28",
+          "price": 60.57420277696602
+        },
+        {
+          "date": "2025-08-29",
+          "price": 61.489596130682976
+        },
+        {
+          "date": "2025-08-30",
+          "price": 60.37884603317264
+        },
+        {
+          "date": "2025-08-31",
+          "price": 59.24168247275494
+        },
+        {
+          "date": "2025-09-01",
+          "price": 59.25076625854709
+        },
+        {
+          "date": "2025-09-02",
+          "price": 59.34154890251687
+        },
+        {
+          "date": "2025-09-03",
+          "price": 56.85096277918098
+        },
+        {
+          "date": "2025-09-04",
+          "price": 54.135117477634765
+        },
+        {
+          "date": "2025-09-05",
+          "price": 53.98575165954345
+        },
+        {
+          "date": "2025-09-06",
+          "price": 55.046185760265494
+        },
+        {
+          "date": "2025-09-07",
+          "price": 54.66241385362742
+        },
+        {
+          "date": "2025-09-08",
+          "price": 52.856198959954675
+        },
+        {
+          "date": "2025-09-09",
+          "price": 51.211238605179076
+        },
+        {
+          "date": "2025-09-10",
+          "price": 50.158639023244824
+        },
+        {
+          "date": "2025-09-11",
+          "price": 49.153407434213015
+        },
+        {
+          "date": "2025-09-12",
+          "price": 49.80071736545126
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-11",
+      "name": "Zacian",
+      "set_name": "Celebrations Classic Collection",
+      "number": "11",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/11_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/11_A_hires.png",
+      "raw_price": 21.61,
+      "psa10_price": 391.21,
+      "spread_after_fees": 227.24,
+      "profit_loss": 227.24,
+      "confidence": "Speculative",
+      "volume_score": 0.221,
+      "raw_delta_5d": 7.3,
+      "raw_delta_30d": 21.7,
+      "raw_delta_90d": 7.2,
+      "psa10_delta_5d": 4.4,
+      "psa10_delta_30d": 13,
+      "psa10_delta_90d": 4.3,
+      "psa9_count": 456,
+      "psa10_count": 256,
+      "total_psa_count": 1328,
+      "price_volatility": 0.201,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.193,
+      "ev_grade": 10.52,
+      "upside_potential": 18.1,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "VINTAGE"
+      ],
+      "headline_momentum": 7.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 20.958601234282533
+        },
+        {
+          "date": "2025-08-15",
+          "price": 20.433734207824394
+        },
+        {
+          "date": "2025-08-16",
+          "price": 20.891943246838874
+        },
+        {
+          "date": "2025-08-17",
+          "price": 20.391900336164476
+        },
+        {
+          "date": "2025-08-18",
+          "price": 20.660368482078063
+        },
+        {
+          "date": "2025-08-19",
+          "price": 20.70101247071684
+        },
+        {
+          "date": "2025-08-20",
+          "price": 20.105697186738336
+        },
+        {
+          "date": "2025-08-21",
+          "price": 20.91537803287795
+        },
+        {
+          "date": "2025-08-22",
+          "price": 20.793567159590747
+        },
+        {
+          "date": "2025-08-23",
+          "price": 21.518380730365006
+        },
+        {
+          "date": "2025-08-24",
+          "price": 20.723589821575246
+        },
+        {
+          "date": "2025-08-25",
+          "price": 21.66883572429055
+        },
+        {
+          "date": "2025-08-26",
+          "price": 21.18239776175766
+        },
+        {
+          "date": "2025-08-27",
+          "price": 20.346173285821127
+        },
+        {
+          "date": "2025-08-28",
+          "price": 20.9715919683729
+        },
+        {
+          "date": "2025-08-29",
+          "price": 21.118522790646242
+        },
+        {
+          "date": "2025-08-30",
+          "price": 20.28221822122376
+        },
+        {
+          "date": "2025-08-31",
+          "price": 20.992176257558796
+        },
+        {
+          "date": "2025-09-01",
+          "price": 21.612443107293675
+        },
+        {
+          "date": "2025-09-02",
+          "price": 21.87956095070752
+        },
+        {
+          "date": "2025-09-03",
+          "price": 22.397916616016442
+        },
+        {
+          "date": "2025-09-04",
+          "price": 23.0705480564371
+        },
+        {
+          "date": "2025-09-05",
+          "price": 22.901806228918705
+        },
+        {
+          "date": "2025-09-06",
+          "price": 22.788140862294643
+        },
+        {
+          "date": "2025-09-07",
+          "price": 22.546525698649905
+        },
+        {
+          "date": "2025-09-08",
+          "price": 22.314211838354197
+        },
+        {
+          "date": "2025-09-09",
+          "price": 21.379325323017117
+        },
+        {
+          "date": "2025-09-10",
+          "price": 21.723700403229962
+        },
+        {
+          "date": "2025-09-11",
+          "price": 22.151626040331813
+        },
+        {
+          "date": "2025-09-12",
+          "price": 21.870942995043848
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-12",
+      "name": "Zamazenta",
+      "set_name": "Celebrations Classic Collection",
+      "number": "12",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/12_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/12_A_hires.png",
+      "raw_price": 28.8,
+      "psa10_price": 472.3,
+      "spread_after_fees": 276.81,
+      "profit_loss": 276.81,
+      "confidence": "Speculative",
+      "volume_score": 0.659,
+      "raw_delta_5d": -15.9,
+      "raw_delta_30d": -32.4,
+      "raw_delta_90d": -33.4,
+      "psa10_delta_5d": -9.5,
+      "psa10_delta_30d": -19.4,
+      "psa10_delta_90d": -20,
+      "psa9_count": 283,
+      "psa10_count": 61,
+      "total_psa_count": 1011,
+      "price_volatility": 0.287,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.06,
+      "ev_grade": 9.61,
+      "upside_potential": 16.4,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -15.9,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 28.833846532919967
+        },
+        {
+          "date": "2025-08-15",
+          "price": 28.095068248452915
+        },
+        {
+          "date": "2025-08-16",
+          "price": 29.337487041864915
+        },
+        {
+          "date": "2025-08-17",
+          "price": 29.650268970013887
+        },
+        {
+          "date": "2025-08-18",
+          "price": 28.32788060791199
+        },
+        {
+          "date": "2025-08-19",
+          "price": 29.57125489266542
+        },
+        {
+          "date": "2025-08-20",
+          "price": 28.678396676634705
+        },
+        {
+          "date": "2025-08-21",
+          "price": 28.215048359410083
+        },
+        {
+          "date": "2025-08-22",
+          "price": 28.61986854858494
+        },
+        {
+          "date": "2025-08-23",
+          "price": 28.84657941021
+        },
+        {
+          "date": "2025-08-24",
+          "price": 27.815845295272897
+        },
+        {
+          "date": "2025-08-25",
+          "price": 27.405518005462138
+        },
+        {
+          "date": "2025-08-26",
+          "price": 26.91086112364521
+        },
+        {
+          "date": "2025-08-27",
+          "price": 27.238534720929348
+        },
+        {
+          "date": "2025-08-28",
+          "price": 26.636668278461183
+        },
+        {
+          "date": "2025-08-29",
+          "price": 27.881627353653652
+        },
+        {
+          "date": "2025-08-30",
+          "price": 26.732773731749607
+        },
+        {
+          "date": "2025-08-31",
+          "price": 26.08113299866059
+        },
+        {
+          "date": "2025-09-01",
+          "price": 26.663534885257278
+        },
+        {
+          "date": "2025-09-02",
+          "price": 26.834448981982217
+        },
+        {
+          "date": "2025-09-03",
+          "price": 27.611579106632625
+        },
+        {
+          "date": "2025-09-04",
+          "price": 26.864429756905924
+        },
+        {
+          "date": "2025-09-05",
+          "price": 26.48891244910834
+        },
+        {
+          "date": "2025-09-06",
+          "price": 27.413665548666337
+        },
+        {
+          "date": "2025-09-07",
+          "price": 26.77270212192382
+        },
+        {
+          "date": "2025-09-08",
+          "price": 26.719508766785086
+        },
+        {
+          "date": "2025-09-09",
+          "price": 25.60746409563574
+        },
+        {
+          "date": "2025-09-10",
+          "price": 25.030690191718882
+        },
+        {
+          "date": "2025-09-11",
+          "price": 25.976154997836858
+        },
+        {
+          "date": "2025-09-12",
+          "price": 25.329203598860907
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-13",
+      "name": "Professor's Research",
+      "set_name": "Celebrations Classic Collection",
+      "number": "13",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/13_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/13_A_hires.png",
+      "raw_price": 28.22,
+      "psa10_price": 563.44,
+      "spread_after_fees": 341.18,
+      "profit_loss": 341.18,
+      "confidence": "High",
+      "volume_score": 0.462,
+      "raw_delta_5d": -3.3,
+      "raw_delta_30d": -14.9,
+      "raw_delta_90d": -32.5,
+      "psa10_delta_5d": -2,
+      "psa10_delta_30d": -8.9,
+      "psa10_delta_90d": -19.5,
+      "psa9_count": 58,
+      "psa10_count": 51,
+      "total_psa_count": 349,
+      "price_volatility": 0.156,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.146,
+      "ev_grade": 12.09,
+      "upside_potential": 19.96,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -3.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 28.349750495115735
+        },
+        {
+          "date": "2025-08-15",
+          "price": 29.192343281669977
+        },
+        {
+          "date": "2025-08-16",
+          "price": 28.41236936004326
+        },
+        {
+          "date": "2025-08-17",
+          "price": 27.52171138517544
+        },
+        {
+          "date": "2025-08-18",
+          "price": 26.88724127194886
+        },
+        {
+          "date": "2025-08-19",
+          "price": 28.095234065988194
+        },
+        {
+          "date": "2025-08-20",
+          "price": 27.84700878337376
+        },
+        {
+          "date": "2025-08-21",
+          "price": 28.3319797552222
+        },
+        {
+          "date": "2025-08-22",
+          "price": 27.300468801208577
+        },
+        {
+          "date": "2025-08-23",
+          "price": 27.638615363855386
+        },
+        {
+          "date": "2025-08-24",
+          "price": 27.153703832285824
+        },
+        {
+          "date": "2025-08-25",
+          "price": 26.463872017043283
+        },
+        {
+          "date": "2025-08-26",
+          "price": 27.480855117808026
+        },
+        {
+          "date": "2025-08-27",
+          "price": 26.54691870987328
+        },
+        {
+          "date": "2025-08-28",
+          "price": 26.84931149794943
+        },
+        {
+          "date": "2025-08-29",
+          "price": 26.058041894241395
+        },
+        {
+          "date": "2025-08-30",
+          "price": 24.77553512937652
+        },
+        {
+          "date": "2025-08-31",
+          "price": 25.37252865662111
+        },
+        {
+          "date": "2025-09-01",
+          "price": 25.669170374472362
+        },
+        {
+          "date": "2025-09-02",
+          "price": 24.66997707863666
+        },
+        {
+          "date": "2025-09-03",
+          "price": 25.498881266396776
+        },
+        {
+          "date": "2025-09-04",
+          "price": 26.584330562123238
+        },
+        {
+          "date": "2025-09-05",
+          "price": 27.049030018851905
+        },
+        {
+          "date": "2025-09-06",
+          "price": 26.99743268154928
+        },
+        {
+          "date": "2025-09-07",
+          "price": 25.74044308024121
+        },
+        {
+          "date": "2025-09-08",
+          "price": 25.0674941366854
+        },
+        {
+          "date": "2025-09-09",
+          "price": 24.665861299625696
+        },
+        {
+          "date": "2025-09-10",
+          "price": 25.267890467891686
+        },
+        {
+          "date": "2025-09-11",
+          "price": 24.687812619918752
+        },
+        {
+          "date": "2025-09-12",
+          "price": 27.418109428373228
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-14",
+      "name": "Team Rocket's Handiwork",
+      "set_name": "Celebrations Classic Collection",
+      "number": "14",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/14_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/14_A_hires.png",
+      "raw_price": 96.45,
+      "psa10_price": 1778.68,
+      "spread_after_fees": 1123.63,
+      "profit_loss": 1123.63,
+      "confidence": "Speculative",
+      "volume_score": 0.808,
+      "raw_delta_5d": -0.1,
+      "raw_delta_30d": 7.8,
+      "raw_delta_90d": -18.6,
+      "psa10_delta_5d": 0,
+      "psa10_delta_30d": 4.7,
+      "psa10_delta_90d": -11.1,
+      "psa9_count": 118,
+      "psa10_count": 36,
+      "total_psa_count": 315,
+      "price_volatility": 0.267,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.114,
+      "ev_grade": 11.65,
+      "upside_potential": 18.44,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -0.1,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 100.17736673260667
+        },
+        {
+          "date": "2025-08-15",
+          "price": 97.69333353059025
+        },
+        {
+          "date": "2025-08-16",
+          "price": 95.75137430175603
+        },
+        {
+          "date": "2025-08-17",
+          "price": 99.6185601684545
+        },
+        {
+          "date": "2025-08-18",
+          "price": 95.2408468080649
+        },
+        {
+          "date": "2025-08-19",
+          "price": 97.07764521657151
+        },
+        {
+          "date": "2025-08-20",
+          "price": 92.75295597207112
+        },
+        {
+          "date": "2025-08-21",
+          "price": 93.89066315790372
+        },
+        {
+          "date": "2025-08-22",
+          "price": 90.14545781222495
+        },
+        {
+          "date": "2025-08-23",
+          "price": 86.51649526600323
+        },
+        {
+          "date": "2025-08-24",
+          "price": 88.09753839889406
+        },
+        {
+          "date": "2025-08-25",
+          "price": 86.19200849737436
+        },
+        {
+          "date": "2025-08-26",
+          "price": 84.5089424308266
+        },
+        {
+          "date": "2025-08-27",
+          "price": 80.81256685237038
+        },
+        {
+          "date": "2025-08-28",
+          "price": 77.55496812336061
+        },
+        {
+          "date": "2025-08-29",
+          "price": 80.73688391759201
+        },
+        {
+          "date": "2025-08-30",
+          "price": 79.27055180703145
+        },
+        {
+          "date": "2025-08-31",
+          "price": 77.82642311903221
+        },
+        {
+          "date": "2025-09-01",
+          "price": 81.44326083973432
+        },
+        {
+          "date": "2025-09-02",
+          "price": 80.23806463375414
+        },
+        {
+          "date": "2025-09-03",
+          "price": 82.08270532128934
+        },
+        {
+          "date": "2025-09-04",
+          "price": 79.9622471076908
+        },
+        {
+          "date": "2025-09-05",
+          "price": 81.6454478479387
+        },
+        {
+          "date": "2025-09-06",
+          "price": 79.86452135213463
+        },
+        {
+          "date": "2025-09-07",
+          "price": 82.9173966641237
+        },
+        {
+          "date": "2025-09-08",
+          "price": 84.59058076173324
+        },
+        {
+          "date": "2025-09-09",
+          "price": 81.98886356682867
+        },
+        {
+          "date": "2025-09-10",
+          "price": 80.26146033893414
+        },
+        {
+          "date": "2025-09-11",
+          "price": 77.86000950312875
+        },
+        {
+          "date": "2025-09-12",
+          "price": 100.10939942239386
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-15",
+      "name": "Here Comes Team Rocket!",
+      "set_name": "Celebrations Classic Collection",
+      "number": "15",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/15_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/15_A_hires.png",
+      "raw_price": 61.59,
+      "psa10_price": 611.52,
+      "spread_after_fees": 341.48,
+      "profit_loss": 341.48,
+      "confidence": "Noisy",
+      "volume_score": 0.188,
+      "raw_delta_5d": 4.8,
+      "raw_delta_30d": 19.1,
+      "raw_delta_90d": 8.2,
+      "psa10_delta_5d": 2.9,
+      "psa10_delta_30d": 11.4,
+      "psa10_delta_90d": 4.9,
+      "psa9_count": 45,
+      "psa10_count": 13,
+      "total_psa_count": 250,
+      "price_volatility": 0.382,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.052,
+      "ev_grade": 5.54,
+      "upside_potential": 9.93,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 4.8,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 62.4627620932142
+        },
+        {
+          "date": "2025-08-15",
+          "price": 62.50051702324634
+        },
+        {
+          "date": "2025-08-16",
+          "price": 60.39774688903204
+        },
+        {
+          "date": "2025-08-17",
+          "price": 59.40688882925898
+        },
+        {
+          "date": "2025-08-18",
+          "price": 62.15253353704071
+        },
+        {
+          "date": "2025-08-19",
+          "price": 60.42748755825734
+        },
+        {
+          "date": "2025-08-20",
+          "price": 63.434223807536824
+        },
+        {
+          "date": "2025-08-21",
+          "price": 63.65647047218514
+        },
+        {
+          "date": "2025-08-22",
+          "price": 65.09659130659395
+        },
+        {
+          "date": "2025-08-23",
+          "price": 66.29381431653131
+        },
+        {
+          "date": "2025-08-24",
+          "price": 68.14172620822659
+        },
+        {
+          "date": "2025-08-25",
+          "price": 67.66511638673877
+        },
+        {
+          "date": "2025-08-26",
+          "price": 67.65369516802899
+        },
+        {
+          "date": "2025-08-27",
+          "price": 70.22441130408484
+        },
+        {
+          "date": "2025-08-28",
+          "price": 69.53700363404535
+        },
+        {
+          "date": "2025-08-29",
+          "price": 69.77173208635207
+        },
+        {
+          "date": "2025-08-30",
+          "price": 69.2525904306468
+        },
+        {
+          "date": "2025-08-31",
+          "price": 71.94360654230695
+        },
+        {
+          "date": "2025-09-01",
+          "price": 74.15977750705436
+        },
+        {
+          "date": "2025-09-02",
+          "price": 71.95482368315912
+        },
+        {
+          "date": "2025-09-03",
+          "price": 70.60640471152904
+        },
+        {
+          "date": "2025-09-04",
+          "price": 69.59233962167362
+        },
+        {
+          "date": "2025-09-05",
+          "price": 71.68603599177743
+        },
+        {
+          "date": "2025-09-06",
+          "price": 72.04255169474594
+        },
+        {
+          "date": "2025-09-07",
+          "price": 71.59579073364132
+        },
+        {
+          "date": "2025-09-08",
+          "price": 69.44564947358934
+        },
+        {
+          "date": "2025-09-09",
+          "price": 67.47265716843658
+        },
+        {
+          "date": "2025-09-10",
+          "price": 67.50472086362755
+        },
+        {
+          "date": "2025-09-11",
+          "price": 65.08418939503183
+        },
+        {
+          "date": "2025-09-12",
+          "price": 63.163019456021
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-16",
+      "name": "Rocket's Admin.",
+      "set_name": "Celebrations Classic Collection",
+      "number": "16",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/16_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/16_A_hires.png",
+      "raw_price": 21.16,
+      "psa10_price": 292.9,
+      "spread_after_fees": 158.87,
+      "profit_loss": 158.87,
+      "confidence": "Speculative",
+      "volume_score": 0.027,
+      "raw_delta_5d": 6.4,
+      "raw_delta_30d": 21.5,
+      "raw_delta_90d": 5,
+      "psa10_delta_5d": 3.8,
+      "psa10_delta_30d": 12.9,
+      "psa10_delta_90d": 3,
+      "psa9_count": 86,
+      "psa10_count": 44,
+      "total_psa_count": 359,
+      "price_volatility": 0.196,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.123,
+      "ev_grade": 7.51,
+      "upside_potential": 13.84,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 6.4,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 22.046168353242113
+        },
+        {
+          "date": "2025-08-15",
+          "price": 21.991352007099117
+        },
+        {
+          "date": "2025-08-16",
+          "price": 20.967891727049466
+        },
+        {
+          "date": "2025-08-17",
+          "price": 21.56108751149905
+        },
+        {
+          "date": "2025-08-18",
+          "price": 22.59306450146983
+        },
+        {
+          "date": "2025-08-19",
+          "price": 22.388488021012357
+        },
+        {
+          "date": "2025-08-20",
+          "price": 21.904759927939953
+        },
+        {
+          "date": "2025-08-21",
+          "price": 21.846543055529516
+        },
+        {
+          "date": "2025-08-22",
+          "price": 22.228021630952135
+        },
+        {
+          "date": "2025-08-23",
+          "price": 22.98725281860112
+        },
+        {
+          "date": "2025-08-24",
+          "price": 23.859374044859308
+        },
+        {
+          "date": "2025-08-25",
+          "price": 24.428081517198724
+        },
+        {
+          "date": "2025-08-26",
+          "price": 24.728223093433126
+        },
+        {
+          "date": "2025-08-27",
+          "price": 24.748420067362442
+        },
+        {
+          "date": "2025-08-28",
+          "price": 23.849879814407316
+        },
+        {
+          "date": "2025-08-29",
+          "price": 25.032760445565167
+        },
+        {
+          "date": "2025-08-30",
+          "price": 23.948546209447294
+        },
+        {
+          "date": "2025-08-31",
+          "price": 24.39911777353231
+        },
+        {
+          "date": "2025-09-01",
+          "price": 23.540288471115247
+        },
+        {
+          "date": "2025-09-02",
+          "price": 23.571318004672882
+        },
+        {
+          "date": "2025-09-03",
+          "price": 24.612924562818243
+        },
+        {
+          "date": "2025-09-04",
+          "price": 23.50958802631053
+        },
+        {
+          "date": "2025-09-05",
+          "price": 24.366076295224516
+        },
+        {
+          "date": "2025-09-06",
+          "price": 25.156320560967607
+        },
+        {
+          "date": "2025-09-07",
+          "price": 25.00302581976831
+        },
+        {
+          "date": "2025-09-08",
+          "price": 24.58948373899681
+        },
+        {
+          "date": "2025-09-09",
+          "price": 25.752224612462587
+        },
+        {
+          "date": "2025-09-10",
+          "price": 25.53501407200519
+        },
+        {
+          "date": "2025-09-11",
+          "price": 25.101594646089328
+        },
+        {
+          "date": "2025-09-12",
+          "price": 23.456343216335384
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-17",
+      "name": "The Rocket's Trap",
+      "set_name": "Celebrations Classic Collection",
+      "number": "17",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/17_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/17_A_hires.png",
+      "raw_price": 86.94,
+      "psa10_price": 1656.56,
+      "spread_after_fees": 1047.65,
+      "profit_loss": 1047.65,
+      "confidence": "Speculative",
+      "volume_score": 1,
+      "raw_delta_5d": 7.4,
+      "raw_delta_30d": 7,
+      "raw_delta_90d": 8.3,
+      "psa10_delta_5d": 4.4,
+      "psa10_delta_30d": 4.2,
+      "psa10_delta_90d": 5,
+      "psa9_count": 125,
+      "psa10_count": 60,
+      "total_psa_count": 394,
+      "price_volatility": 0.156,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.152,
+      "ev_grade": 12.05,
+      "upside_potential": 19.05,
+      "badges": [
+        "HOT",
+        "GRADE_EV",
+        "VINTAGE"
+      ],
+      "headline_momentum": 7.4,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 86.51990560865994
+        },
+        {
+          "date": "2025-08-15",
+          "price": 90.1983019825256
+        },
+        {
+          "date": "2025-08-16",
+          "price": 87.03171270549734
+        },
+        {
+          "date": "2025-08-17",
+          "price": 83.6064950936108
+        },
+        {
+          "date": "2025-08-18",
+          "price": 83.15800717288572
+        },
+        {
+          "date": "2025-08-19",
+          "price": 80.29699746192793
+        },
+        {
+          "date": "2025-08-20",
+          "price": 81.90871066226649
+        },
+        {
+          "date": "2025-08-21",
+          "price": 81.77314432251674
+        },
+        {
+          "date": "2025-08-22",
+          "price": 83.09752406620919
+        },
+        {
+          "date": "2025-08-23",
+          "price": 82.39198204652125
+        },
+        {
+          "date": "2025-08-24",
+          "price": 78.64028223331376
+        },
+        {
+          "date": "2025-08-25",
+          "price": 82.14023509324545
+        },
+        {
+          "date": "2025-08-26",
+          "price": 81.47707476597826
+        },
+        {
+          "date": "2025-08-27",
+          "price": 80.15021828535862
+        },
+        {
+          "date": "2025-08-28",
+          "price": 79.61939851313748
+        },
+        {
+          "date": "2025-08-29",
+          "price": 80.15406710132054
+        },
+        {
+          "date": "2025-08-30",
+          "price": 76.34328210100809
+        },
+        {
+          "date": "2025-08-31",
+          "price": 77.61925395824942
+        },
+        {
+          "date": "2025-09-01",
+          "price": 77.73708009276586
+        },
+        {
+          "date": "2025-09-02",
+          "price": 77.53103088940681
+        },
+        {
+          "date": "2025-09-03",
+          "price": 74.63356748408624
+        },
+        {
+          "date": "2025-09-04",
+          "price": 76.37156536823673
+        },
+        {
+          "date": "2025-09-05",
+          "price": 76.40268817126784
+        },
+        {
+          "date": "2025-09-06",
+          "price": 78.50336388731333
+        },
+        {
+          "date": "2025-09-07",
+          "price": 78.765962201523
+        },
+        {
+          "date": "2025-09-08",
+          "price": 77.62012641110725
+        },
+        {
+          "date": "2025-09-09",
+          "price": 81.03224892891075
+        },
+        {
+          "date": "2025-09-10",
+          "price": 79.69145077566705
+        },
+        {
+          "date": "2025-09-11",
+          "price": 75.9226453871425
+        },
+        {
+          "date": "2025-09-12",
+          "price": 92.88644579094125
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-18",
+      "name": "Darkness Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "18",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/18_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/18_A_hires.png",
+      "raw_price": 64.95,
+      "psa10_price": 1194.36,
+      "spread_after_fees": 746.1,
+      "profit_loss": 746.1,
+      "confidence": "Noisy",
+      "volume_score": 0.652,
+      "raw_delta_5d": 8.2,
+      "raw_delta_30d": 19.9,
+      "raw_delta_90d": 28.1,
+      "psa10_delta_5d": 4.9,
+      "psa10_delta_30d": 11.9,
+      "psa10_delta_90d": 16.8,
+      "psa9_count": 758,
+      "psa10_count": 147,
+      "total_psa_count": 1896,
+      "price_volatility": 0.354,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.078,
+      "ev_grade": 11.49,
+      "upside_potential": 18.39,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 8.2,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 66.04166769374565
+        },
+        {
+          "date": "2025-08-15",
+          "price": 67.00204843018402
+        },
+        {
+          "date": "2025-08-16",
+          "price": 68.40553715214415
+        },
+        {
+          "date": "2025-08-17",
+          "price": 70.06188529139753
+        },
+        {
+          "date": "2025-08-18",
+          "price": 70.54654393076464
+        },
+        {
+          "date": "2025-08-19",
+          "price": 70.09137699913592
+        },
+        {
+          "date": "2025-08-20",
+          "price": 70.10585840333269
+        },
+        {
+          "date": "2025-08-21",
+          "price": 71.34970698762025
+        },
+        {
+          "date": "2025-08-22",
+          "price": 71.70524112560875
+        },
+        {
+          "date": "2025-08-23",
+          "price": 72.81750944817897
+        },
+        {
+          "date": "2025-08-24",
+          "price": 70.34341440673306
+        },
+        {
+          "date": "2025-08-25",
+          "price": 67.17708455633178
+        },
+        {
+          "date": "2025-08-26",
+          "price": 69.55542063355695
+        },
+        {
+          "date": "2025-08-27",
+          "price": 72.54695028779382
+        },
+        {
+          "date": "2025-08-28",
+          "price": 69.4977233291604
+        },
+        {
+          "date": "2025-08-29",
+          "price": 66.17383877145109
+        },
+        {
+          "date": "2025-08-30",
+          "price": 66.70345421166263
+        },
+        {
+          "date": "2025-08-31",
+          "price": 66.65840714751371
+        },
+        {
+          "date": "2025-09-01",
+          "price": 68.2525959854124
+        },
+        {
+          "date": "2025-09-02",
+          "price": 69.88286413867581
+        },
+        {
+          "date": "2025-09-03",
+          "price": 67.70252951115695
+        },
+        {
+          "date": "2025-09-04",
+          "price": 65.39481751506544
+        },
+        {
+          "date": "2025-09-05",
+          "price": 63.012716718654
+        },
+        {
+          "date": "2025-09-06",
+          "price": 65.58778864608621
+        },
+        {
+          "date": "2025-09-07",
+          "price": 66.54891977864077
+        },
+        {
+          "date": "2025-09-08",
+          "price": 64.93301289818335
+        },
+        {
+          "date": "2025-09-09",
+          "price": 66.9101503998013
+        },
+        {
+          "date": "2025-09-10",
+          "price": 69.63032338730741
+        },
+        {
+          "date": "2025-09-11",
+          "price": 69.54177390496396
+        },
+        {
+          "date": "2025-09-12",
+          "price": 72.29806432210655
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-19",
+      "name": "Metal Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "19",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/19_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/19_A_hires.png",
+      "raw_price": 34.95,
+      "psa10_price": 663.27,
+      "spread_after_fees": 404.34,
+      "profit_loss": 404.34,
+      "confidence": "Speculative",
+      "volume_score": 0.17,
+      "raw_delta_5d": 1.7,
+      "raw_delta_30d": -9.3,
+      "raw_delta_90d": -18.9,
+      "psa10_delta_5d": 1,
+      "psa10_delta_30d": -5.6,
+      "psa10_delta_90d": -11.3,
+      "psa9_count": 160,
+      "psa10_count": 73,
+      "total_psa_count": 493,
+      "price_volatility": 0.221,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.148,
+      "ev_grade": 11.57,
+      "upside_potential": 18.98,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 1.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 36.49675052740939
+        },
+        {
+          "date": "2025-08-15",
+          "price": 35.30662564858614
+        },
+        {
+          "date": "2025-08-16",
+          "price": 33.63851937996142
+        },
+        {
+          "date": "2025-08-17",
+          "price": 32.762591428050975
+        },
+        {
+          "date": "2025-08-18",
+          "price": 32.849505883239544
+        },
+        {
+          "date": "2025-08-19",
+          "price": 31.47633459811742
+        },
+        {
+          "date": "2025-08-20",
+          "price": 30.953846846085153
+        },
+        {
+          "date": "2025-08-21",
+          "price": 30.317857831877546
+        },
+        {
+          "date": "2025-08-22",
+          "price": 30.354575133770012
+        },
+        {
+          "date": "2025-08-23",
+          "price": 30.393260767833013
+        },
+        {
+          "date": "2025-08-24",
+          "price": 30.650170800378188
+        },
+        {
+          "date": "2025-08-25",
+          "price": 31.18186554638582
+        },
+        {
+          "date": "2025-08-26",
+          "price": 31.488939173242837
+        },
+        {
+          "date": "2025-08-27",
+          "price": 32.686637031608456
+        },
+        {
+          "date": "2025-08-28",
+          "price": 31.713779079439078
+        },
+        {
+          "date": "2025-08-29",
+          "price": 33.154041010531024
+        },
+        {
+          "date": "2025-08-30",
+          "price": 31.937251357446634
+        },
+        {
+          "date": "2025-08-31",
+          "price": 32.424784704679155
+        },
+        {
+          "date": "2025-09-01",
+          "price": 31.34143191400943
+        },
+        {
+          "date": "2025-09-02",
+          "price": 30.367456444840837
+        },
+        {
+          "date": "2025-09-03",
+          "price": 31.403481022520616
+        },
+        {
+          "date": "2025-09-04",
+          "price": 32.73540649712844
+        },
+        {
+          "date": "2025-09-05",
+          "price": 33.20056235126679
+        },
+        {
+          "date": "2025-09-06",
+          "price": 34.53355209392048
+        },
+        {
+          "date": "2025-09-07",
+          "price": 34.60304347533121
+        },
+        {
+          "date": "2025-09-08",
+          "price": 33.83487575955263
+        },
+        {
+          "date": "2025-09-09",
+          "price": 33.399164569016285
+        },
+        {
+          "date": "2025-09-10",
+          "price": 33.66895059608502
+        },
+        {
+          "date": "2025-09-11",
+          "price": 33.33709813332433
+        },
+        {
+          "date": "2025-09-12",
+          "price": 37.11114592724741
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-20",
+      "name": "Fighting Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "20",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/20_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/20_A_hires.png",
+      "raw_price": 76.78,
+      "psa10_price": 1480.56,
+      "spread_after_fees": 934.61,
+      "profit_loss": 934.61,
+      "confidence": "Noisy",
+      "volume_score": 0.429,
+      "raw_delta_5d": 3.7,
+      "raw_delta_30d": 3.6,
+      "raw_delta_90d": 23.3,
+      "psa10_delta_5d": 2.2,
+      "psa10_delta_30d": 2.1,
+      "psa10_delta_90d": 14,
+      "psa9_count": 280,
+      "psa10_count": 85,
+      "total_psa_count": 943,
+      "price_volatility": 0.363,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.09,
+      "ev_grade": 12.17,
+      "upside_potential": 19.28,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 3.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 76.65282660701648
+        },
+        {
+          "date": "2025-08-15",
+          "price": 75.12608079643506
+        },
+        {
+          "date": "2025-08-16",
+          "price": 71.67266322971392
+        },
+        {
+          "date": "2025-08-17",
+          "price": 73.13395415434249
+        },
+        {
+          "date": "2025-08-18",
+          "price": 72.86144162352649
+        },
+        {
+          "date": "2025-08-19",
+          "price": 73.78822478469758
+        },
+        {
+          "date": "2025-08-20",
+          "price": 75.61053289742607
+        },
+        {
+          "date": "2025-08-21",
+          "price": 77.7013054067113
+        },
+        {
+          "date": "2025-08-22",
+          "price": 74.85587305040774
+        },
+        {
+          "date": "2025-08-23",
+          "price": 77.62834793032269
+        },
+        {
+          "date": "2025-08-24",
+          "price": 76.5347676536147
+        },
+        {
+          "date": "2025-08-25",
+          "price": 74.86618960129212
+        },
+        {
+          "date": "2025-08-26",
+          "price": 76.41254688391061
+        },
+        {
+          "date": "2025-08-27",
+          "price": 75.82526826430039
+        },
+        {
+          "date": "2025-08-28",
+          "price": 77.96383062979015
+        },
+        {
+          "date": "2025-08-29",
+          "price": 75.69746660634839
+        },
+        {
+          "date": "2025-08-30",
+          "price": 75.08246799397551
+        },
+        {
+          "date": "2025-08-31",
+          "price": 73.59989281493867
+        },
+        {
+          "date": "2025-09-01",
+          "price": 72.8928369161635
+        },
+        {
+          "date": "2025-09-02",
+          "price": 74.92579307419655
+        },
+        {
+          "date": "2025-09-03",
+          "price": 76.45835221907451
+        },
+        {
+          "date": "2025-09-04",
+          "price": 74.52822436135685
+        },
+        {
+          "date": "2025-09-05",
+          "price": 75.95198096294699
+        },
+        {
+          "date": "2025-09-06",
+          "price": 76.24840131240741
+        },
+        {
+          "date": "2025-09-07",
+          "price": 78.87041439400954
+        },
+        {
+          "date": "2025-09-08",
+          "price": 78.12503977484698
+        },
+        {
+          "date": "2025-09-09",
+          "price": 76.05959856217089
+        },
+        {
+          "date": "2025-09-10",
+          "price": 73.74015967631745
+        },
+        {
+          "date": "2025-09-11",
+          "price": 74.25832485691213
+        },
+        {
+          "date": "2025-09-12",
+          "price": 79.47019587244166
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-21",
+      "name": "Water Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "21",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/21_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/21_A_hires.png",
+      "raw_price": 86.19,
+      "psa10_price": 1130.57,
+      "spread_after_fees": 680.21,
+      "profit_loss": 680.21,
+      "confidence": "Speculative",
+      "volume_score": 0.84,
+      "raw_delta_5d": 7.8,
+      "raw_delta_30d": 10,
+      "raw_delta_90d": -0.2,
+      "psa10_delta_5d": 4.7,
+      "psa10_delta_30d": 6,
+      "psa10_delta_90d": -0.1,
+      "psa9_count": 626,
+      "psa10_count": 98,
+      "total_psa_count": 1884,
+      "price_volatility": 0.234,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.052,
+      "ev_grade": 7.89,
+      "upside_potential": 13.12,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 7.8,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 87.50691506013263
+        },
+        {
+          "date": "2025-08-15",
+          "price": 87.76865276680283
+        },
+        {
+          "date": "2025-08-16",
+          "price": 91.54232751176116
+        },
+        {
+          "date": "2025-08-17",
+          "price": 95.79823481872195
+        },
+        {
+          "date": "2025-08-18",
+          "price": 98.68555407754238
+        },
+        {
+          "date": "2025-08-19",
+          "price": 103.18112559316633
+        },
+        {
+          "date": "2025-08-20",
+          "price": 102.36998776421913
+        },
+        {
+          "date": "2025-08-21",
+          "price": 99.70258573659976
+        },
+        {
+          "date": "2025-08-22",
+          "price": 98.51919565909009
+        },
+        {
+          "date": "2025-08-23",
+          "price": 95.50845142488316
+        },
+        {
+          "date": "2025-08-24",
+          "price": 93.59112286984941
+        },
+        {
+          "date": "2025-08-25",
+          "price": 97.57365817731888
+        },
+        {
+          "date": "2025-08-26",
+          "price": 97.57796437489452
+        },
+        {
+          "date": "2025-08-27",
+          "price": 96.89794482382123
+        },
+        {
+          "date": "2025-08-28",
+          "price": 92.30164292239594
+        },
+        {
+          "date": "2025-08-29",
+          "price": 95.38173361942125
+        },
+        {
+          "date": "2025-08-30",
+          "price": 95.05909616030553
+        },
+        {
+          "date": "2025-08-31",
+          "price": 98.78799520654508
+        },
+        {
+          "date": "2025-09-01",
+          "price": 99.58779615338725
+        },
+        {
+          "date": "2025-09-02",
+          "price": 96.38249152441473
+        },
+        {
+          "date": "2025-09-03",
+          "price": 91.61729692553942
+        },
+        {
+          "date": "2025-09-04",
+          "price": 90.27614166465867
+        },
+        {
+          "date": "2025-09-05",
+          "price": 93.6482584232966
+        },
+        {
+          "date": "2025-09-06",
+          "price": 94.19146831552115
+        },
+        {
+          "date": "2025-09-07",
+          "price": 93.61715773554789
+        },
+        {
+          "date": "2025-09-08",
+          "price": 91.90780051479311
+        },
+        {
+          "date": "2025-09-09",
+          "price": 87.98162148172287
+        },
+        {
+          "date": "2025-09-10",
+          "price": 84.22773658470823
+        },
+        {
+          "date": "2025-09-11",
+          "price": 85.47414408753086
+        },
+        {
+          "date": "2025-09-12",
+          "price": 94.31402816941875
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-22",
+      "name": "Fire Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "22",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/22_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/22_A_hires.png",
+      "raw_price": 24.04,
+      "psa10_price": 246.87,
+      "spread_after_fees": 123.77,
+      "profit_loss": 123.77,
+      "confidence": "High",
+      "volume_score": 0.3,
+      "raw_delta_5d": 7.3,
+      "raw_delta_30d": -1.4,
+      "raw_delta_90d": 5.9,
+      "psa10_delta_5d": 4.4,
+      "psa10_delta_30d": -0.8,
+      "psa10_delta_90d": 3.6,
+      "psa9_count": 280,
+      "psa10_count": 233,
+      "total_psa_count": 1779,
+      "price_volatility": 0.156,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.131,
+      "ev_grade": 5.15,
+      "upside_potential": 10.27,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 7.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 24.49011413052003
+        },
+        {
+          "date": "2025-08-15",
+          "price": 25.627392629114457
+        },
+        {
+          "date": "2025-08-16",
+          "price": 24.712934802633576
+        },
+        {
+          "date": "2025-08-17",
+          "price": 25.893827904802883
+        },
+        {
+          "date": "2025-08-18",
+          "price": 26.977612939481602
+        },
+        {
+          "date": "2025-08-19",
+          "price": 26.80036167351941
+        },
+        {
+          "date": "2025-08-20",
+          "price": 26.648039420082114
+        },
+        {
+          "date": "2025-08-21",
+          "price": 25.82611441958157
+        },
+        {
+          "date": "2025-08-22",
+          "price": 26.125735934932656
+        },
+        {
+          "date": "2025-08-23",
+          "price": 27.13737995855393
+        },
+        {
+          "date": "2025-08-24",
+          "price": 27.310263380265855
+        },
+        {
+          "date": "2025-08-25",
+          "price": 26.435258941074594
+        },
+        {
+          "date": "2025-08-26",
+          "price": 25.76770469076117
+        },
+        {
+          "date": "2025-08-27",
+          "price": 26.676903852447946
+        },
+        {
+          "date": "2025-08-28",
+          "price": 27.59734655858977
+        },
+        {
+          "date": "2025-08-29",
+          "price": 26.552601439434998
+        },
+        {
+          "date": "2025-08-30",
+          "price": 27.007482913699207
+        },
+        {
+          "date": "2025-08-31",
+          "price": 26.587353152707458
+        },
+        {
+          "date": "2025-09-01",
+          "price": 26.88801835873728
+        },
+        {
+          "date": "2025-09-02",
+          "price": 28.108286342081616
+        },
+        {
+          "date": "2025-09-03",
+          "price": 29.126055808856353
+        },
+        {
+          "date": "2025-09-04",
+          "price": 28.887982234747774
+        },
+        {
+          "date": "2025-09-05",
+          "price": 28.8657219824436
+        },
+        {
+          "date": "2025-09-06",
+          "price": 27.911702709359474
+        },
+        {
+          "date": "2025-09-07",
+          "price": 27.53913944103004
+        },
+        {
+          "date": "2025-09-08",
+          "price": 26.180484907557457
+        },
+        {
+          "date": "2025-09-09",
+          "price": 25.343730881753476
+        },
+        {
+          "date": "2025-09-10",
+          "price": 24.224068158564865
+        },
+        {
+          "date": "2025-09-11",
+          "price": 23.921628057597896
+        },
+        {
+          "date": "2025-09-12",
+          "price": 26.28462206403292
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-23",
+      "name": "Grass Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "23",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/23_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/23_A_hires.png",
+      "raw_price": 74.07,
+      "psa10_price": 1432.87,
+      "spread_after_fees": 903.94,
+      "profit_loss": 903.94,
+      "confidence": "Speculative",
+      "volume_score": 0.098,
+      "raw_delta_5d": -2.7,
+      "raw_delta_30d": -18.9,
+      "raw_delta_90d": 12,
+      "psa10_delta_5d": -1.6,
+      "psa10_delta_30d": -11.4,
+      "psa10_delta_90d": 7.2,
+      "psa9_count": 248,
+      "psa10_count": 59,
+      "total_psa_count": 734,
+      "price_volatility": 0.25,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.08,
+      "ev_grade": 12.2,
+      "upside_potential": 19.34,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -2.7,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 76.94926030664156
+        },
+        {
+          "date": "2025-08-15",
+          "price": 75.51115044507635
+        },
+        {
+          "date": "2025-08-16",
+          "price": 77.53425204086523
+        },
+        {
+          "date": "2025-08-17",
+          "price": 74.12146863909406
+        },
+        {
+          "date": "2025-08-18",
+          "price": 72.41003409980611
+        },
+        {
+          "date": "2025-08-19",
+          "price": 74.75842273035668
+        },
+        {
+          "date": "2025-08-20",
+          "price": 78.36750938431726
+        },
+        {
+          "date": "2025-08-21",
+          "price": 79.08439657321053
+        },
+        {
+          "date": "2025-08-22",
+          "price": 81.54810767689655
+        },
+        {
+          "date": "2025-08-23",
+          "price": 82.19095999387288
+        },
+        {
+          "date": "2025-08-24",
+          "price": 82.87898290181896
+        },
+        {
+          "date": "2025-08-25",
+          "price": 81.76284492246015
+        },
+        {
+          "date": "2025-08-26",
+          "price": 83.19327753303901
+        },
+        {
+          "date": "2025-08-27",
+          "price": 84.91439994237265
+        },
+        {
+          "date": "2025-08-28",
+          "price": 80.7116595307954
+        },
+        {
+          "date": "2025-08-29",
+          "price": 77.5489815466821
+        },
+        {
+          "date": "2025-08-30",
+          "price": 77.4861660648438
+        },
+        {
+          "date": "2025-08-31",
+          "price": 75.04283362837718
+        },
+        {
+          "date": "2025-09-01",
+          "price": 72.5762382396279
+        },
+        {
+          "date": "2025-09-02",
+          "price": 74.31956108371338
+        },
+        {
+          "date": "2025-09-03",
+          "price": 76.51698139934139
+        },
+        {
+          "date": "2025-09-04",
+          "price": 74.94862580346425
+        },
+        {
+          "date": "2025-09-05",
+          "price": 76.74090035335071
+        },
+        {
+          "date": "2025-09-06",
+          "price": 76.34532137592834
+        },
+        {
+          "date": "2025-09-07",
+          "price": 74.39766016423202
+        },
+        {
+          "date": "2025-09-08",
+          "price": 73.04762064456956
+        },
+        {
+          "date": "2025-09-09",
+          "price": 71.03305297417728
+        },
+        {
+          "date": "2025-09-10",
+          "price": 73.60420274711647
+        },
+        {
+          "date": "2025-09-11",
+          "price": 72.79146568493819
+        },
+        {
+          "date": "2025-09-12",
+          "price": 72.18987744363257
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-24",
+      "name": "Lightning Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "24",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/24_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/24_A_hires.png",
+      "raw_price": 72.14,
+      "psa10_price": 1147.89,
+      "spread_after_fees": 706.38,
+      "profit_loss": 706.38,
+      "confidence": "High",
+      "volume_score": 0.144,
+      "raw_delta_5d": -13.3,
+      "raw_delta_30d": -17.6,
+      "raw_delta_90d": -20.4,
+      "psa10_delta_5d": -8,
+      "psa10_delta_30d": -10.5,
+      "psa10_delta_90d": -12.2,
+      "psa9_count": 320,
+      "psa10_count": 59,
+      "total_psa_count": 888,
+      "price_volatility": 0.162,
+      "grading_recommendation": "Buy",
+      "psa10_probability": 0.066,
+      "ev_grade": 9.79,
+      "upside_potential": 15.91,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": -13.3,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 69.16916354167509
+        },
+        {
+          "date": "2025-08-15",
+          "price": 71.88061191172494
+        },
+        {
+          "date": "2025-08-16",
+          "price": 70.74085521896775
+        },
+        {
+          "date": "2025-08-17",
+          "price": 72.32377714781228
+        },
+        {
+          "date": "2025-08-18",
+          "price": 71.099051140051
+        },
+        {
+          "date": "2025-08-19",
+          "price": 69.63837975556548
+        },
+        {
+          "date": "2025-08-20",
+          "price": 66.89490201827338
+        },
+        {
+          "date": "2025-08-21",
+          "price": 67.41161074700544
+        },
+        {
+          "date": "2025-08-22",
+          "price": 67.29173715371115
+        },
+        {
+          "date": "2025-08-23",
+          "price": 69.639694959163
+        },
+        {
+          "date": "2025-08-24",
+          "price": 73.025106353646
+        },
+        {
+          "date": "2025-08-25",
+          "price": 76.00137915720623
+        },
+        {
+          "date": "2025-08-26",
+          "price": 78.35493526331021
+        },
+        {
+          "date": "2025-08-27",
+          "price": 80.72813396739757
+        },
+        {
+          "date": "2025-08-28",
+          "price": 81.43068495874208
+        },
+        {
+          "date": "2025-08-29",
+          "price": 77.75322932535086
+        },
+        {
+          "date": "2025-08-30",
+          "price": 80.57897181291004
+        },
+        {
+          "date": "2025-08-31",
+          "price": 76.97565440413605
+        },
+        {
+          "date": "2025-09-01",
+          "price": 79.04397565659724
+        },
+        {
+          "date": "2025-09-02",
+          "price": 81.48472158730489
+        },
+        {
+          "date": "2025-09-03",
+          "price": 83.01858917468157
+        },
+        {
+          "date": "2025-09-04",
+          "price": 80.13080897003715
+        },
+        {
+          "date": "2025-09-05",
+          "price": 81.94825106697937
+        },
+        {
+          "date": "2025-09-06",
+          "price": 84.0756127500424
+        },
+        {
+          "date": "2025-09-07",
+          "price": 86.62631654506086
+        },
+        {
+          "date": "2025-09-08",
+          "price": 88.35059201678943
+        },
+        {
+          "date": "2025-09-09",
+          "price": 92.53764578912927
+        },
+        {
+          "date": "2025-09-10",
+          "price": 90.62083342268434
+        },
+        {
+          "date": "2025-09-11",
+          "price": 87.04835484246954
+        },
+        {
+          "date": "2025-09-12",
+          "price": 59.98751481137286
+        }
+      ]
+    },
+    {
+      "card_id": "cel25c-25",
+      "name": "Psychic Energy",
+      "set_name": "Celebrations Classic Collection",
+      "number": "25",
+      "rarity": "Classic Collection",
+      "image_url_small": "https://images.pokemontcg.io/cel25c/25_A.png",
+      "image_url_large": "https://images.pokemontcg.io/cel25c/25_A_hires.png",
+      "raw_price": 97.54,
+      "psa10_price": 892.92,
+      "spread_after_fees": 502.51,
+      "profit_loss": 502.51,
+      "confidence": "Speculative",
+      "volume_score": 0.455,
+      "raw_delta_5d": 1.6,
+      "raw_delta_30d": -9.4,
+      "raw_delta_90d": -15.5,
+      "psa10_delta_5d": 1,
+      "psa10_delta_30d": -5.6,
+      "psa10_delta_90d": -9.3,
+      "psa9_count": 270,
+      "psa10_count": 262,
+      "total_psa_count": 1785,
+      "price_volatility": 0.253,
+      "grading_recommendation": "Strong Buy",
+      "psa10_probability": 0.147,
+      "ev_grade": 5.15,
+      "upside_potential": 9.15,
+      "badges": [
+        "HOT",
+        "VINTAGE"
+      ],
+      "headline_momentum": 1.6,
+      "sparkline_data": [
+        {
+          "date": "2025-08-14",
+          "price": 95.57942639438947
+        },
+        {
+          "date": "2025-08-15",
+          "price": 91.30686085423282
+        },
+        {
+          "date": "2025-08-16",
+          "price": 92.50072350890368
+        },
+        {
+          "date": "2025-08-17",
+          "price": 89.90428867934186
+        },
+        {
+          "date": "2025-08-18",
+          "price": 85.53905048242723
+        },
+        {
+          "date": "2025-08-19",
+          "price": 88.86187105323579
+        },
+        {
+          "date": "2025-08-20",
+          "price": 89.4037148524463
+        },
+        {
+          "date": "2025-08-21",
+          "price": 88.3069787978098
+        },
+        {
+          "date": "2025-08-22",
+          "price": 88.86645949138094
+        },
+        {
+          "date": "2025-08-23",
+          "price": 87.03596083738678
+        },
+        {
+          "date": "2025-08-24",
+          "price": 85.84634654615489
+        },
+        {
+          "date": "2025-08-25",
+          "price": 89.25660230790187
+        },
+        {
+          "date": "2025-08-26",
+          "price": 89.73113701675344
+        },
+        {
+          "date": "2025-08-27",
+          "price": 89.15851033047961
+        },
+        {
+          "date": "2025-08-28",
+          "price": 86.53382305553576
+        },
+        {
+          "date": "2025-08-29",
+          "price": 83.5394163373713
+        },
+        {
+          "date": "2025-08-30",
+          "price": 83.79515567395813
+        },
+        {
+          "date": "2025-08-31",
+          "price": 80.49018855616367
+        },
+        {
+          "date": "2025-09-01",
+          "price": 79.20564195963567
+        },
+        {
+          "date": "2025-09-02",
+          "price": 78.86113781964154
+        },
+        {
+          "date": "2025-09-03",
+          "price": 77.68694643849915
+        },
+        {
+          "date": "2025-09-04",
+          "price": 79.60133298064355
+        },
+        {
+          "date": "2025-09-05",
+          "price": 78.00522336229282
+        },
+        {
+          "date": "2025-09-06",
+          "price": 77.00796211149697
+        },
+        {
+          "date": "2025-09-07",
+          "price": 77.601182926706
+        },
+        {
+          "date": "2025-09-08",
+          "price": 74.40204594722623
+        },
+        {
+          "date": "2025-09-09",
+          "price": 73.21831148516779
+        },
+        {
+          "date": "2025-09-10",
+          "price": 72.87641793244161
+        },
+        {
+          "date": "2025-09-11",
+          "price": 73.77834569975082
+        },
+        {
+          "date": "2025-09-12",
+          "price": 97.09853391404774
+        }
+      ]
+    }
+  ]
+}

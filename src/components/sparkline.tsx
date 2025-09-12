@@ -8,6 +8,7 @@ interface SparklineProps {
   height?: number
   className?: string
   title?: string
+  color?: string
 }
 
 export function Sparkline({ 
@@ -15,7 +16,8 @@ export function Sparkline({
   width = 100, 
   height = 20, 
   className = '',
-  title 
+  title,
+  color = '#10b981'
 }: SparklineProps) {
   const svgPath = useMemo(() => {
     if (data.length === 0) return ''
@@ -67,7 +69,7 @@ export function Sparkline({
       <path
         d={svgPath}
         fill="none"
-        stroke={trendColor}
+        stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -79,15 +81,17 @@ export function Sparkline({
 interface MiniSparklineProps {
   data: { date: string; price: number }[]
   className?: string
+  color?: string
 }
 
-export function MiniSparkline({ data, className }: MiniSparklineProps) {
+export function MiniSparkline({ data, className, color }: MiniSparklineProps) {
   return (
     <Sparkline
       data={data}
       width={60}
       height={16}
       className={className}
+      color={color}
     />
   )
 }

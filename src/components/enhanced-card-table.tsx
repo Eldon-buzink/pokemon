@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { BadgeList } from '@/components/badge'
 import { MiniSparkline } from '@/components/sparkline'
 import { CardModal } from '@/components/card-modal'
+import { Tooltip } from '@/components/tooltip'
+import { TableHeader } from '@/components/table-header'
 
 interface EnhancedCardData {
   card_id: string
@@ -49,6 +51,9 @@ interface EnhancedCardData {
   upside_potential: number
   badges: string[]
   headline_momentum: number
+  
+  // Pre-generated sparkline data
+  sparkline_data: { date: string; price: number }[]
 }
 
 interface EnhancedCardTableProps {
@@ -56,7 +61,7 @@ interface EnhancedCardTableProps {
   currentSort: string
 }
 
-export function EnhancedCardTable({ cards, currentSort: _currentSort }: EnhancedCardTableProps) {
+export function EnhancedCardTable({ cards, currentSort }: EnhancedCardTableProps) {
   const [selectedCard, setSelectedCard] = useState<EnhancedCardData | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -104,73 +109,71 @@ export function EnhancedCardTable({ cards, currentSort: _currentSort }: Enhanced
     }
   }
 
-  // Generate deterministic sparkline data to avoid hydration mismatch
-  const generateSparklineData = (basePrice: number, volatility: number) => {
-    const data = []
-    
-    // Use a fixed date to ensure server/client consistency
-    const fixedDate = new Date('2024-01-01T00:00:00Z')
-    
-    // Use a simple seeded random function based on basePrice for consistency
-    const seededRandom = (seed: number) => {
-      const x = Math.sin(seed) * 10000;
-      return x - Math.floor(x);
-    };
-    
-    for (let i = 29; i >= 0; i--) {
-      const date = new Date(fixedDate.getTime() - i * 24 * 60 * 60 * 1000)
-      const trend = Math.sin((30 - i) * Math.PI / 30) * 0.1
-      const noise = (seededRandom(basePrice * 1000 + i) - 0.5) * volatility
-      const price = basePrice * (1 + trend + noise)
-      
-      data.push({
-        date: date.toISOString().split('T')[0],
-        price: Math.max(price, basePrice * 0.1)
-      })
-    }
-    
-    return data
-  }
 
   return (
     <>
       <div className="bg-white rounded-lg border overflow-hidden">
+        <TableHeader 
+          cardCount={cards.length}
+          currentSort={currentSort}
+        />
+        
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1200px]">
+          <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-48">
                   Card
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Price Trend
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                  <Tooltip content="30-day price trend visualization">
+                    Trend
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Raw Price
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                  <Tooltip content="Current market price for raw (ungraded) card">
+                    Raw
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  PSA 10 Price
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                  <Tooltip content="Current market price for PSA 10 graded card">
+                    PSA 10
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  5d Δ
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-14">
+                  <Tooltip content="5-day percentage change in raw card price">
+                    5d Δ
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  30d Δ
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-14">
+                  <Tooltip content="30-day percentage change in raw card price">
+                    30d Δ
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  PSA 10 Chance
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                  <Tooltip content="Estimated probability of getting PSA 10 grade">
+                    PSA 10%
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Profit/Loss
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                  <Tooltip content="Potential profit/loss after grading fees and PSA 10 sale">
+                    Profit
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Confidence
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12">
+                  <Tooltip content="Data quality confidence: High (reliable), Speculative (limited data), Noisy (unreliable)">
+                    Conf
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Recommendation
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12">
+                  <Tooltip content="Grading recommendation based on profit potential and risk">
+                    Rec
+                  </Tooltip>
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Badges
+                <th className="px-1 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                  <Tooltip content="Special indicators: HOT (high momentum), GRADE EV (profitable to grade), EARLY (new release)">
+                    Badges
+                  </Tooltip>
                 </th>
               </tr>
             </thead>
@@ -181,60 +184,61 @@ export function EnhancedCardTable({ cards, currentSort: _currentSort }: Enhanced
                   className="hover:bg-gray-50 cursor-pointer transition-colors"
                   onClick={() => handleCardClick(card)}
                 >
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  <td className="px-1 py-2 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
+                      <div className="flex-shrink-0 h-8 w-6">
                         {card.image_url_small ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
-                            className="h-10 w-10 rounded object-cover"
+                            className="h-8 w-6 rounded object-cover"
                             src={card.image_url_small}
                             alt={card.name}
                           />
                         ) : (
-                          <div className="h-10 w-10 rounded bg-gray-200 flex items-center justify-center">
+                          <div className="h-8 w-6 rounded bg-gray-200 flex items-center justify-center">
                             <span className="text-xs text-gray-500">?</span>
                           </div>
                         )}
                       </div>
-                      <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">
+                      <div className="ml-2 min-w-0">
+                        <div className="text-xs font-medium text-gray-900 truncate">
                           {card.name}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-xs text-gray-500 truncate">
                           {card.set_name} • {card.number}
                         </div>
                       </div>
                     </div>
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  <td className="px-1 py-2 whitespace-nowrap">
                     <MiniSparkline 
-                      data={generateSparklineData(card.raw_price, card.price_volatility)}
+                      data={card.sparkline_data}
+                      color={card.raw_delta_5d > 0 ? '#10b981' : card.raw_delta_5d < 0 ? '#ef4444' : '#6b7280'}
                     />
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-1 py-2 whitespace-nowrap text-xs text-gray-900">
                     {formatCurrency(card.raw_price)}
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-1 py-2 whitespace-nowrap text-xs text-gray-900">
                     {card.psa10_price > 0 ? formatCurrency(card.psa10_price) : '—'}
                   </td>
                   
-                  <td className={`px-4 py-4 whitespace-nowrap text-sm font-medium ${getDeltaColor(card.raw_delta_5d)}`}>
+                  <td className={`px-1 py-2 whitespace-nowrap text-xs font-medium ${getDeltaColor(card.raw_delta_5d)}`}>
                     {formatPercentage(card.raw_delta_5d)}
                   </td>
                   
-                  <td className={`px-4 py-4 whitespace-nowrap text-sm font-medium ${getDeltaColor(card.raw_delta_30d)}`}>
+                  <td className={`px-1 py-2 whitespace-nowrap text-xs font-medium ${getDeltaColor(card.raw_delta_30d)}`}>
                     {formatPercentage(card.raw_delta_30d)}
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-1 py-2 whitespace-nowrap text-xs text-gray-900">
                     <div className="flex items-center">
-                      <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                      <div className="w-8 bg-gray-200 rounded-full h-1 mr-1">
                         <div 
-                          className="bg-blue-600 h-2 rounded-full" 
+                          className="bg-blue-600 h-1 rounded-full" 
                           style={{ width: `${Math.min(card.psa10_probability * 100, 100)}%` }}
                         />
                       </div>
@@ -244,23 +248,23 @@ export function EnhancedCardTable({ cards, currentSort: _currentSort }: Enhanced
                     </div>
                   </td>
                   
-                  <td className={`px-4 py-4 whitespace-nowrap text-sm font-medium ${getDeltaColor(card.profit_loss)}`}>
+                  <td className={`px-1 py-2 whitespace-nowrap text-xs font-medium ${getDeltaColor(card.profit_loss)}`}>
                     {formatCurrency(card.profit_loss)}
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getConfidenceColor(card.confidence)}`}>
-                      {card.confidence}
+                  <td className="px-1 py-2 whitespace-nowrap">
+                    <span className={`inline-flex px-1 py-0.5 text-xs font-medium rounded ${getConfidenceColor(card.confidence)}`}>
+                      {card.confidence.charAt(0)}
                     </span>
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getRecommendationColor(card.grading_recommendation)}`}>
-                      {card.grading_recommendation}
+                  <td className="px-1 py-2 whitespace-nowrap">
+                    <span className={`inline-flex px-1 py-0.5 text-xs font-medium rounded ${getRecommendationColor(card.grading_recommendation)}`}>
+                      {card.grading_recommendation.charAt(0)}
                     </span>
                   </td>
                   
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  <td className="px-1 py-2 whitespace-nowrap">
                     <BadgeList badges={card.badges} />
                   </td>
                 </tr>

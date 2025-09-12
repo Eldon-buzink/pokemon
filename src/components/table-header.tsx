@@ -2,12 +2,12 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 
-interface SortControlsProps {
-  currentSort: string
+interface TableHeaderProps {
   cardCount: number
+  currentSort: string
 }
 
-export function SortControls({ currentSort, cardCount }: SortControlsProps) {
+export function TableHeader({ cardCount, currentSort }: TableHeaderProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -18,16 +18,16 @@ export function SortControls({ currentSort, cardCount }: SortControlsProps) {
   }
 
   return (
-    <div className="mb-4 flex items-center justify-between">
+    <div className="flex justify-between items-center p-4 border-b bg-gray-50">
       <div className="text-sm text-muted-foreground">
         {cardCount} cards found
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <label className="text-sm font-medium">Sort by:</label>
         <select 
           value={currentSort}
           onChange={(e) => handleSortChange(e.target.value)}
-          className="px-3 py-2 border rounded-md text-sm bg-background"
+          className="text-sm border rounded px-2 py-1"
         >
           <option value="profit_loss">Profit/Loss</option>
           <option value="psa10_delta_5d">PSA 10 Δ 5d</option>
