@@ -188,19 +188,106 @@ select distinct on (card_id, source)
 from prices
 order by card_id, source, ts desc;
 
--- Join cards + latest prices + assets flattened for fast UI
+-- Last sold RAW & PSA10 from graded_sales
+create or replace view v_last_raw as
+select distinct on (card_id)
+  card_id, sold_date, (price*100)::int as last_raw_cents
+from graded_sales
+where (grade is null or grade=0)
+order by card_id, sold_date desc;
+
+create or replace view v_last_psa10 as
+select distinct on (card_id)
+  card_id, sold_date, (price*100)::int as last_psa10_cents
+from graded_sales
+where grade = 10
+order by card_id, sold_date desc;
+
+-- 30d / 90d medians + counts for RAW and PSA10
+create or replace view v_psa_medians as
+select
+  gs.card_id,
+
+  -- RAW medians & sample sizes
+  percentile_cont(0.5) within group (order by price) 
+    filter (where (grade is null or grade=0) and sold_date >= current_date - 30) as raw_median_30d,
+  count(*) filter (where (grade is null or grade=0) and sold_date >= current_date - 30) as raw_n_30d,
+
+  percentile_cont(0.5) within group (order by price) 
+    filter (where (grade is null or grade=0) and sold_date >= current_date - 90) as raw_median_90d,
+  count(*) filter (where (grade is null or grade=0) and sold_date >= current_date - 90) as raw_n_90d,
+
+  -- PSA10 medians & sample sizes
+  percentile_cont(0.5) within group (order by price) 
+    filter (where grade = 10 and sold_date >= current_date - 30) as psa10_median_30d,
+  count(*) filter (where grade = 10 and sold_date >= current_date - 30) as psa10_n_30d,
+
+  percentile_cont(0.5) within group (order by price) 
+    filter (where grade = 10 and sold_date >= current_date - 90) as psa10_median_90d,
+  count(*) filter (where grade = 10 and sold_date >= current_date - 90) as psa10_n_90d
+
+from graded_sales gs
+group by gs.card_id;
+
+-- Per-day medians for trendlines (RAW & PSA10)
+create or replace view v_daily_medians as
+select
+  gs.card_id,
+  sold_date as date,
+  percentile_cont(0.5) within group (order by price)
+    filter (where (grade is null or grade=0)) as raw_median,
+  percentile_cont(0.5) within group (order by price)
+    filter (where grade=10) as psa10_median,
+  count(*) filter (where (grade is null or grade=0)) as raw_n,
+  count(*) filter (where grade=10) as psa10_n
+from graded_sales gs
+group by gs.card_id, gs.sold_date;
+
+-- Enhanced v_cards_latest with eBay data
 create or replace view v_cards_latest as
 select
-  c.card_id, c.set_id, c.number, c.name, c.rarity,
-  ca.image_url_small, ca.image_url_large, ca.set_name,
-  tp.raw_cents   as tcg_raw_cents, tp.currency as tcg_currency,
-  cm.raw_cents   as cm_raw_cents,  cm.currency as cm_currency,
-  ppt.raw_cents  as ppt_raw_cents, ppt.psa10_cents as ppt_psa10_cents
+  c.card_id,
+  c.set_id,
+  c.number,
+  c.name,
+  c.rarity,
+  ca.image_url_small,
+  ca.image_url_large,
+  ca.set_name,
+  
+  -- TCG / Cardmarket (from PokémonTCG.io)
+  tp.raw_cents as tcg_raw_cents,
+  tp.currency as tcg_currency,
+  cm.raw_cents as cm_raw_cents,
+  cm.currency as cm_currency,
+  
+  -- PPT summary (if you upsert it into prices with source='ppt')
+  ppt.raw_cents as ppt_raw_cents,
+  ppt.psa10_cents as ppt_psa10_cents,
+  
+  -- eBay last-sold (from graded_sales)
+  lr.last_raw_cents as ppt_raw_ebay_cents,
+  lp.last_psa10_cents as ppt_psa10_ebay_cents,
+  
+  -- Rolling medians (from graded_sales)
+  (vpm.raw_median_30d * 100)::int as raw_median_30d_cents,
+  vpm.raw_n_30d,
+  (vpm.raw_median_90d * 100)::int as raw_median_90d_cents,
+  vpm.raw_n_90d,
+  
+  (vpm.psa10_median_30d * 100)::int as psa10_median_30d_cents,
+  vpm.psa10_n_30d,
+  (vpm.psa10_median_90d * 100)::int as psa10_median_90d_cents,
+  vpm.psa10_n_90d
+
 from cards c
 left join card_assets ca on ca.card_id = c.card_id
-left join v_latest_prices tp  on tp.card_id=c.card_id and tp.source='tcgplayer'
-left join v_latest_prices cm  on cm.card_id=c.card_id and cm.source='cardmarket'
-left join v_latest_prices ppt on ppt.card_id=c.card_id and ppt.source='ppt';
+left join v_latest_prices tp on tp.card_id=c.card_id and tp.source='tcgplayer'
+left join v_latest_prices cm on cm.card_id=c.card_id and cm.source='cardmarket'
+left join v_latest_prices ppt on ppt.card_id=c.card_id and ppt.source='ppt'
+left join v_last_raw lr on lr.card_id=c.card_id
+left join v_last_psa10 lp on lp.card_id=c.card_id
+left join v_psa_medians vpm on vpm.card_id=c.card_id;
 
 create index if not exists v_cards_latest_set_id_idx on cards(set_id);
 

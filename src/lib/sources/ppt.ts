@@ -1,5 +1,4 @@
 import { MarketPrice, CardKey } from './types';
-import { createClient } from '@supabase/supabase-js';
 
 const BASE = process.env.PPT_BASE_URL || 'https://www.pokemonpricetracker.com/api/v2';
 const KEY  = process.env.PPT_API_KEY;
@@ -17,10 +16,6 @@ function pptSetFor(id: string) {
 // Whitelist of sets that PPT actually supports
 export const supportsPPT = (setId: string) => ['cel25', 'cel25c'].includes(setId);
 
-const db = () => createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!, 
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 async function call(path: string) {
   const res = await fetch(`${BASE}${path}`, { 
@@ -109,4 +104,26 @@ export async function getPptPrice(card: CardKey): Promise<MarketPrice|undefined>
     psa10Cents: psa10Price ? Math.round(Number(psa10Price) * 100) : undefined,
     notes: `PPT API - Market: $${rawPrice}${psa10Price ? `, PSA10: $${psa10Price}` : ''}`
   };
+}
+
+// Summary data extraction (for backward compatibility)
+export async function getPptSummary(card: CardKey): Promise<MarketPrice|undefined> {
+  return await getPptPrice(card);
+}
+
+// Sales data extraction for granular eBay sales
+export async function getPptSales(card: CardKey): Promise<any[]> {
+  if (!KEY) return [];
+  const res = await fetchOne(card);
+  if (!res) return [];
+
+  // Extract sales data from eBay integration
+  const sales = res.ebayData?.sales || [];
+  
+  return sales.map((sale: any) => ({
+    priceCents: sale.price ? Math.round(Number(sale.price) * 100) : null,
+    grade: sale.grade || 0,
+    soldDate: sale.soldDate || sale.date || new Date().toISOString().slice(0, 10),
+    source: 'ppt-ebay'
+  })).filter((sale: any) => sale.priceCents !== null);
 }

@@ -1,10 +1,8 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { psa10Chance as oldPsa10Chance, formatPSA10Chance, getPSA10ChanceBadgeColor } from '@/lib/compute/psa10';
 import { psa10Chance } from '@/lib/metrics/psaChance';
 import { profitUSD } from '@/lib/metrics/profit';
-import { usdToEurCents, formatCurrencyWithEstimate } from '@/lib/fx';
 import { Sparkline } from '@/components/sparkline';
 import { Tooltip } from '@/components/tooltip';
 
@@ -23,6 +21,18 @@ interface Card {
   cm_currency?: string;
   ppt_raw_cents?: number;
   ppt_psa10_cents?: number;
+  // eBay last-sold data
+  ppt_raw_ebay_cents?: number;
+  ppt_psa10_ebay_cents?: number;
+  // Rolling medians from eBay sales
+  raw_median_30d_cents?: number;
+  raw_n_30d?: number;
+  raw_median_90d_cents?: number;
+  raw_n_90d?: number;
+  psa10_median_30d_cents?: number;
+  psa10_n_30d?: number;
+  psa10_median_90d_cents?: number;
+  psa10_n_90d?: number;
 }
 
 interface EnhancedAnalysisTableProps {
@@ -33,16 +43,16 @@ interface EnhancedAnalysisTableProps {
 
 // Helper functions for calculations
 function generateMockTrendData(cardId: string) {
-  // Generate deterministic sparkline data based on card ID to prevent hydration mismatches
+  // Generate completely deterministic sparkline data based on card ID to prevent hydration mismatches
   const seed = cardId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   
   // Use a fixed base date to ensure consistency between server and client
   const baseDate = new Date('2024-01-01T00:00:00Z').getTime();
   
   return Array.from({ length: 30 }, (_, i) => {
-    // Use card-specific seed for deterministic "random" values
-    const pseudoRandom = Math.sin(seed + i * 0.5) * 0.5 + 0.5;
-    const trendValue = 50 + pseudoRandom * 100 + Math.sin(i / 5) * 20;
+    // Use card-specific seed for deterministic "random" values with fixed precision
+    const pseudoRandom = Math.round((Math.sin(seed + i * 0.5) * 0.5 + 0.5) * 1000) / 1000;
+    const trendValue = Math.round((50 + pseudoRandom * 100 + Math.sin(i / 5) * 20) * 100) / 100;
     
     return {
       date: new Date(baseDate - (29 - i) * 24 * 60 * 60 * 1000).toISOString(),
@@ -56,21 +66,9 @@ function calculateChange(current: number, previous: number): number {
   return ((current - previous) / previous) * 100;
 }
 
-function calculateProfit(rawPrice: number, psa10Price: number): number {
-  if (!rawPrice || !psa10Price) return 0;
-  const gradingCost = 20 * 100; // $20 in cents
-  const shippingCost = 10 * 100; // $10 in cents
-  return psa10Price - rawPrice - gradingCost - shippingCost;
-}
-
 function formatChange(change: number): string {
   const sign = change >= 0 ? '+' : '';
   return `${sign}${change.toFixed(1)}%`;
-}
-
-function formatProfit(profit: number): string {
-  const sign = profit >= 0 ? '+' : '';
-  return `${sign}$${(profit / 100).toFixed(2)}`;
 }
 
 function getChangeColor(change: number): string {
@@ -85,22 +83,35 @@ function getProfitColor(profit: number): string {
   return 'text-gray-500';
 }
 
-// Helper function to get preferred value (PPT raw > CM > TCG)
-function getPreferredValue(card: Card): number | null {
-  // Prefer PPT raw if present
-  if (card.ppt_raw_cents) return card.ppt_raw_cents;
-  
-  // Else fallback to CM with slight bias (5% markup for USD conversion)
-  if (card.cm_raw_cents) return Math.round(card.cm_raw_cents * 1.05);
-  
-  // Finally TCG as last resort
-  return card.tcg_raw_cents || null;
+// Helper function to get preferred RAW value (90d median → 30d median → last eBay → PPT summary → TCG → CM)
+function getPreferredRawValue(card: Card): number | null {
+  return (
+    card.raw_median_90d_cents ??
+    card.raw_median_30d_cents ??
+    card.ppt_raw_ebay_cents ??
+    card.ppt_raw_cents ??
+    card.tcg_raw_cents ??
+    (card.cm_raw_cents ? Math.round(card.cm_raw_cents * 1.05) : null) ??
+    null
+  );
+}
+
+// Helper function to get preferred PSA10 value (90d median → 30d median → last eBay → PPT summary)
+function getPreferredPSA10Value(card: Card): number | null {
+  return (
+    card.psa10_median_90d_cents ??
+    card.psa10_median_30d_cents ??
+    card.ppt_psa10_ebay_cents ??
+    card.ppt_psa10_cents ??
+    null
+  );
 }
 
 // Helper function for investment grade
 function investmentGrade(card: Card): string {
-  if (card.ppt_psa10_cents && card.ppt_psa10_cents > 5000) return 'High Value';
-  if (card.ppt_psa10_cents && card.ppt_psa10_cents > 1000) return 'Mid Value';
+  const psa10Value = getPreferredPSA10Value(card);
+  if (psa10Value && psa10Value > 5000) return 'High Value';
+  if (psa10Value && psa10Value > 1000) return 'Mid Value';
   return 'Low Value';
 }
 
@@ -243,21 +254,20 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {cards.map((card) => {
-            // Get preferred value for display
-            const preferredValue = getPreferredValue(card);
+            // Get preferred values using new hierarchy
+            const preferredRawValue = getPreferredRawValue(card);
+            const preferredPSA10Value = getPreferredPSA10Value(card);
             
-            // Use new PSA10 chance calculation
-            const rawPrice = card.ppt_raw_cents || card.tcg_raw_cents || card.cm_raw_cents || 0;
-            const psa10Price = card.ppt_psa10_cents || 0;
-            const chance = psa10Chance(rawPrice, psa10Price);
+            // Use new PSA10 chance calculation with preferred values
+            const chance = psa10Chance(preferredRawValue, preferredPSA10Value);
             
-            // Calculate profit using new function
-            const profit = profitUSD(rawPrice, psa10Price);
+            // Calculate profit using new function with preferred values
+            const profit = profitUSD(preferredRawValue, preferredPSA10Value);
             
             const trendData = generateMockTrendData(card.card_id);
             
             // Calculate deterministic price changes based on card ID to prevent hydration mismatches
-            const currentPrice = preferredValue || 0;
+            const currentPrice = preferredRawValue || 0;
             const seed = card.card_id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
             const change5dMultiplier = 0.9 + (Math.sin(seed) * 0.1 + 0.1); // Deterministic ±10%
             const change30dMultiplier = 0.8 + (Math.sin(seed * 1.5) * 0.2 + 0.2); // Deterministic ±20%
@@ -299,7 +309,8 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                   </div>
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {preferredValue ? `$${(preferredValue / 100).toFixed(2)}` : '—'}
+                  {preferredRawValue ? `$${(preferredRawValue / 100).toFixed(2)}` : '—'}
+                  {card.raw_n_90d ? <span className="text-xs text-gray-400 ml-1">({card.raw_n_90d} sales/90d)</span> : null}
                 </td>
                 <td className={`px-3 py-4 whitespace-nowrap text-sm ${getChangeColor(change5d)}`}>
                   {formatChange(change5d)}
@@ -309,7 +320,8 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                 </td>
                 {hasPPT && (
                   <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {card.ppt_psa10_cents ? `$${(card.ppt_psa10_cents / 100).toFixed(2)}` : '—'}
+                    {preferredPSA10Value ? `$${(preferredPSA10Value / 100).toFixed(2)}` : '—'}
+                    {card.psa10_n_90d ? <span className="text-xs text-gray-400 ml-1">({card.psa10_n_90d} sales/90d)</span> : null}
                   </td>
                 )}
                 <td className="px-3 py-4 whitespace-nowrap text-sm">
