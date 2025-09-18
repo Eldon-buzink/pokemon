@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { psa10Chance, formatPSA10Chance, getPSA10ChanceBadgeColor } from '@/lib/compute/psa10';
+import { psa10Chance as oldPsa10Chance, formatPSA10Chance, getPSA10ChanceBadgeColor } from '@/lib/compute/psa10';
+import { psa10Chance } from '@/lib/metrics/psaChance';
+import { profitUSD } from '@/lib/metrics/profit';
 import { usdToEurCents, formatCurrencyWithEstimate } from '@/lib/fx';
 import { Sparkline } from '@/components/sparkline';
 import { Tooltip } from '@/components/tooltip';
@@ -81,6 +83,25 @@ function getProfitColor(profit: number): string {
   if (profit > 0) return 'text-green-600';
   if (profit < 0) return 'text-red-600';
   return 'text-gray-500';
+}
+
+// Helper function to get preferred value (PPT raw > CM > TCG)
+function getPreferredValue(card: Card): number | null {
+  // Prefer PPT raw if present
+  if (card.ppt_raw_cents) return card.ppt_raw_cents;
+  
+  // Else fallback to CM with slight bias (5% markup for USD conversion)
+  if (card.cm_raw_cents) return Math.round(card.cm_raw_cents * 1.05);
+  
+  // Finally TCG as last resort
+  return card.tcg_raw_cents || null;
+}
+
+// Helper function for investment grade
+function investmentGrade(card: Card): string {
+  if (card.ppt_psa10_cents && card.ppt_psa10_cents > 5000) return 'High Value';
+  if (card.ppt_psa10_cents && card.ppt_psa10_cents > 1000) return 'Mid Value';
+  return 'Low Value';
 }
 
 // Clickable header component for sorting
@@ -166,19 +187,11 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
               onClick={handleSort}
             />
             <ClickableHeader 
-              label="TCG USD" 
-              sortKey="price" 
+              label="Value" 
+              sortKey="value" 
               currentSort={currentSort} 
               currentDir={currentDir}
-              tooltip="Current TCGplayer market price in USD"
-              onClick={handleSort}
-            />
-            <ClickableHeader 
-              label="CM EUR" 
-              sortKey="cm_price" 
-              currentSort={currentSort} 
-              currentDir={currentDir}
-              tooltip="Current Cardmarket price in EUR"
+              tooltip="Preferred value: PPT Raw (if available), else CM (+5% bias) or TCG"
               onClick={handleSort}
             />
             <ClickableHeader 
@@ -200,19 +213,11 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
             {hasPPT && (
               <>
                 <ClickableHeader 
-                  label="PPT Raw" 
-                  sortKey="ppt_raw" 
-                  currentSort={currentSort} 
-                  currentDir={currentDir}
-                  tooltip="Pokemon Price Tracker raw card price"
-                  onClick={handleSort}
-                />
-                <ClickableHeader 
-                  label="PPT PSA10" 
+                  label="PSA10 Price" 
                   sortKey="psa10" 
                   currentSort={currentSort} 
                   currentDir={currentDir}
-                  tooltip="Pokemon Price Tracker PSA 10 graded price"
+                  tooltip="PSA 10 graded price from PPT"
                   onClick={handleSort}
                 />
               </>
@@ -222,40 +227,43 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
               sortKey="psa10_chance" 
               currentSort={currentSort} 
               currentDir={currentDir}
-              tooltip="Estimated probability of achieving PSA 10 grade"
+              tooltip="Probability of achieving PSA 10 grade based on price ratio and population data"
               onClick={handleSort}
             />
             <ClickableHeader 
-              label="Profit" 
+              label="Spread" 
               sortKey="profit" 
               currentSort={currentSort} 
               currentDir={currentDir}
-              tooltip="Estimated profit after grading costs ($20) and shipping ($10)"
+              tooltip="Net profit after grading fees ($15) and selling fees (13%)"
               onClick={handleSort}
             />
-            <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Rarity</th>
+            <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Investment Grade</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {cards.map((card) => {
-            // Use any available raw/PSA10 data for PSA10 chance calculation
+            // Get preferred value for display
+            const preferredValue = getPreferredValue(card);
+            
+            // Use new PSA10 chance calculation
             const rawPrice = card.ppt_raw_cents || card.tcg_raw_cents || card.cm_raw_cents || 0;
-            const psa10Price = card.ppt_psa10_cents || (rawPrice > 0 ? rawPrice * 3.5 : 0); // Estimate PSA10 as 3.5x raw if no real data
+            const psa10Price = card.ppt_psa10_cents || 0;
             const chance = psa10Chance(rawPrice, psa10Price);
+            
+            // Calculate profit using new function
+            const profit = profitUSD(rawPrice, psa10Price);
             
             const trendData = generateMockTrendData(card.card_id);
             
             // Calculate deterministic price changes based on card ID to prevent hydration mismatches
-            const currentPrice = card.tcg_raw_cents || 0;
+            const currentPrice = preferredValue || 0;
             const seed = card.card_id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
             const change5dMultiplier = 0.9 + (Math.sin(seed) * 0.1 + 0.1); // Deterministic ±10%
             const change30dMultiplier = 0.8 + (Math.sin(seed * 1.5) * 0.2 + 0.2); // Deterministic ±20%
             
             const change5d = calculateChange(currentPrice, currentPrice * change5dMultiplier);
             const change30d = calculateChange(currentPrice, currentPrice * change30dMultiplier);
-            
-            // Calculate profit using available PSA10 price
-            const profit = calculateProfit(rawPrice, psa10Price);
             
             return (
               <tr key={card.card_id} className="hover:bg-gray-50">
@@ -291,13 +299,7 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                   </div>
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {formatCurrencyWithEstimate(card.tcg_raw_cents, 'USD')}
-                </td>
-                <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {card.cm_raw_cents 
-                    ? formatCurrencyWithEstimate(card.cm_raw_cents, 'EUR')
-                    : formatCurrencyWithEstimate(usdToEurCents(card.tcg_raw_cents), 'EUR', true)
-                  }
+                  {preferredValue ? `$${(preferredValue / 100).toFixed(2)}` : '—'}
                 </td>
                 <td className={`px-3 py-4 whitespace-nowrap text-sm ${getChangeColor(change5d)}`}>
                   {formatChange(change5d)}
@@ -306,19 +308,18 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                   {formatChange(change30d)}
                 </td>
                 {hasPPT && (
-                  <>
-                    <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {card.ppt_raw_cents ? `$${(card.ppt_raw_cents / 100).toFixed(2)}` : '—'}
-                    </td>
-                    <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {card.ppt_psa10_cents ? `$${(card.ppt_psa10_cents / 100).toFixed(2)}` : '—'}
-                    </td>
-                  </>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {card.ppt_psa10_cents ? `$${(card.ppt_psa10_cents / 100).toFixed(2)}` : '—'}
+                  </td>
                 )}
                 <td className="px-3 py-4 whitespace-nowrap text-sm">
                   {chance.pct !== null ? (
-                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getPSA10ChanceBadgeColor(chance.band)}`}>
-                      {formatPSA10Chance(chance)}
+                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                      chance.label === 'High' ? 'bg-green-100 text-green-800' :
+                      chance.label === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 
+                      'bg-red-100 text-red-800'
+                    }`}>
+                      {chance.label} ({chance.pct}%)
                     </span>
                   ) : (
                     <Tooltip content="PSA10 chance calculation requires both raw and PSA10 price data">
@@ -326,11 +327,11 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                     </Tooltip>
                   )}
                 </td>
-                <td className={`px-3 py-4 whitespace-nowrap text-sm ${getProfitColor(profit)}`}>
-                  {profit !== 0 ? formatProfit(profit) : '—'}
+                <td className={`px-3 py-4 whitespace-nowrap text-sm ${profit !== null ? getProfitColor(profit) : 'text-gray-500'}`}>
+                  {profit !== null ? `${profit >= 0 ? '+' : ''}$${(profit / 100).toFixed(2)}` : '—'}
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap text-xs text-gray-500">
-                  {card.rarity || '—'}
+                  {investmentGrade(card)}
                 </td>
               </tr>
             );
