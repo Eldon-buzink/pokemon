@@ -1,7 +1,6 @@
 import 'server-only';
-import { createClient } from '@supabase/supabase-js';
+import { getServiceClient } from '@/server/supabase';
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE!);
 const BASE = process.env.POKEMONTCG_API_BASE || 'https://api.pokemontcg.io/v2';
 const KEY = process.env.POKEMONTCG_API_KEY;
 
@@ -23,6 +22,9 @@ async function fetchPaged(path: string) {
 }
 
 export async function syncSetsFromPokemonTCG() {
+  const supabase = getServiceClient();
+  if (!supabase) throw new Error('Supabase service env missing');
+  
   const sets = await fetchPaged('sets?orderBy=releaseDate');
   for (const s of sets) {
     const { id, name, series, releaseDate, total, images } = s;
@@ -35,6 +37,9 @@ export async function syncSetsFromPokemonTCG() {
 }
 
 export async function syncCardsForSet(setId: string) {
+  const supabase = getServiceClient();
+  if (!supabase) throw new Error('Supabase service env missing');
+  
   const cards = await fetchPaged(`cards?q=set.id:${setId}`);
   for (const c of cards) {
     const { id, number, name, rarity, images } = c;
@@ -46,6 +51,9 @@ export async function syncCardsForSet(setId: string) {
 }
 
 export async function syncCatalogAll() {
+  const supabase = getServiceClient();
+  if (!supabase) throw new Error('Supabase service env missing');
+  
   const count = await syncSetsFromPokemonTCG();
   // fetch set ids and fan out
   const { data } = await supabase.from('sets').select('id');

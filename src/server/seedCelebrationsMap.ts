@@ -1,7 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE!);
+import { getServiceClient } from '@/server/supabase';
 
 export async function seedCelebrationsSourceMap() {
+  const supabase = getServiceClient();
+  if (!supabase) throw new Error('Supabase service env missing');
+  
   // swsh35 = Celebrations in PokémonTCG.io
   const rows = [
     { canonical_set_id: 'swsh35', source: 'tcgplayer', source_set_name: 'Celebrations', number_range: null },

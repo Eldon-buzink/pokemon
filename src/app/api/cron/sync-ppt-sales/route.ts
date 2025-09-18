@@ -1,24 +1,30 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getServiceClient } from '@/server/supabase';
 import { getPptSales, getPptSummary } from '@/lib/sources/ppt';
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const SUPPORTED = new Set(['cel25', 'cel25c']); // allowlist PPT sets (expand later)
 
-function getDb() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!, 
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
-}
-
 export async function GET(req: Request) {
+  // Lazy init here (NOT at module scope)
+  const db = getServiceClient();
+  if (!db) {
+    return NextResponse.json(
+      { ok: false, error: 'Supabase service env vars missing (SUPABASE_SERVICE_ROLE[_KEY], NEXT_PUBLIC_SUPABASE_URL)' },
+      { status: 500 }
+    );
+  }
+
   const u = new URL(req.url);
   const set = u.searchParams.get('set') || 'cel25c';
   if (!SUPPORTED.has(set)) {
     return NextResponse.json({ ok:false, error:`PPT sales not available for set ${set}` }, { status: 400 });
   }
 
-  const { data: cards, error } = await getDb()
+  const { data: cards, error } = await db
     .from('cards')
     .select('card_id,set_id,number,name')
     .eq('set_id', set);
@@ -41,7 +47,7 @@ export async function GET(req: Request) {
         const gradeValue = s.grade && s.grade > 0 ? s.grade : 0;
         
         try {
-          const { error: insertError } = await getDb().from('graded_sales').insert({
+          const { error: insertError } = await db.from('graded_sales').insert({
             card_id: c.card_id,
             grade: gradeValue,
             sold_date: s.soldDate?.slice(0,10) || new Date().toISOString().slice(0,10),
@@ -65,7 +71,7 @@ export async function GET(req: Request) {
       const summary = await getPptSummary({ setId: c.set_id, number: c.number, name: c.name });
       if (summary) {
         try {
-          const { error: upsertError } = await getDb().from('prices').upsert({
+          const { error: upsertError } = await db.from('prices').upsert({
             card_id: c.card_id,
             source: 'ppt',
             raw_cents: summary.rawCents ?? null,

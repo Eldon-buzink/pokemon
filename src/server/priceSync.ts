@@ -1,12 +1,13 @@
 import 'server-only';
-import { createClient } from '@supabase/supabase-js';
+import { getServiceClient } from '@/server/supabase';
 import { getPtgioPricesById } from '@/lib/sources/pokemontcgio';
 import { getPptPrice, supportsPPT } from '@/lib/sources/ppt';
 
-const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 const sleep = (ms:number)=>new Promise(r=>setTimeout(r,ms));
 
 export async function syncPricesForSet(setId: string) {
+  const db = getServiceClient();
+  if (!db) throw new Error('Supabase service env missing');
   console.log(`🎯 Starting price sync for set: ${setId}`);
   
   const { data: cards, error } = await db

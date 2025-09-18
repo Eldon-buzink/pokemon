@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { syncPricesForSet } from '@/server/priceSync';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET(request: NextRequest) {
   try {

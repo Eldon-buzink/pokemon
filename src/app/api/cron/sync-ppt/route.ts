@@ -1,12 +1,22 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getServiceClient } from '@/server/supabase';
 import { getPptPrice, supportsPPT } from '@/lib/sources/ppt';
 
-const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const SUPPORTED = new Set(['cel25', 'cel25c']); // PPT coverage allowlist
 
 export async function GET(req: Request) {
+  // Lazy init here (NOT at module scope)
+  const db = getServiceClient();
+  if (!db) {
+    return NextResponse.json(
+      { ok: false, error: 'Supabase service env vars missing (SUPABASE_SERVICE_ROLE[_KEY], NEXT_PUBLIC_SUPABASE_URL)' },
+      { status: 500 }
+    );
+  }
   const u = new URL(req.url);
   const set = u.searchParams.get('set') || 'cel25c';
   
