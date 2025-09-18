@@ -86,9 +86,9 @@ function getProfitColor(profit: number): string {
 // Helper function to get preferred RAW value (90d median → 30d median → last eBay → PPT summary → TCG → CM)
 function getPreferredRawValue(card: Card): number | null {
   return (
-    card.raw_median_90d_cents ??
-    card.raw_median_30d_cents ??
-    card.ppt_raw_ebay_cents ??
+    (card.raw_median_90d_cents ?? null) ??
+    (card.raw_median_30d_cents ?? null) ??
+    (card.ppt_raw_ebay_cents ?? null) ??
     card.ppt_raw_cents ??
     card.tcg_raw_cents ??
     (card.cm_raw_cents ? Math.round(card.cm_raw_cents * 1.05) : null) ??
@@ -99,9 +99,9 @@ function getPreferredRawValue(card: Card): number | null {
 // Helper function to get preferred PSA10 value (90d median → 30d median → last eBay → PPT summary)
 function getPreferredPSA10Value(card: Card): number | null {
   return (
-    card.psa10_median_90d_cents ??
-    card.psa10_median_30d_cents ??
-    card.ppt_psa10_ebay_cents ??
+    (card.psa10_median_90d_cents ?? null) ??
+    (card.psa10_median_30d_cents ?? null) ??
+    (card.ppt_psa10_ebay_cents ?? null) ??
     card.ppt_psa10_cents ??
     null
   );
@@ -310,7 +310,7 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
                   {preferredRawValue ? `$${(preferredRawValue / 100).toFixed(2)}` : '—'}
-                  {card.raw_n_90d ? <span className="text-xs text-gray-400 ml-1">({card.raw_n_90d} sales/90d)</span> : null}
+                  {card.raw_n_90d && card.raw_n_90d > 0 ? <span className="text-xs text-gray-400 ml-1">({card.raw_n_90d} sales/90d)</span> : null}
                 </td>
                 <td className={`px-3 py-4 whitespace-nowrap text-sm ${getChangeColor(change5d)}`}>
                   {formatChange(change5d)}
@@ -321,7 +321,7 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                 {hasPPT && (
                   <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
                     {preferredPSA10Value ? `$${(preferredPSA10Value / 100).toFixed(2)}` : '—'}
-                    {card.psa10_n_90d ? <span className="text-xs text-gray-400 ml-1">({card.psa10_n_90d} sales/90d)</span> : null}
+                    {card.psa10_n_90d && card.psa10_n_90d > 0 ? <span className="text-xs text-gray-400 ml-1">({card.psa10_n_90d} sales/90d)</span> : null}
                   </td>
                 )}
                 <td className="px-3 py-4 whitespace-nowrap text-sm">
