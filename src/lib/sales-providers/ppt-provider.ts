@@ -4,10 +4,10 @@
  */
 
 import { SalesProvider, CardKey, Market, Sale } from '@/lib/sales'
-import { createPPTClient } from '@/lib/sources/ppt'
+// import { createPPTClient } from '@/lib/sources/ppt' // Disabled - using new PPT integration
 
 export class PPTSalesProvider implements SalesProvider {
-  private pptClient = createPPTClient()
+  // private pptClient = createPPTClient() // Disabled - using new PPT integration
   private mockProvider: SalesProvider | null = null
 
   private async getMockProvider() {

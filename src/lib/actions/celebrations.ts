@@ -1,5 +1,5 @@
 import { CardData } from '@/lib/actions/cards'
-import { createPPTClient } from '@/lib/sources/ppt'
+// import { createPPTClient } from '@/lib/sources/ppt' // Not needed for current implementation
 
 // Simple in-memory cache
 let cachedCards: CardData[] | null = null
@@ -54,10 +54,10 @@ export async function getCelebrationsCards(): Promise<CardData[]> {
     }
     
     // Now get real price data from Pokemon Price Tracker API
-    let pptClient: any = null
+    const pptClient = null
     try {
-      pptClient = createPPTClient()
-      console.log('📊 Connected to Pokemon Price Tracker API')
+      // pptClient = createPPTClient() // Disabled - using new PPT integration
+      console.log('⚠️ PPT client disabled - using new PPT integration via priceSync')
     } catch (pptError) {
       console.warn('⚠️ Pokemon Price Tracker API not available, using fallback pricing')
     }

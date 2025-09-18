@@ -10,7 +10,8 @@
     "lint": "eslint",
     "seed:celebrations": "ts-node --transpile-only src/scripts/seedCelebrations.ts",
     "debug:ppt": "ts-node --transpile-only src/scripts/debugPPT.ts",
-    "find:celebrations": "ts-node --transpile-only src/scripts/findCelebrations.ts"
+    "find:celebrations": "ts-node --transpile-only src/scripts/findCelebrations.ts",
+    "migrate:db": "ts-node --transpile-only src/scripts/migrateDatabaseViews.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

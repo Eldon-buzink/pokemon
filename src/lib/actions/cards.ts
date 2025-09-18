@@ -8,7 +8,7 @@
 
 import { getServerSupabase } from '@/lib/supabase/server'
 import { createPSA10Service } from '@/lib/services/psa10-service'
-import { createPPTClient } from '@/lib/sources/ppt'
+// import { createPPTClient } from '@/lib/sources/ppt' // Disabled - using new PPT integration
 
 export interface CardData {
   card_id: string
@@ -173,11 +173,12 @@ export async function getCards(filters: FilterOptions): Promise<CardData[]> {
       const spreadAfterFees = psa10Price - (rawPrice + gradingFees)
       
       // Get card data with history for real calculations (only for first 5 cards to avoid rate limits)
-      let cardWithHistory = null
+      const cardWithHistory = null
       if ((cards as CardWithAssets[]).indexOf(card) < 10) {
         try {
-          const pptClient = createPPTClient()
-          cardWithHistory = await pptClient.getCardWithHistory(card.card_id)
+          // const pptClient = createPPTClient() // Disabled - using new PPT integration
+          // cardWithHistory = await pptClient.getCardWithHistory(card.card_id)
+          console.log('⚠️ PPT client disabled - using new PPT integration via priceSync')
           // Add delay to avoid rate limits
           await new Promise(resolve => setTimeout(resolve, 300))
         } catch (error) {

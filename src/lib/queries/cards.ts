@@ -38,7 +38,7 @@ export async function listCardsLatest(p: CardsListParams): Promise<CardLatest[]>
   const limit = Math.min(Math.max(p.limit ?? 50, 10), 200);
   const from = ((p.page ?? 1) - 1) * limit;
   
-  let q = client.from('v_cards_latest').select('*').eq('set_id', p.setId);
+  let q = client.from('v_cards_latest').select('card_id,set_id,number,name,rarity,image_url_small,image_url_large,set_name,tcg_raw_cents,cm_raw_cents,ppt_raw_cents,ppt_psa10_cents').eq('set_id', p.setId);
   
   if (p.q?.trim()) {
     q = q.or(`name.ilike.%${p.q}%,number.ilike.%${p.q}%`);

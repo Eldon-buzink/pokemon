@@ -6,6 +6,7 @@ import { usdToEurCents, formatCurrencyWithEstimate } from '@/lib/fx';
 import { Suspense } from 'react';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface SearchParams {
   set?: string;
@@ -181,8 +182,23 @@ export default async function NewAnalysisPage({
           </div>
         )}
 
+        {/* Debug info */}
+        {process.env.NODE_ENV !== 'production' && cards[0] && (
+          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <h3 className="text-sm font-medium text-gray-800 mb-2">🔍 Debug: Sample Card Data</h3>
+            <pre className="text-xs bg-white p-3 rounded border overflow-auto max-h-40">
+              {JSON.stringify(cards[0], null, 2)}
+            </pre>
+          </div>
+        )}
+
+        {/* Supabase URL check */}
+        <div className="text-xs text-muted-foreground mt-6">
+          Supabase: {process.env.NEXT_PUBLIC_SUPABASE_URL}
+        </div>
+
         {/* Info box */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h3 className="text-sm font-medium text-blue-800 mb-2">💡 New Architecture Features</h3>
           <ul className="text-sm text-blue-700 space-y-1">
             <li>• Server-side filtering and sorting (no client-side processing)</li>

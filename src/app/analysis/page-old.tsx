@@ -22,6 +22,7 @@ export default async function AnalysisPage({
     rarity: (params.rarity as string) || 'All Rarities',
     minSales: parseInt(params.minSales as string) || 3,
     minPrice: parseFloat(params.minPrice as string) || 0,
+    maxPrice: parseFloat(params.maxPrice as string) || 10000,
     minProfitLoss: parseFloat(params.minProfitLoss as string) || 0,
     psa10Only: params.psa10Only === 'true',
     highConfidenceOnly: params.highConfidenceOnly === 'true',
