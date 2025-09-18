@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:celebrations": "ts-node --transpile-only src/scripts/seedCelebrations.ts"
+    "seed:celebrations": "ts-node --transpile-only src/scripts/seedCelebrations.ts",
+    "debug:ppt": "ts-node --transpile-only src/scripts/debugPPT.ts",
+    "find:celebrations": "ts-node --transpile-only src/scripts/findCelebrations.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

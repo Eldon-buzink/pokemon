@@ -223,10 +223,13 @@ create index if not exists ssm_source_idx on public.source_set_map(source);
 -- Seed Celebrations mapping
 insert into public.source_set_map (internal_set_id, source, external_set_id, number_min, number_max)
 values
+  -- PTCG.io mappings
   ('68af37225bce97006df9f260','ptgio','cel25',   1,  100),
   ('68af37225bce97006df9f260','ptgio','cel25c', 101,  999),
   ('cel25','ptgio','cel25',   null,  null),  -- Direct mapping for legacy
-  ('cel25c','ptgio','cel25c', null,  null)   -- Direct mapping for legacy
+  ('cel25c','ptgio','cel25c', null,  null),   -- Direct mapping for legacy
+  -- PPT mappings (based on debug results - only Classic Collection available)
+  ('cel25c','ppt','celebrations-classic-collection', null,  null)  -- Classic Collection only
 on conflict do nothing;
 
 -- ============================================================================
