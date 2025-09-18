@@ -333,21 +333,41 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                   {formatChange(change30d)}
                 </td>
                 {hasPPT && (
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {preferredPSA10Value.value ? `$${(preferredPSA10Value.value / 100).toFixed(2)}` : '—'}
-                    {preferredPSA10Value.isEstimate && <span className="ml-1 text-xs text-gray-500">(est)</span>}
-                    {card.psa10_n_90d && card.psa10_n_90d > 0 ? <span className="text-xs text-gray-400 ml-1">({card.psa10_n_90d} sales/90d)</span> : null}
+                  <td className="px-3 py-4 whitespace-nowrap text-sm">
+                    {preferredPSA10Value.value ? (
+                      <div className="flex items-center">
+                        <span className={preferredPSA10Value.isEstimate ? 'text-gray-500' : 'text-gray-900'}>
+                          ${(preferredPSA10Value.value / 100).toFixed(2)}
+                        </span>
+                        {preferredPSA10Value.isEstimate ? (
+                          <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded">
+                            ESTIMATED
+                          </span>
+                        ) : (
+                          card.psa10_n_90d && card.psa10_n_90d > 0 && (
+                            <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded">
+                              {card.psa10_n_90d} sales/90d
+                            </span>
+                          )
+                        )}
+                      </div>
+                    ) : '—'}
                   </td>
                 )}
                 <td className="px-3 py-4 whitespace-nowrap text-sm">
                   {chance.pct !== null ? (
-                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
-                      chance.label === 'High' ? 'bg-green-100 text-green-800' :
-                      chance.label === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 
-                      'bg-red-100 text-red-800'
-                    }`}>
-                      {chance.label} ({chance.pct}%)
-                    </span>
+                    <div className="flex items-center">
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                        chance.label === 'High' ? 'bg-green-100 text-green-800' :
+                        chance.label === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 
+                        'bg-red-100 text-red-800'
+                      }`}>
+                        {chance.label} ({chance.pct}%)
+                      </span>
+                      {preferredPSA10Value.isEstimate && (
+                        <span className="ml-1 text-xs text-gray-400">est</span>
+                      )}
+                    </div>
                   ) : (
                     <Tooltip content="PSA10 chance calculation requires both raw and PSA10 price data">
                       <span className="text-gray-400 cursor-help">Unknown</span>
@@ -355,7 +375,14 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                   )}
                 </td>
                 <td className={`px-3 py-4 whitespace-nowrap text-sm ${profit !== null ? getProfitColor(profit) : 'text-gray-500'}`}>
-                  {profit !== null ? `${profit >= 0 ? '+' : ''}$${(profit / 100).toFixed(2)}` : '—'}
+                  {profit !== null ? (
+                    <div className="flex items-center">
+                      <span>{profit >= 0 ? '+' : ''}${(profit / 100).toFixed(2)}</span>
+                      {preferredPSA10Value.isEstimate && (
+                        <span className="ml-1 text-xs text-gray-400">est</span>
+                      )}
+                    </div>
+                  ) : '—'}
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap text-xs text-gray-500">
                   {investmentGrade(card)}

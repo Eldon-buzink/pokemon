@@ -140,6 +140,17 @@ export default async function NewAnalysisPage({
           Supabase: {process.env.NEXT_PUBLIC_SUPABASE_URL}
         </div>
 
+        {/* Estimation Notice */}
+        <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <h3 className="text-sm font-medium text-yellow-800 mb-2">⚠️ Data Sources & Estimates</h3>
+          <ul className="text-sm text-yellow-700 space-y-1">
+            <li>• <strong>Raw prices</strong>: Real data from TCGplayer, Cardmarket, and PPT</li>
+            <li>• <strong>PSA10 prices marked "ESTIMATED"</strong>: Calculated as 8x raw price when real PSA10 data unavailable</li>
+            <li>• <strong>PSA10 Chance & Spread</strong>: Based on estimated PSA10 prices (marked "est")</li>
+            <li>• <strong>Real PSA10 data</strong>: Will automatically replace estimates when available</li>
+          </ul>
+        </div>
+
         {/* Info box */}
         <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h3 className="text-sm font-medium text-blue-800 mb-2">💡 New Architecture Features</h3>
