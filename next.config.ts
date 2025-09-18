@@ -11,6 +11,22 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: isCI,
   },
+  // Improve hot reload and development experience
+  ...(process.env.NODE_ENV === 'development' && {
+    experimental: {
+      turbo: {
+        rules: {
+          '*.tsx': ['tsx'],
+          '*.ts': ['ts'],
+        },
+      },
+    },
+    // Enable better file watching
+    watchOptions: {
+      poll: 1000,
+      aggregateTimeout: 300,
+    },
+  }),
   images: {
     remotePatterns: [
       {
