@@ -82,3 +82,63 @@ export async function getAvailableSets() {
   
   return data?.map(row => row.set_id) || [];
 }
+
+// Check price sync status for a set
+export async function getPriceSyncStatus(setId: string) {
+  const client = db();
+  
+  // Get total cards and cards with prices
+  const { data: totalCards, error: totalError } = await client
+    .from('cards')
+    .select('card_id', { count: 'exact' })
+    .eq('set_id', setId);
+    
+  const { data: cardsWithPrices, error: pricesError } = await client
+    .from('v_cards_latest')
+    .select('card_id', { count: 'exact' })
+    .eq('set_id', setId)
+    .not('tcg_raw_cents', 'is', null)
+    .not('cm_raw_cents', 'is', null)
+    .not('ppt_raw_cents', 'is', null);
+    
+  // Get last sync timestamps per source
+  const { data: lastSync, error: syncError } = await client
+    .from('prices')
+    .select('source, ts')
+    .in('card_id', 
+      client.from('cards').select('card_id').eq('set_id', setId)
+    )
+    .order('ts', { ascending: false })
+    .limit(10);
+  
+  if (totalError || pricesError || syncError) {
+    console.error('Error checking price sync status:', { totalError, pricesError, syncError });
+    return {
+      totalCards: 0,
+      cardsWithPrices: 0,
+      syncPercentage: 0,
+      lastSyncBySource: {},
+      needsSync: true
+    };
+  }
+  
+  const total = totalCards?.length || 0;
+  const withPrices = cardsWithPrices?.length || 0;
+  const syncPercentage = total > 0 ? (withPrices / total) * 100 : 0;
+  
+  // Group last sync times by source
+  const lastSyncBySource: Record<string, string> = {};
+  lastSync?.forEach(row => {
+    if (!lastSyncBySource[row.source] || row.ts > lastSyncBySource[row.source]) {
+      lastSyncBySource[row.source] = row.ts;
+    }
+  });
+  
+  return {
+    totalCards: total,
+    cardsWithPrices: withPrices,
+    syncPercentage,
+    lastSyncBySource,
+    needsSync: syncPercentage < 50 // Flag if less than 50% have prices
+  };
+}

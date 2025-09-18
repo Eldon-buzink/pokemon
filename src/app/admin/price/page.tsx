@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { getPriceSyncStatus } from '@/lib/queries/cards';
 
 export const dynamic = 'force-dynamic';
 

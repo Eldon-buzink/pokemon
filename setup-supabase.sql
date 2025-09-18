@@ -203,6 +203,33 @@ left join v_latest_prices ppt on ppt.card_id=c.id and ppt.source='ppt';
 create index if not exists v_cards_latest_set_id_idx on cards(set_id);
 
 -- ============================================================================
+-- SOURCE SET MAPPING TABLE (ChatGPT Durable Fix)
+-- ============================================================================
+
+-- Flexible mapping between internal set IDs and external source set IDs
+create table if not exists public.source_set_map (
+  id bigserial primary key,
+  internal_set_id text not null,           -- your cards.set_id (e.g., 68af…)
+  source text not null,                    -- 'ptgio' | 'ppt' etc.
+  external_set_id text not null,           -- e.g., 'cel25' or 'cel25c'
+  number_min int null,                     -- optional: only apply for this range
+  number_max int null,
+  created_at timestamptz default now()
+);
+
+create index if not exists ssm_internal_idx on public.source_set_map(internal_set_id);
+create index if not exists ssm_source_idx on public.source_set_map(source);
+
+-- Seed Celebrations mapping
+insert into public.source_set_map (internal_set_id, source, external_set_id, number_min, number_max)
+values
+  ('68af37225bce97006df9f260','ptgio','cel25',   1,  100),
+  ('68af37225bce97006df9f260','ptgio','cel25c', 101,  999),
+  ('cel25','ptgio','cel25',   null,  null),  -- Direct mapping for legacy
+  ('cel25c','ptgio','cel25c', null,  null)   -- Direct mapping for legacy
+on conflict do nothing;
+
+-- ============================================================================
 -- DATA INTEGRITY FUNCTIONS (ChatGPT Improvement #7)
 -- ============================================================================
 

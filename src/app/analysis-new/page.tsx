@@ -1,5 +1,6 @@
-import { listCardsLatest, getAvailableSets } from '@/lib/queries/cards';
+import { listCardsLatest, getAvailableSets, getPriceSyncStatus } from '@/lib/queries/cards';
 import { FilterBar } from '@/components/FilterBar';
+import { PriceSyncBanner } from '@/components/PriceSyncBanner';
 import { psa10Chance, formatPSA10Chance, getPSA10ChanceBadgeColor } from '@/lib/compute/psa10';
 import { Suspense } from 'react';
 
@@ -30,6 +31,7 @@ export default async function NewAnalysisPage({
   let cards: any[] = [];
   let error: string | null = null;
   let loadTime = 0;
+  let syncStatus: any = null;
   
   try {
     const startTime = Date.now();
@@ -44,6 +46,9 @@ export default async function NewAnalysisPage({
       page: params.page ? Number(params.page) : 1,
       limit: params.limit ? Number(params.limit) : 50,
     });
+    
+    // Check price sync status
+    syncStatus = await getPriceSyncStatus(setId);
     
     loadTime = Date.now() - startTime;
   } catch (e) {
@@ -73,6 +78,11 @@ export default async function NewAnalysisPage({
         <Suspense fallback={<div>Loading filters...</div>}>
           <FilterBar availableSets={availableSets} />
         </Suspense>
+
+        {/* Price Sync Status Banner */}
+        {syncStatus && (
+          <PriceSyncBanner setId={setId} syncStatus={syncStatus} />
+        )}
 
         {cards.length === 0 ? (
           <div className="bg-white rounded-lg border p-8 text-center">
