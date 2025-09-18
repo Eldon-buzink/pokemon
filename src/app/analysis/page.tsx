@@ -1,46 +1,13 @@
 import { EnhancedCardTable } from '@/components/enhanced-card-table'
 import { Filters } from '@/components/filters'
 import { LoadingSpinner } from '@/components/loading-spinner'
-import { getCards } from '@/lib/actions/cards'
+import { getCards, type CardData } from '@/lib/actions/cards'
 import { getCelebrationsCards } from '@/lib/actions/celebrations'
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const runtime = 'nodejs';
 
-// Define types for the card data
-interface CardData {
-  card_id: string;
-  name: string;
-  set_name: string;
-  number: string;
-  rarity: string;
-  image_url_small: string;
-  image_url_large: string;
-  raw_price: number;
-  psa10_price: number;
-  spread_after_fees: number;
-  profit_loss: number;
-  confidence: 'High' | 'Speculative' | 'Noisy';
-  volume_score: number;
-  raw_delta_5d: number;
-  raw_delta_30d: number;
-  raw_delta_90d: number;
-  psa10_delta_5d: number;
-  psa10_delta_30d: number;
-  psa10_delta_90d: number;
-  psa9_count: number;
-  psa10_count: number;
-  total_psa_count: number;
-  price_volatility: number;
-  grading_recommendation: 'Strong Buy' | 'Buy' | 'Hold' | 'Avoid';
-  psa10_probability: number;
-  ev_grade: number;
-  upside_potential: number;
-  badges: string[];
-  headline_momentum: number;
-  sparkline_data: { date: string; price: number }[];
-}
 
 export default async function AnalysisPage({
   searchParams,
@@ -59,6 +26,7 @@ export default async function AnalysisPage({
   const filters = {
     timePeriod,
     sortBy: (params.sortBy as string) || 'profit_loss',
+    sortDirection: (params.sortDirection as string) || 'desc',
     set: (params.set as string) || 'Celebrations',
     rarity: (params.rarity as string) || 'All Rarities',
     minSales: parseInt(params.minSales as string) || 3,
@@ -149,6 +117,39 @@ export default async function AnalysisPage({
     cards = [];
   }
   
+  // Apply sorting and filtering to the cards
+  const sortedCards = [...cards].sort((a, b) => {
+    const { sortBy, sortDirection } = filters;
+    let aValue: any = a[sortBy as keyof CardData];
+    let bValue: any = b[sortBy as keyof CardData];
+    
+    // Handle different data types
+    if (typeof aValue === 'string' && typeof bValue === 'string') {
+      aValue = aValue.toLowerCase();
+      bValue = bValue.toLowerCase();
+    }
+    
+    // Handle confidence sorting (High > Speculative > Noisy)
+    if (sortBy === 'confidence') {
+      const confidenceOrder = { 'High': 3, 'Speculative': 2, 'Noisy': 1 };
+      aValue = confidenceOrder[aValue as keyof typeof confidenceOrder] || 0;
+      bValue = confidenceOrder[bValue as keyof typeof confidenceOrder] || 0;
+    }
+    
+    // Handle grading recommendation sorting (Strong Buy > Buy > Hold > Avoid)
+    if (sortBy === 'grading_recommendation') {
+      const recOrder = { 'Strong Buy': 4, 'Buy': 3, 'Hold': 2, 'Avoid': 1 };
+      aValue = recOrder[aValue as keyof typeof recOrder] || 0;
+      bValue = recOrder[bValue as keyof typeof recOrder] || 0;
+    }
+    
+    let result = 0;
+    if (aValue < bValue) result = -1;
+    else if (aValue > bValue) result = 1;
+    
+    return sortDirection === 'desc' ? -result : result;
+  });
+
   // Get actual sets from the loaded cards
   const actualSets = Array.from(new Set(cards.map(card => card.set_name))).sort();
   const sets = ['All Sets', ...actualSets];
@@ -163,7 +164,7 @@ export default async function AnalysisPage({
             Comprehensive analysis of Pokémon cards with price movements and grading opportunities
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            Loaded {cards.length} cards in {loadTime}ms
+            Loaded {sortedCards.length} cards in {loadTime}ms • Sorted by {filters.sortBy} ({filters.sortDirection})
           </p>
         </div>
 
@@ -202,21 +203,23 @@ export default async function AnalysisPage({
 
           {/* Results */}
           <div className="lg:col-span-3">
-            {cards.length === 0 ? (
+            {sortedCards.length === 0 ? (
               <div className="bg-white rounded-lg border p-8">
                 <LoadingSpinner 
                   size="lg" 
-                  text="Analyzing card data and computing metrics..." 
+                  text="Loading Celebrations card data..." 
                   className="py-12"
                 />
                 <div className="mt-4 text-center text-sm text-gray-500">
-                  This may take a few seconds while we process the data...
+                  Fetching data from Pokemon TCG API and computing price metrics...<br/>
+                  <span className="text-xs text-gray-400">This may take up to 15 seconds</span>
                 </div>
               </div>
             ) : (
               <EnhancedCardTable 
-                cards={cards} 
+                cards={sortedCards} 
                 currentSort={filters.sortBy}
+                sortDirection={filters.sortDirection as 'asc' | 'desc'}
               />
             )}
           </div>

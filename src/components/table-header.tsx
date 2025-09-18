@@ -22,23 +22,8 @@ export function TableHeader({ cardCount, currentSort }: TableHeaderProps) {
       <div className="text-sm text-muted-foreground">
         {cardCount} cards found
       </div>
-      <div className="flex items-center gap-2">
-        <label className="text-sm font-medium">Sort by:</label>
-        <select 
-          value={currentSort}
-          onChange={(e) => handleSortChange(e.target.value)}
-          className="text-sm border rounded px-2 py-1"
-        >
-          <option value="profit_loss">Profit/Loss</option>
-          <option value="psa10_delta_5d">PSA 10 Δ 5d</option>
-          <option value="raw_delta_5d">Raw Δ 5d</option>
-          <option value="psa10_delta_30d">PSA 10 Δ 30d</option>
-          <option value="raw_delta_30d">Raw Δ 30d</option>
-          <option value="raw_price">Raw Price</option>
-          <option value="psa10_price">PSA 10 Price</option>
-          <option value="confidence">Confidence</option>
-          <option value="volume_score">Volume Score</option>
-        </select>
+      <div className="flex items-center gap-2 text-sm text-gray-500">
+        💡 Click column headers to sort
       </div>
     </div>
   )

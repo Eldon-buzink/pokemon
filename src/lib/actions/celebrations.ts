@@ -4,7 +4,7 @@ import { createPPTClient } from '@/lib/sources/ppt'
 // Simple in-memory cache
 let cachedCards: CardData[] | null = null
 let cacheTimestamp: number = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes - longer cache for better performance
 
 export interface CelebrationsCard {
   id: string
@@ -27,9 +27,9 @@ export async function getCelebrationsCards(): Promise<CardData[]> {
   try {
     console.log('🎉 Fetching real Celebrations data from Pokemon TCG API and Pokemon Price Tracker...')
     
-    // First, get card catalog data from Pokemon TCG API
+    // First, get card catalog data from Pokemon TCG API with shorter timeout
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 45000) // 45 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 15000) // 15 second timeout
     
     const response = await fetch('https://api.pokemontcg.io/v2/cards?q=set.id:cel25 OR set.id:cel25c', {
       headers: {
@@ -212,7 +212,7 @@ export async function getCelebrationsCards(): Promise<CardData[]> {
     
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
-      console.error('❌ Pokemon TCG API timeout (45s) - using fallback data')
+      console.error('❌ Pokemon TCG API timeout (15s) - using fallback data')
     } else {
       console.error('❌ Error fetching Celebrations data:', error)
     }
@@ -223,7 +223,7 @@ export async function getCelebrationsCards(): Promise<CardData[]> {
   }
 }
 
-// Generate sparkline data for price trends
+// Generate sparkline data for price trends with weekly smoothing
 function generateSparklineData(basePrice: number, volatility: number, cardId: string) {
   const data = []
   const now = new Date()
@@ -234,18 +234,23 @@ function generateSparklineData(basePrice: number, volatility: number, cardId: st
     seed += cardId.charCodeAt(i)
   }
   
-  // Generate 30 days of price data
-  for (let i = 29; i >= 0; i--) {
+  // Generate 12 weeks of price data (3 months, weekly intervals)
+  const weeksBack = 12
+  for (let i = weeksBack - 1; i >= 0; i--) {
     const date = new Date(now)
-    date.setDate(date.getDate() - i)
+    date.setDate(date.getDate() - (i * 7)) // Weekly intervals
     
     // Use seeded random for consistent data
-    const random = Math.sin(seed + i) * 10000
+    const random = Math.sin(seed + i * 0.5) * 10000 // Slower variation for smoother trends
     const normalizedRandom = random - Math.floor(random)
     
-    // Add some trend and volatility
-    const trendOffset = (Math.random() - 0.5) * 0.2 // ±10% trend
-    const volatilityMultiplier = 1 + (normalizedRandom - 0.5) * volatility * 2
+    // Create a gradual trend over time with less volatility
+    const trendProgress = (weeksBack - i) / weeksBack // 0 to 1 over time
+    const trendDirection = Math.sin(seed) > 0 ? 1 : -1 // Consistent trend direction per card
+    const trendOffset = trendDirection * trendProgress * 0.3 // ±30% over 3 months
+    
+    // Reduced volatility for smoother lines
+    const volatilityMultiplier = 1 + (normalizedRandom - 0.5) * volatility * 0.8
     
     const price = basePrice * (1 + trendOffset) * volatilityMultiplier
     
@@ -255,7 +260,25 @@ function generateSparklineData(basePrice: number, volatility: number, cardId: st
     })
   }
   
-  return data
+  // Apply additional smoothing using simple moving average
+  const smoothedData = []
+  for (let i = 0; i < data.length; i++) {
+    const windowSize = Math.min(3, i + 1, data.length - i) // Use up to 3 points for smoothing
+    let sum = 0
+    let count = 0
+    
+    for (let j = Math.max(0, i - 1); j <= Math.min(data.length - 1, i + 1); j++) {
+      sum += data[j].price
+      count++
+    }
+    
+    smoothedData.push({
+      date: data[i].date,
+      price: Math.round((sum / count) * 100) / 100
+    })
+  }
+  
+  return smoothedData
 }
 
 // Helper function to get fallback pricing based on card characteristics
