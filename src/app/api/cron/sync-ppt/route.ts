@@ -1,94 +1,84 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { getPptPrice } from '@/lib/sources/ppt';
+import { getPptPrice, supportsPPT } from '@/lib/sources/ppt';
 
-const db = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!, 
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 
-export async function GET(req: NextRequest) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const setId = searchParams.get('set') || 'cel25';
-    
-    console.log(`🎯 PPT API: Starting PPT-only price sync for set ${setId}`);
-    
-    const { data: cards, error } = await db
-      .from('cards')
-      .select('card_id,set_id,number,name')
-      .eq('set_id', setId);
-    
-    if (error) {
-      throw new Error(`Database error: ${error.message}`);
-    }
-    
-    if (!cards?.length) {
-      return NextResponse.json({ 
-        ok: false, 
-        message: `No cards found for set ${setId}`,
-        wrote: 0 
-      });
-    }
-    
-    console.log(`📊 Found ${cards.length} cards to sync PPT prices for`);
-    let wrote = 0;
-    
-    for (const c of cards) {
-      try {
-        const ppt = await getPptPrice({ 
-          setId: c.set_id, 
-          number: c.number, 
-          name: c.name 
+const SUPPORTED = new Set(['cel25', 'cel25c']); // PPT coverage allowlist
+
+export async function GET(req: Request) {
+  const u = new URL(req.url);
+  const set = u.searchParams.get('set') || 'cel25c';
+  
+  if (!SUPPORTED.has(set)) {
+    return NextResponse.json({ 
+      ok: false, 
+      error: `PPT not available for set ${set}. Try ?set=cel25c.`,
+      supported: Array.from(SUPPORTED)
+    }, { status: 400 });
+  }
+
+  const { data: cards, error } = await db
+    .from('cards')
+    .select('card_id,set_id,number,name')
+    .eq('set_id', set);
+
+  if (error) {
+    return NextResponse.json({ 
+      ok: false, 
+      error: error.message 
+    }, { status: 500 });
+  }
+
+  if (!cards?.length) {
+    return NextResponse.json({ 
+      ok: false, 
+      error: `No cards found for set ${set}` 
+    }, { status: 404 });
+  }
+
+  console.log(`🎯 Starting PPT-only sync for set: ${set} (${cards.length} cards)`);
+  let wrote = 0;
+  let skipped = 0;
+  
+  for (const c of cards) {
+    try {
+      const ppt = await getPptPrice({ setId: c.set_id, number: c.number, name: c.name });
+      if (ppt) {
+        const { error: upErr } = await db.from('prices').upsert({
+          card_id: c.card_id, 
+          source: 'ppt',
+          raw_cents: ppt.rawCents ?? null,
+          psa10_cents: ppt.psa10Cents ?? null,
+          currency: ppt.currency, 
+          ts: ppt.ts, 
+          notes: ppt.notes
         });
-        
-        if (ppt) {
-          const { error: upsertError } = await db.from('prices').upsert({
-            card_id: c.card_id, 
-            source: 'ppt',
-            raw_cents: ppt.rawCents ?? null, 
-            psa10_cents: ppt.psa10Cents ?? null,
-            currency: ppt.currency, 
-            ts: ppt.ts, 
-            notes: ppt.notes
-          });
-          
-          if (!upsertError) {
-            wrote++;
-            console.log(`✅ PPT: ${c.name} (#${c.number}) - Raw: ${ppt.rawCents ? '$' + (ppt.rawCents/100).toFixed(2) : 'N/A'}, PSA10: ${ppt.psa10Cents ? '$' + (ppt.psa10Cents/100).toFixed(2) : 'N/A'}`);
-          } else {
-            console.error(`❌ PPT upsert error for ${c.name}:`, upsertError.message);
-          }
+        if (!upErr) {
+          wrote++;
+          console.log(`✅ PPT: Synced ${c.name} #${c.number}`);
         } else {
-          console.log(`⚠️ PPT: No price data found for ${c.name} (#${c.number})`);
+          console.error(`❌ PPT upsert error for ${c.name}:`, upErr.message);
         }
-      } catch (cardError) {
-        console.error(`❌ PPT fetch error for ${c.name}:`, cardError);
+      } else {
+        skipped++;
+        console.log(`⚠️ PPT: No data found for ${c.name} #${c.number}`);
       }
-      
       // Rate limiting
       await new Promise(r => setTimeout(r, 150));
+    } catch (error) {
+      console.error(`💥 PPT fetch error for ${c.name}:`, error);
+      skipped++;
     }
-    
-    console.log(`✅ PPT sync complete: ${wrote} prices written for ${cards.length} cards`);
-    
-    return NextResponse.json({ 
-      ok: true, 
-      set: setId, 
-      wrote,
-      total: cards.length,
-      message: `Successfully synced ${wrote} PPT prices for set ${setId}`
-    });
-    
-  } catch (error) {
-    console.error('❌ PPT sync API error:', error);
-    return NextResponse.json(
-      { 
-        ok: false, 
-        error: error instanceof Error ? error.message : 'Unknown error',
-        message: 'PPT price sync failed'
-      }, 
-      { status: 500 }
-    );
   }
+  
+  console.log(`✅ PPT sync complete: ${wrote} prices synced, ${skipped} skipped`);
+  return NextResponse.json({ 
+    ok: true, 
+    set, 
+    total: cards.length,
+    wrote, 
+    skipped,
+    message: `PPT sync complete for ${set}: ${wrote}/${cards.length} cards synced`
+  });
 }

@@ -5,13 +5,17 @@ const BASE = process.env.PPT_BASE_URL || 'https://www.pokemonpricetracker.com/ap
 const KEY  = process.env.PPT_API_KEY;
 
 const PPT_SET_MAP: Record<string, string> = {
-  cel25c: 'celebrations-classic-collection',
-  // add more mappings later
+  cel25: 'celebrations', // Main Celebrations set (confirmed working)
+  cel25c: 'celebrations', // Classic Collection - might be part of main set in PPT
+  // add more mappings later as we confirm coverage
 };
 
-function pptSetFor(input: string) { 
-  return PPT_SET_MAP[input] ?? input; 
+function pptSetFor(id: string) { 
+  return PPT_SET_MAP[id] ?? id; 
 }
+
+// Whitelist of sets that PPT actually supports
+export const supportsPPT = (setId: string) => ['cel25', 'cel25c'].includes(setId);
 
 const db = () => createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!, 
@@ -34,60 +38,48 @@ function cleanName(name?: string) {
   return (name || '').replace(/\s*-\s*\d+\/\d+\s*$/, '').trim();
 }
 
-async function resolvePPTSetId(internalSetId: string): Promise<string> {
-  try {
-    const { data, error } = await db()
-      .from('source_set_map')
-      .select('external_set_id')
-      .eq('internal_set_id', internalSetId)
-      .eq('source', 'ppt')
-      .single();
-    
-    if (error || !data) {
-      console.log(`⚠️ No PPT mapping found for ${internalSetId}, using as-is`);
-      return internalSetId;
-    }
-    
-    return data.external_set_id;
-  } catch (error) {
-    console.log(`⚠️ Error resolving PPT set ID for ${internalSetId}:`, error);
-    return internalSetId;
-  }
-}
+// Removed - using direct PPT_SET_MAP instead of database lookup for better performance
 
 async function fetchOne(card: CardKey) {
-  // First, resolve the correct PPT set ID
-  const pptSetId = await resolvePPTSetId(card.setId);
-  
-  // Use direct mapping instead of database lookup for better performance
+  // Use direct mapping for better performance
   const setParam = pptSetFor(card.setId);
   
-  // Try different PPT API patterns
+  // Try different PPT API patterns (using correct /cards endpoint)
   const endpoints = [
-    // Pattern 1: set + number
-    `/card?set=${encodeURIComponent(setParam)}&number=${encodeURIComponent(card.number)}`,
-    // Pattern 2: tcgPlayerId + number  
-    `/card?tcgPlayerId=${encodeURIComponent(setParam)}&number=${encodeURIComponent(card.number)}`,
-    // Pattern 3: name + number
-    ...(card.name ? [`/card?name=${encodeURIComponent(cleanName(card.name))}&number=${encodeURIComponent(card.number)}`] : []),
-    // Pattern 4: search query
-    `/cards?query=${encodeURIComponent(`${cleanName(card.name)} #${card.number}`)}`,
-    // Pattern 5: just card name search
-    ...(card.name ? [`/cards?query=${encodeURIComponent(cleanName(card.name))}`] : [])
+    // Pattern 1: bulk fetch entire set (most efficient)
+    `/cards?set=${encodeURIComponent(setParam)}&fetchAllInSet=true`,
+    // Pattern 2: search by tcgPlayerId if available
+    ...(card.tcgPlayerId ? [`/cards?tcgPlayerId=${encodeURIComponent(card.tcgPlayerId)}&includeEbay=true`] : []),
+    // Pattern 3: search by name + number
+    `/cards?search=${encodeURIComponent(`${cleanName(card.name)} ${card.number}`)}&includeEbay=true`,
+    // Pattern 4: search by name only
+    ...(card.name ? [`/cards?search=${encodeURIComponent(cleanName(card.name))}&includeEbay=true`] : [])
   ];
   
   for (const endpoint of endpoints) {
     try {
       const result = await call(endpoint);
-      if (result && (result.data || result.prices || result.raw || result.psa10)) {
-        console.log(`✅ PPT: Found data for ${card.name} using ${endpoint}`);
-        return result;
+      if (result && result.data && Array.isArray(result.data)) {
+        // Find the specific card by number if we got multiple results
+        const matchingCard = result.data.find((c: any) => 
+          c.cardNumber === card.number || c.cardNumber === card.number.padStart(3, '0')
+        );
+        
+        if (matchingCard) {
+          console.log(`✅ PPT: Found data for ${card.name} #${card.number} using ${endpoint}`);
+          return matchingCard;
+        } else if (result.data.length === 1) {
+          // If only one result, assume it's the right card
+          console.log(`✅ PPT: Found single result for ${card.name} using ${endpoint}`);
+          return result.data[0];
+        }
       }
     } catch (error) {
       console.log(`⚠️ PPT endpoint failed: ${endpoint}`, error);
     }
   }
 
+  console.log(`❌ PPT: No data found for ${card.name} #${card.number}`);
   return null;
 }
 
@@ -96,18 +88,25 @@ export async function getPptPrice(card: CardKey): Promise<MarketPrice|undefined>
   const res = await fetchOne(card);
   if (!res) return;
 
-  const root: any = res.data?.[0] || res.data || res;
-  const raw   = root?.raw?.price   ?? root?.prices?.raw   ?? root?.rawPrice   ?? root?.marketPrice;
-  const psa10 = root?.psa10?.price ?? root?.prices?.psa10 ?? root?.psa10Price;
-
-  if (raw == null && psa10 == null) return;
+  // Extract price data from the new PPT API format
+  const marketPrice = res.prices?.market;
+  const nearMintPrice = res.prices?.conditions?.['Near Mint']?.price;
+  
+  // Extract PSA10 data from eBay integration if available
+  const psa10Data = res.ebayData?.grades?.find((g: any) => g.grade === 10);
+  const psa10Price = psa10Data?.averagePrice || psa10Data?.medianPrice || psa10Data?.recentPrice;
+  
+  // Use market price as raw price
+  const rawPrice = marketPrice || nearMintPrice;
+  
+  if (rawPrice == null && psa10Price == null) return;
 
   return {
     source: 'ppt',
-    ts: new Date().toISOString(),
+    ts: res.prices?.lastUpdated || new Date().toISOString(),
     currency: 'USD',
-    rawCents:   raw   != null ? Math.round(Number(raw)   * 100) : undefined,
-    psa10Cents: psa10 != null ? Math.round(Number(psa10) * 100) : undefined,
-    notes: 'PPT API'
+    rawCents: rawPrice ? Math.round(Number(rawPrice) * 100) : undefined,
+    psa10Cents: psa10Price ? Math.round(Number(psa10Price) * 100) : undefined,
+    notes: `PPT API - Market: $${rawPrice}${psa10Price ? `, PSA10: $${psa10Price}` : ''}`
   };
 }

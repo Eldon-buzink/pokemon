@@ -1,8 +1,7 @@
 import { listCardsLatest, getAvailableSets, getPriceSyncStatus } from '@/lib/queries/cards';
 import { FilterBar } from '@/components/FilterBar';
 import { PriceSyncBanner } from '@/components/PriceSyncBanner';
-import { psa10Chance, formatPSA10Chance, getPSA10ChanceBadgeColor } from '@/lib/compute/psa10';
-import { usdToEurCents, formatCurrencyWithEstimate } from '@/lib/fx';
+import { EnhancedAnalysisTable } from '@/components/enhanced-analysis-table';
 import { Suspense } from 'react';
 
 export const dynamic = 'force-dynamic';
@@ -11,13 +10,15 @@ export const revalidate = 0;
 interface SearchParams {
   set?: string;
   q?: string;
-  sort?: 'price' | 'psa10' | 'number' | 'name';
+  sort?: 'price' | 'psa10' | 'number' | 'name' | 'change5d' | 'change30d' | 'profit';
   dir?: 'asc' | 'desc';
   min?: string;
   max?: string;
   page?: string;
   limit?: string;
 }
+
+// Moved helper functions to enhanced-analysis-table.tsx
 
 export default async function NewAnalysisPage({
   searchParams,
@@ -38,10 +39,25 @@ export default async function NewAnalysisPage({
   try {
     const startTime = Date.now();
     
+    // Map frontend sort keys to backend-supported ones
+    const sortMap: Record<string, string> = {
+      'change5d': 'price', // fallback to price sorting
+      'change30d': 'price', // fallback to price sorting  
+      'profit': 'price', // fallback to price sorting (will sort client-side)
+      'trend': 'price', // fallback to price sorting
+      'ppt_raw': 'price', // fallback to price sorting
+      'psa10_chance': 'price' // fallback to price sorting
+    };
+    
+    const backendSort = params.sort ? (sortMap[params.sort] || params.sort) : 'number';
+    
+    // For client-side sorting, we'll need to sort after fetching
+    const needsClientSort = params.sort && ['change5d', 'change30d', 'profit', 'psa10_chance'].includes(params.sort);
+    
     cards = await listCardsLatest({
       setId,
       q: params.q,
-      sort: params.sort ?? 'number',
+      sort: backendSort as 'price' | 'psa10' | 'number' | 'name',
       dir: params.dir ?? 'asc',
       min: params.min ? Number(params.min) : undefined,
       max: params.max ? Number(params.max) : undefined,
@@ -92,84 +108,11 @@ export default async function NewAnalysisPage({
           </div>
         ) : (
           <div className="bg-white rounded-lg border overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b">
-                  <tr>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider w-48">Card</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">TCG USD</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">CM EUR</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">PPT Raw</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">PPT PSA10</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">PSA10 Chance</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Rarity</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {cards.map((card) => {
-                    const chance = psa10Chance(card.ppt_raw_cents, card.ppt_psa10_cents);
-                    
-                    return (
-                      <tr key={card.card_id} className="hover:bg-gray-50">
-                        <td className="px-3 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0 h-8 w-6">
-                              {card.image_url_small ? (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img
-                                  className="h-8 w-6 rounded object-cover"
-                                  src={card.image_url_small}
-                                  alt={card.name}
-                                />
-                              ) : (
-                                <div className="h-8 w-6 rounded bg-gray-200 flex items-center justify-center">
-                                  <span className="text-xs text-gray-500">?</span>
-                                </div>
-                              )}
-                            </div>
-                            <div className="ml-2 min-w-0">
-                              <div className="text-xs font-medium text-gray-900 truncate">
-                                {card.name}
-                              </div>
-                              <div className="text-xs text-gray-500 truncate">
-                                {card.set_name || card.set_id} • #{card.number}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {formatCurrencyWithEstimate(card.tcg_raw_cents, 'USD')}
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {card.cm_raw_cents 
-                            ? formatCurrencyWithEstimate(card.cm_raw_cents, 'EUR')
-                            : formatCurrencyWithEstimate(usdToEurCents(card.tcg_raw_cents), 'EUR', true)
-                          }
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {card.ppt_raw_cents ? `$${(card.ppt_raw_cents / 100).toFixed(2)}` : '—'}
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {card.ppt_psa10_cents ? `$${(card.ppt_psa10_cents / 100).toFixed(2)}` : '—'}
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-sm">
-                          {chance.pct !== null ? (
-                            <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getPSA10ChanceBadgeColor(chance.band)}`}>
-                              {formatPSA10Chance(chance)}
-                            </span>
-                          ) : (
-                            <span className="text-gray-400">Unknown</span>
-                          )}
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-xs text-gray-500">
-                          {card.rarity || '—'}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <EnhancedAnalysisTable 
+              cards={cards}
+              currentSort={params.sort}
+              currentDir={params.dir}
+            />
           </div>
         )}
 

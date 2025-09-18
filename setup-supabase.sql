@@ -248,3 +248,56 @@ begin
   values (p_card_id, p_source, p_raw_cents, p_psa10_cents, p_currency, p_ts, p_notes)
   on conflict (card_id, source, ts) do nothing;
 end $$;
+
+-- Recompute facts_daily for a given day from graded_sales (and write raw median from grade=0)
+create or replace function refresh_daily_facts(p_day date)
+returns void language plpgsql as $$
+begin
+  -- raw (ungraded) median + count
+  insert into facts_daily(card_id, date, raw_median, raw_n)
+  select card_id, p_day,
+         percentile_cont(0.5) within group (order by price) as raw_median,
+         count(*)::int
+  from graded_sales
+  where (grade is null or grade=0) and sold_date = p_day
+  group by card_id
+  on conflict (card_id, date) do update
+  set raw_median = excluded.raw_median, raw_n = excluded.raw_n;
+
+  -- PSA10 median + count
+  insert into facts_daily(card_id, date, psa10_median, psa10_n)
+  select card_id, p_day,
+         percentile_cont(0.5) within group (order by price) as psa10_median,
+         count(*)::int
+  from graded_sales
+  where grade = 10 and sold_date = p_day
+  group by card_id
+  on conflict (card_id, date) do update
+  set psa10_median = excluded.psa10_median, psa10_n = excluded.psa10_n;
+end; $$;
+
+-- Quick helper to refresh the last 30 days
+create or replace function refresh_last_30d()
+returns void language plpgsql as $$
+declare d date;
+begin
+  for d in select current_date - offs as dd from generate_series(0,29) as offs
+  loop
+    perform refresh_daily_facts(d);
+  end loop;
+end; $$;
+
+-- Helper to get last sold PSA10 per card
+create or replace function get_last_sold_psa10(p_set text)
+returns table(card_id text, price_cents int, sold_date date) language sql as $$
+  select c.card_id, (gs.price*100)::int as price_cents, gs.sold_date
+  from cards c
+  join lateral (
+    select price, sold_date
+    from graded_sales
+    where graded_sales.card_id = c.card_id and grade = 10
+    order by sold_date desc
+    limit 1
+  ) gs on true
+  where c.set_id = p_set;
+$$;

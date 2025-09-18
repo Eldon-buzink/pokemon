@@ -1,7 +1,7 @@
 import 'server-only';
 import { createClient } from '@supabase/supabase-js';
 import { getPtgioPricesById } from '@/lib/sources/pokemontcgio';
-import { getPptPrice } from '@/lib/sources/ppt';
+import { getPptPrice, supportsPPT } from '@/lib/sources/ppt';
 
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 const sleep = (ms:number)=>new Promise(r=>setTimeout(r,ms));
@@ -27,15 +27,26 @@ export async function syncPricesForSet(setId: string) {
   console.log(`📊 Found ${cards.length} cards to sync prices for`);
   let priced = 0;
   
+  // PPT integration will be handled per-card with the improved adapter
+  
   for (const c of cards) {
     try {
       // PTCG.io -> TCGplayer + Cardmarket (by official card_id)
       const { tcg, cm } = await getPtgioPricesById(c.card_id);
       const rows = [tcg, cm].filter(Boolean) as any[];
 
-      // ✅ NEW: PPT enrichment (by setId + number, tolerant adapter)
-      const ppt = await getPptPrice({ setId: c.set_id, number: c.number, name: c.name });
-      if (ppt) rows.push(ppt);
+      // ✅ PPT enrichment (using improved adapter with eBay data)
+      if (supportsPPT(c.set_id)) {
+        const ppt = await getPptPrice({ setId: c.set_id, number: c.number, name: c.name });
+        if (ppt) {
+          rows.push(ppt);
+          console.log(`✅ PPT: ${c.name} #${c.number} - Raw: $${ppt.rawCents ? (ppt.rawCents/100).toFixed(2) : 'N/A'}, PSA10: $${ppt.psa10Cents ? (ppt.psa10Cents/100).toFixed(2) : 'N/A'}`);
+        } else {
+          console.log(`⚠️ PPT: No data for ${c.name} #${c.number}`);
+        }
+      } else {
+        console.debug(`Skipping PPT for unsupported set: ${c.set_id}`);
+      }
       
       for (const p of rows) {
         const { error: upErr } = await db.from('prices').upsert({
