@@ -1,7 +1,7 @@
 import 'server-only';
 import { createClient } from '@supabase/supabase-js';
 import { getPtgioPricesById } from '@/lib/sources/pokemontcgio';
-// import { getPptPrice } from '@/lib/sources/ppt'; // optional
+import { getPptPrice } from '@/lib/sources/ppt';
 
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 const sleep = (ms:number)=>new Promise(r=>setTimeout(r,ms));
@@ -29,8 +29,13 @@ export async function syncPricesForSet(setId: string) {
   
   for (const c of cards) {
     try {
+      // PTCG.io -> TCGplayer + Cardmarket (by official card_id)
       const { tcg, cm } = await getPtgioPricesById(c.card_id);
       const rows = [tcg, cm].filter(Boolean) as any[];
+
+      // ✅ NEW: PPT enrichment (by setId + number, tolerant adapter)
+      const ppt = await getPptPrice({ setId: c.set_id, number: c.number, name: c.name });
+      if (ppt) rows.push(ppt);
       
       for (const p of rows) {
         const { error: upErr } = await db.from('prices').upsert({
@@ -43,11 +48,8 @@ export async function syncPricesForSet(setId: string) {
           notes: p.notes
         });
         
-        if (upErr) {
-          console.error('upsert error', c.card_id, upErr.message);
-        } else {
-          priced++;
-        }
+        if (!upErr) priced++;
+        else console.error('upsert error', c.card_id, p.source, upErr.message);
       }
       
       // Progress logging
