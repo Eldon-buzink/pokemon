@@ -40,24 +40,50 @@ interface EnhancedAnalysisTableProps {
   cards: Card[];
   currentSort?: string;
   currentDir?: string;
+  trendlines?: Record<string, Array<{date: string; price: number; psa10Price: number; sampleSize: number}>>;
 }
 
 // Helper functions for calculations
-function generateMockTrendData(cardId: string) {
-  // Generate completely deterministic sparkline data based on card ID to prevent hydration mismatches
+function generateMockTrendData(cardId: string, currentPrice?: number) {
+  // Generate more realistic deterministic sparkline data based on card ID and current price
   const seed = cardId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const basePrice = currentPrice || 100; // Use actual current price if available
   
-  // Use a fixed base date to ensure consistency between server and client
+  // Use a fixed base date to ensure consistency between server and client (90 days ago)
   const baseDate = new Date('2024-01-01T00:00:00Z').getTime();
   
   return Array.from({ length: 30 }, (_, i) => {
-    // Use card-specific seed for deterministic "random" values with fixed precision
-    const pseudoRandom = Math.round((Math.sin(seed + i * 0.5) * 0.5 + 0.5) * 1000) / 1000;
-    const trendValue = Math.round((50 + pseudoRandom * 100 + Math.sin(i / 5) * 20) * 100) / 100;
+    // Create more realistic price movements around the current price
+    const dayProgress = i / 29; // 0 to 1 over time
+    const pseudoRandom = Math.round((Math.sin(seed + i * 0.3) * 0.3 + 0.7) * 1000) / 1000; // 0.4 to 1.0
+    
+    // Create different trend patterns based on card characteristics
+    const cardHash = seed % 5;
+    let trendFactor;
+    
+    switch(cardHash) {
+      case 0: // Gradual uptrend
+        trendFactor = 0.6 + (dayProgress * 0.4);
+        break;
+      case 1: // Volatile with recent spike
+        trendFactor = 0.8 + (dayProgress > 0.7 ? (dayProgress - 0.7) * 2 : 0);
+        break;
+      case 2: // Declining trend
+        trendFactor = 1.2 - (dayProgress * 0.5);
+        break;
+      case 3: // Stable with minor fluctuations
+        trendFactor = 0.9 + Math.sin(i * 0.4) * 0.1;
+        break;
+      default: // Classic growth curve
+        trendFactor = 0.7 + (dayProgress * 0.3);
+    }
+    
+    const volatility = Math.sin(seed + i * 0.8) * 0.12; // ±12% volatility
+    const price = Math.round((basePrice * trendFactor * pseudoRandom * (1 + volatility)) * 100) / 100;
     
     return {
       date: new Date(baseDate - (29 - i) * 24 * 60 * 60 * 1000).toISOString(),
-      price: Math.max(0, trendValue)
+      price: Math.max(0.01, price) // Ensure positive prices
     };
   });
 }
@@ -179,7 +205,7 @@ function ClickableHeader({
   );
 }
 
-export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: EnhancedAnalysisTableProps) {
+export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlines = {} }: EnhancedAnalysisTableProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -278,7 +304,11 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
             // Calculate profit using new function with preferred values
             const profit = profitUSD(preferredRawValue, preferredPSA10Value.value);
             
-            const trendData = generateMockTrendData(card.card_id);
+            // Get real trendline data or fallback to realistic mock based on current price
+            const realTrendData = trendlines[card.card_id];
+            const trendData = realTrendData && realTrendData.length > 0 
+              ? realTrendData.map(t => ({ date: t.date, price: t.price * 100 })) // Convert to cents for sparkline
+              : generateMockTrendData(card.card_id, preferredRawValue || undefined);
             
             // Calculate deterministic price changes based on card ID to prevent hydration mismatches
             const currentPrice = preferredRawValue || 0;

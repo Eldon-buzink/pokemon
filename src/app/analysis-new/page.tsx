@@ -1,4 +1,5 @@
 import { listCardsLatest, getAvailableSets, getPriceSyncStatus } from '@/lib/queries/cards';
+import { getTrendlines } from '@/lib/queries/trendlines';
 import { FilterBar } from '@/components/FilterBar';
 import { PriceSyncBanner } from '@/components/PriceSyncBanner';
 import { EnhancedAnalysisTable } from '@/components/enhanced-analysis-table';
@@ -35,6 +36,7 @@ export default async function NewAnalysisPage({
   let error: string | null = null;
   let loadTime = 0;
   let syncStatus: any = null;
+  let trendlines: Record<string, any[]> = {};
   
   try {
     const startTime = Date.now();
@@ -64,6 +66,10 @@ export default async function NewAnalysisPage({
       page: params.page ? Number(params.page) : 1,
       limit: params.limit ? Number(params.limit) : 50,
     });
+    
+    // Fetch 90-day trendline data for all cards
+    const cardIds = cards.map(c => c.card_id);
+    const trendlines = await getTrendlines(cardIds);
     
     // Check price sync status
     syncStatus = await getPriceSyncStatus(setId);
@@ -112,6 +118,7 @@ export default async function NewAnalysisPage({
               cards={cards}
               currentSort={params.sort}
               currentDir={params.dir}
+              trendlines={trendlines}
             />
           </div>
         )}
