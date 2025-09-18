@@ -98,13 +98,25 @@ function getPreferredRawValue(card: Card): number | null {
 
 // Helper function to get preferred PSA10 value (90d median → 30d median → last eBay → PPT summary)
 function getPreferredPSA10Value(card: Card): number | null {
-  return (
+  // Try real PSA10 data first
+  const realPSA10 = (
     (card.psa10_median_90d_cents ?? null) ??
     (card.psa10_median_30d_cents ?? null) ??
     (card.ppt_psa10_ebay_cents ?? null) ??
-    card.ppt_psa10_cents ??
-    null
+    card.ppt_psa10_cents
   );
+  
+  if (realPSA10 && realPSA10 > 0) {
+    return realPSA10;
+  }
+  
+  // Fallback: estimate PSA10 as 3.5x raw price
+  const rawValue = getPreferredRawValue(card);
+  if (rawValue && rawValue > 0) {
+    return Math.round(rawValue * 3.5);
+  }
+  
+  return null;
 }
 
 // Helper function for investment grade
