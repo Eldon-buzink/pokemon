@@ -416,9 +416,9 @@ function getFallbackCelebrationsData(): CardData[] {
     
     // Generate badges
     const badges = []
-    if (basePrice > 30) badges.push({ type: 'HOT', label: 'HOT' })
-    if (card.setId === 'cel25c') badges.push({ type: 'VINTAGE', label: 'VINTAGE' })
-    if (profitMargin > 2) badges.push({ type: 'GRADE_EV', label: 'GRADE EV' })
+    if (basePrice > 30) badges.push('HOT')
+    if (card.setId === 'cel25c') badges.push('VINTAGE')
+    if (profitMargin > 2) badges.push('GRADE_EV')
     
     return {
       card_id: cardId,

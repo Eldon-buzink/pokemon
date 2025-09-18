@@ -7,6 +7,14 @@ interface FilterBarProps {
   availableSets?: string[];
 }
 
+const getSetDisplayName = (setId: string) => {
+  switch (setId) {
+    case 'cel25': return 'Celebrations Main';
+    case 'cel25c': return 'Celebrations Classic';
+    default: return setId;
+  }
+};
+
 export function FilterBar({ availableSets = ['cel25', 'cel25c'] }: FilterBarProps) {
   const router = useRouter();
   const sp = useSearchParams();
@@ -46,9 +54,7 @@ export function FilterBar({ availableSets = ['cel25', 'cel25c'] }: FilterBarProp
           >
             {availableSets.map(setId => (
               <option key={setId} value={setId}>
-                {setId === 'cel25' ? 'Celebrations Main' : 
-                 setId === 'cel25c' ? 'Celebrations Classic' : 
-                 setId}
+                {getSetDisplayName(setId)}
               </option>
             ))}
           </select>
