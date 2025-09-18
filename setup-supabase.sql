@@ -176,3 +176,43 @@ $$ language plpgsql;
 
 -- Test the setup
 select test_setup();
+
+-- ============================================================================
+-- LATEST PRICE VIEWS (ChatGPT Improvement #1)
+-- ============================================================================
+
+-- Latest price per card per source
+create or replace view v_latest_prices as
+select distinct on (card_id, source)
+  card_id, source, raw_cents, psa10_cents, currency, ts, notes
+from prices
+order by card_id, source, ts desc;
+
+-- Join cards + latest prices flattened for fast UI
+create or replace view v_cards_latest as
+select
+  c.id as card_id, c.set_id, c.number, c.name, c.rarity,
+  tp.raw_cents   as tcg_raw_cents, tp.currency as tcg_currency,
+  cm.raw_cents   as cm_raw_cents,  cm.currency as cm_currency,
+  ppt.raw_cents  as ppt_raw_cents, ppt.psa10_cents as ppt_psa10_cents
+from cards c
+left join v_latest_prices tp  on tp.card_id=c.id and tp.source='tcgplayer'
+left join v_latest_prices cm  on cm.card_id=c.id and cm.source='cardmarket'
+left join v_latest_prices ppt on ppt.card_id=c.id and ppt.source='ppt';
+
+create index if not exists v_cards_latest_set_id_idx on cards(set_id);
+
+-- ============================================================================
+-- DATA INTEGRITY FUNCTIONS (ChatGPT Improvement #7)
+-- ============================================================================
+
+-- Upsert price only if newer than existing
+create or replace function upsert_price_if_newer(
+  p_card_id text, p_source text, p_raw_cents int, p_psa10_cents int,
+  p_currency text, p_ts timestamptz, p_notes text)
+returns void language plpgsql as $$
+begin
+  insert into prices(card_id, source, raw_cents, psa10_cents, currency, ts, notes)
+  values (p_card_id, p_source, p_raw_cents, p_psa10_cents, p_currency, p_ts, p_notes)
+  on conflict (card_id, source, ts) do nothing;
+end $$;
