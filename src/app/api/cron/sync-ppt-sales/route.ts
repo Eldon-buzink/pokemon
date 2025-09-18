@@ -2,8 +2,14 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getPptSales, getPptSummary } from '@/lib/sources/ppt';
 
-const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 const SUPPORTED = new Set(['cel25', 'cel25c']); // allowlist PPT sets (expand later)
+
+function getDb() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!, 
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 export async function GET(req: Request) {
   const u = new URL(req.url);
@@ -12,7 +18,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ ok:false, error:`PPT sales not available for set ${set}` }, { status: 400 });
   }
 
-  const { data: cards, error } = await db
+  const { data: cards, error } = await getDb()
     .from('cards')
     .select('card_id,set_id,number,name')
     .eq('set_id', set);
@@ -35,7 +41,7 @@ export async function GET(req: Request) {
         const gradeValue = s.grade && s.grade > 0 ? s.grade : 0;
         
         try {
-          const { error: insertError } = await db.from('graded_sales').insert({
+          const { error: insertError } = await getDb().from('graded_sales').insert({
             card_id: c.card_id,
             grade: gradeValue,
             sold_date: s.soldDate?.slice(0,10) || new Date().toISOString().slice(0,10),
@@ -59,7 +65,7 @@ export async function GET(req: Request) {
       const summary = await getPptSummary({ setId: c.set_id, number: c.number, name: c.name });
       if (summary) {
         try {
-          const { error: upsertError } = await db.from('prices').upsert({
+          const { error: upsertError } = await getDb().from('prices').upsert({
             card_id: c.card_id,
             source: 'ppt',
             raw_cents: summary.rawCents ?? null,

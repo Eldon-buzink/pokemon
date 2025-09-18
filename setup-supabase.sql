@@ -178,6 +178,39 @@ $$ language plpgsql;
 select test_setup();
 
 -- ============================================================================
+-- GRADED SALES TABLE (eBay Integration)
+-- ============================================================================
+create table if not exists graded_sales (
+  id uuid primary key default uuid_generate_v4(),
+  card_id text not null references cards(card_id),
+  grade int not null, -- 0 for ungraded, 1-10 for graded
+  sold_date date not null,
+  price numeric(10,2) not null, -- stored as USD
+  source text not null, -- e.g., 'ppt-ebay'
+  listing_id text,
+  created_at timestamptz default now()
+);
+
+create index if not exists graded_sales_card_id_idx on graded_sales(card_id);
+create index if not exists graded_sales_sold_date_idx on graded_sales(sold_date);
+create index if not exists graded_sales_grade_idx on graded_sales(grade);
+
+-- ============================================================================
+-- FACTS DAILY TABLE (for aggregated daily facts)
+-- ============================================================================
+create table if not exists facts_daily (
+  card_id text not null references cards(card_id),
+  date date not null,
+  raw_median numeric(10,2),
+  raw_n int,
+  psa10_median numeric(10,2),
+  psa10_n int,
+  primary key (card_id, date)
+);
+
+create index if not exists facts_daily_date_idx on facts_daily(date);
+
+-- ============================================================================
 -- LATEST PRICE VIEWS (ChatGPT Improvement #1)
 -- ============================================================================
 
