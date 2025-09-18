@@ -1,157 +1,119 @@
-// src/lib/sources/ppt.ts
 import { MarketPrice, CardKey } from './types';
+import { pptFetchCached } from '@/lib/http/pptFetch';
 
 type Sale = { priceCents:number; grade:number|null; soldDate:string; source:string };
 
-const BASE = process.env.PPT_BASE_URL || 'https://www.pokemonpricetracker.com/api/v2';
-const KEY  = process.env.PPT_API_KEY;
-const PPT_SET_MAP: Record<string,string> = {
-  cel25c: 'celebrations-classic-collection', // PPT's slug for Classic
+const PPT_SET_MAP: Record<string,string> = { 
+  cel25c: 'celebrations-classic-collection',
+  cel25: 'celebrations'
 };
-const setSlug = (id:string)=>PPT_SET_MAP[id] ?? id;
-const H = KEY ? { Authorization: `Bearer ${KEY}` } : {};
+const slug = (id:string)=>PPT_SET_MAP[id] ?? id;
 
 const toCents = (x:any)=> Number.isFinite(Number(x)) ? Math.round(Number(x)*100) : null;
 const normDate = (d:any)=> (typeof d==='string' && d.length>=10) ? d.slice(0,10) : new Date().toISOString().slice(0,10);
 
-// find an array of sales in whatever key PPT returns
 function pickArray(payload:any): any[] {
   if (!payload) return [];
   if (Array.isArray(payload.sales)) return payload.sales;
   if (Array.isArray(payload.recentSales)) return payload.recentSales;
   if (Array.isArray(payload.data)) return payload.data;
-  if (payload.results && Array.isArray(payload.results)) return payload.results;
+  if (Array.isArray(payload.results)) return payload.results;
   return [];
 }
 
-// extract grade from common fields OR from title text like "PSA 10"
 function parseGrade(s:any): number|null {
-  const cand = s?.grade ?? s?.psaGrade ?? s?.grading?.grade ?? s?.grade_value ?? null;
-  if (Number.isFinite(Number(cand))) return Number(cand);
-  const title = String(s?.title || s?.name || '').toUpperCase();
-  if (/PSA\s*10\b/.test(title)) return 10;
-  if (/PSA\s*9\b/.test(title)) return 9;
+  const g = s?.grade ?? s?.psaGrade ?? s?.grading?.grade ?? s?.grade_value ?? null;
+  if (Number.isFinite(Number(g))) return Number(g);
+  const t = String(s?.title || s?.name || '').toUpperCase();
+  if (/PSA\s*10\b/.test(t)) return 10;
+  if (/PSA\s*9\b/.test(t)) return 9;
   return null;
 }
 
 export async function pptFetchSales(card: CardKey): Promise<Sale[]> {
-  if (!KEY) return [];
-  const slug = setSlug(card.setId);
-  const tries = [
-    `/sales?set=${encodeURIComponent(slug)}&number=${encodeURIComponent(card.number)}`,
-    `/card/sales?set=${encodeURIComponent(slug)}&number=${encodeURIComponent(card.number)}`
-  ];
-
-  let payload: any = null;
-  for (const path of tries) {
-    const r = await fetch(`${BASE}${path}`, { headers: H });
-    if (r.ok) { payload = await r.json().catch(()=>null); if (payload) break; }
-  }
-
-  // name+number fallback (search)
-  if (!payload && card.name) {
-    const name = card.name.replace(/\s*-\s*\d+\/\d+\s*$/,'').trim();
-    const q = `${name} #${card.number}`;
-    const r = await fetch(`${BASE}/sales/search?query=${encodeURIComponent(q)}`, { headers: H });
-    if (r.ok) payload = await r.json().catch(()=>null);
-  }
-
-  const rows = pickArray(payload);
-  const out: Sale[] = [];
-  for (const s of rows) {
-    const priceCents = toCents(s?.price ?? s?.soldPrice ?? s?.amount ?? s?.finalPrice);
-    if (!priceCents) continue;
-    const grade = parseGrade(s);
-    const soldDate = normDate(s?.soldDate ?? s?.date ?? s?.endedAt ?? s?.timestamp);
-    const source = String(s?.source || 'ppt-ebay');
-    out.push({ priceCents, grade, soldDate, source });
-  }
-  return out;
-}
-
-// Whitelist of sets that PPT actually supports
-export const supportsPPT = (setId: string) => ['cel25', 'cel25c'].includes(setId);
-
-// Legacy functions for backward compatibility
-async function call(path: string) {
-  const res = await fetch(`${BASE}${path}`, { 
-    headers: KEY ? { Authorization: `Bearer ${KEY}` } : {} 
+  const set = slug(card.setId);
+  
+  // Try primary path with persistent throttle + caching
+  const r = await pptFetchCached({
+    setId: card.setId, 
+    number: card.number, 
+    kind:'sales',
+    path: `/sales?set=${encodeURIComponent(set)}&number=${encodeURIComponent(card.number)}`,
+    useCacheMin: 1440, // 24h
+    maxAttempts: 3,
+    initialDelayMs: 0
   });
-  if (!res.ok) return null;
-  try { 
-    return await res.json(); 
-  } catch { 
-    return null; 
-  }
-}
-
-function cleanName(name?: string) {
-  return (name || '').replace(/\s*-\s*\d+\/\d+\s*$/, '').trim();
-}
-
-async function fetchOne(card: CardKey) {
-  // Use direct mapping for better performance
-  const setParam = PPT_SET_MAP[card.setId] || card.setId;
   
-  // 1) set + number (primary)
-  const a = await call(`/cards?set=${encodeURIComponent(setParam)}&number=${encodeURIComponent(card.number)}&includeEbay=true`);
-  if (a && (a.data?.length || a.prices || a.raw || a.psa10)) return a;
-
-  // 2) name + number (fallback)
-  const nm = cleanName(card.name);
-  if (nm) {
-    const b = await call(`/cards?search=${encodeURIComponent(nm)}&number=${encodeURIComponent(card.number)}&includeEbay=true`);
-    if (b && (b.data?.length || b.prices || b.raw || b.psa10)) return b;
-  }
-
-  // 3) generic search (if supported)
-  const c = await call(`/cards?search=${encodeURIComponent(`${nm} #${card.number}`)}&includeEbay=true`);
-  if (c && (c.data?.length || c.prices)) return (Array.isArray(c.data) ? c.data[0] : c);
-  
-  return null;
-}
-
-function pickSummary(payload: any) {
-  const root: any = payload?.data?.[0] || payload?.data || payload;
-  
-  const raw = root?.raw?.price ?? root?.prices?.raw ?? root?.rawPrice ?? root?.marketPrice;
-  let psa10 = root?.psa10?.price ?? root?.prices?.psa10 ?? root?.psa10Price;
-  
-  // Extract PSA10 from eBay grades if available
-  if (!psa10 && root?.ebayData?.grades) {
-    const grades = Array.isArray(root.ebayData.grades) ? root.ebayData.grades : [];
-    const psa10Grade = grades.find((g: any) => g?.grade === 10 || g?.grade === '10');
-    if (psa10Grade?.price) {
-      psa10 = psa10Grade.price;
-    }
+  if (r.ok && r.json) {
+    const rows = pickArray(r.json);
+    const sales = rows.map((s:any)=>{
+      const priceCents = toCents(s?.price ?? s?.soldPrice ?? s?.amount ?? s?.finalPrice);
+      if (!priceCents) return null;
+      return {
+        priceCents,
+        grade: parseGrade(s),
+        soldDate: normDate(s?.soldDate ?? s?.date ?? s?.endedAt ?? s?.timestamp),
+        source: String(s?.source || 'ppt-ebay')
+      } as Sale;
+    }).filter(Boolean) as Sale[];
+    
+    console.log(`[PPT Sales] Found ${sales.length} sales for ${card.name || card.setId}#${card.number} (${r.cached ? 'cached' : 'fresh'})`);
+    return sales;
   }
   
-  return { raw, psa10 };
+  // If under cooldown or exhausted, return empty gracefully
+  console.log(`[PPT Sales] No data for ${card.name || card.setId}#${card.number} (${r.code || 'unknown'})`);
+  return [];
 }
 
-export async function getPptSummary(card: CardKey): Promise<MarketPrice|undefined> {
-  if (!KEY) return;
-  const res = await fetchOne(card);
-  if (!res) return;
+// Summary fetcher for backward compatibility
+export async function pptFetchSummary(card: CardKey): Promise<MarketPrice | undefined> {
+  const set = slug(card.setId);
   
-  const { raw, psa10 } = pickSummary(res);
-  if (raw == null && psa10 == null) return;
+  const r = await pptFetchCached({
+    setId: card.setId,
+    number: card.number,
+    kind: 'summary',
+    path: `/cards?set=${encodeURIComponent(set)}&number=${encodeURIComponent(card.number)}&includeEbay=true`,
+    useCacheMin: 1440,
+    maxAttempts: 3,
+    initialDelayMs: 0
+  });
+  
+  if (!r.ok || !r.json) return undefined;
+  
+  const cards = Array.isArray(r.json.data) ? r.json.data : [r.json.data].filter(Boolean);
+  if (!cards.length) return undefined;
+  
+  const card_data = cards[0];
+  const raw = toCents(card_data?.raw?.price ?? card_data?.prices?.raw ?? card_data?.rawPrice);
+  const psa10 = toCents(card_data?.psa10?.price ?? card_data?.prices?.psa10 ?? card_data?.psa10Price);
+  
+  if (!raw && !psa10) return undefined;
   
   return {
     source: 'ppt',
     ts: new Date().toISOString(),
     currency: 'USD',
-    rawCents: toCents(raw),
-    psa10Cents: toCents(psa10),
-    notes: 'PPT API with eBay integration'
+    rawCents: raw || undefined,
+    psa10Cents: psa10 || undefined,
+    notes: r.cached ? 'PPT API (cached)' : 'PPT API (fresh)'
   };
 }
 
-export async function getPptSales(card: CardKey): Promise<Sale[]> {
+// Legacy functions for backward compatibility
+export async function getPptPrice(card: CardKey): Promise<MarketPrice | undefined> {
+  return pptFetchSummary(card);
+}
+
+export async function getPptSummary(card: CardKey) {
+  return pptFetchSummary(card);
+}
+
+export async function getPptSales(card: CardKey) {
   return pptFetchSales(card);
 }
 
-// Legacy function for backward compatibility
-export async function getPptPrice(card: CardKey): Promise<MarketPrice|undefined> {
-  return getPptSummary(card);
+export function supportsPPT(setId: string): boolean {
+  return ['cel25', 'cel25c'].includes(setId);
 }
