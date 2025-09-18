@@ -22,6 +22,9 @@ export type CardLatest = {
   number: string;
   name: string;
   rarity: string | null;
+  image_url_small: string | null;
+  image_url_large: string | null;
+  set_name: string | null;
   tcg_raw_cents: number | null;
   tcg_currency: string | null;
   cm_raw_cents: number | null;

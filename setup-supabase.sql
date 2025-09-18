@@ -188,17 +188,19 @@ select distinct on (card_id, source)
 from prices
 order by card_id, source, ts desc;
 
--- Join cards + latest prices flattened for fast UI
+-- Join cards + latest prices + assets flattened for fast UI
 create or replace view v_cards_latest as
 select
-  c.id as card_id, c.set_id, c.number, c.name, c.rarity,
+  c.card_id, c.set_id, c.number, c.name, c.rarity,
+  ca.image_url_small, ca.image_url_large, ca.set_name,
   tp.raw_cents   as tcg_raw_cents, tp.currency as tcg_currency,
   cm.raw_cents   as cm_raw_cents,  cm.currency as cm_currency,
   ppt.raw_cents  as ppt_raw_cents, ppt.psa10_cents as ppt_psa10_cents
 from cards c
-left join v_latest_prices tp  on tp.card_id=c.id and tp.source='tcgplayer'
-left join v_latest_prices cm  on cm.card_id=c.id and cm.source='cardmarket'
-left join v_latest_prices ppt on ppt.card_id=c.id and ppt.source='ppt';
+left join card_assets ca on ca.card_id = c.card_id
+left join v_latest_prices tp  on tp.card_id=c.card_id and tp.source='tcgplayer'
+left join v_latest_prices cm  on cm.card_id=c.card_id and cm.source='cardmarket'
+left join v_latest_prices ppt on ppt.card_id=c.card_id and ppt.source='ppt';
 
 create index if not exists v_cards_latest_set_id_idx on cards(set_id);
 

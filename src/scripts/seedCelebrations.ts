@@ -20,7 +20,7 @@ if (!supabaseKey) {
 const db = createClient(supabaseUrl, supabaseKey);
 
 const BASE = process.env.POKEMONTCG_API_BASE || 'https://api.pokemontcg.io/v2';
-const H = process.env.POKEMONTCG_API_KEY ? { 'X-Api-Key': process.env.POKEMONTCG_API_KEY! } : {};
+const H: Record<string, string> = process.env.POKEMONTCG_API_KEY ? { 'X-Api-Key': process.env.POKEMONTCG_API_KEY! } : {};
 
 async function fetchSet(setId: string) {
   console.log(`🎯 Fetching set ${setId} from PTCG.io...`);
@@ -42,6 +42,7 @@ async function upsertCards(setId: string) {
     let upsertedCount = 0;
     
     for (const c of cards) {
+      // Upsert card data
       const cardData = {
         card_id: c.id,             // use official PTCG card id
         set_id: c.set.id,          // 'cel25' or 'cel25c'
@@ -52,16 +53,37 @@ async function upsertCards(setId: string) {
         edition: 'Unlimited'
       };
       
-      const { error } = await db.from('cards').upsert(cardData, {
+      const { error: cardError } = await db.from('cards').upsert(cardData, {
         onConflict: 'card_id'
       });
       
-      if (error) {
-        console.error(`❌ Error upserting card ${c.name} (${c.id}):`, error);
+      if (cardError) {
+        console.error(`❌ Error upserting card ${c.name} (${c.id}):`, cardError);
+        continue;
+      }
+      
+      // Upsert card assets (images)
+      const assetData = {
+        card_id: c.id,
+        tcgio_id: c.id,
+        set_name: c.set.name,
+        release_date: c.set.releaseDate ? new Date(c.set.releaseDate).toISOString().split('T')[0] : null,
+        rarity: c.rarity ?? null,
+        image_url_small: c.images?.small || null,
+        image_url_large: c.images?.large || null,
+        last_catalog_sync: new Date().toISOString()
+      };
+      
+      const { error: assetError } = await db.from('card_assets').upsert(assetData, {
+        onConflict: 'card_id'
+      });
+      
+      if (assetError) {
+        console.error(`❌ Error upserting assets for ${c.name}:`, assetError);
       } else {
         upsertedCount++;
         if (upsertedCount % 10 === 0) {
-          console.log(`📝 Upserted ${upsertedCount}/${cards.length} cards from ${setId}...`);
+          console.log(`📝 Upserted ${upsertedCount}/${cards.length} cards + assets from ${setId}...`);
         }
       }
       

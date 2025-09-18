@@ -94,8 +94,7 @@ export default async function NewAnalysisPage({
               <table className="w-full text-sm">
                 <thead className="bg-gray-50 border-b">
                   <tr>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">#</th>
-                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider w-48">Card</th>
                     <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">TCG USD</th>
                     <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">CM EUR</th>
                     <th className="px-3 py-3 text-left font-medium text-gray-500 uppercase tracking-wider">PPT Raw</th>
@@ -110,11 +109,31 @@ export default async function NewAnalysisPage({
                     
                     return (
                       <tr key={card.card_id} className="hover:bg-gray-50">
-                        <td className="px-3 py-4 whitespace-nowrap text-sm font-mono">
-                          {card.number}
-                        </td>
-                        <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {card.name}
+                        <td className="px-3 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0 h-8 w-6">
+                              {card.image_url_small ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  className="h-8 w-6 rounded object-cover"
+                                  src={card.image_url_small}
+                                  alt={card.name}
+                                />
+                              ) : (
+                                <div className="h-8 w-6 rounded bg-gray-200 flex items-center justify-center">
+                                  <span className="text-xs text-gray-500">?</span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="ml-2 min-w-0">
+                              <div className="text-xs font-medium text-gray-900 truncate">
+                                {card.name}
+                              </div>
+                              <div className="text-xs text-gray-500 truncate">
+                                {card.set_name || card.set_id} • #{card.number}
+                              </div>
+                            </div>
+                          </div>
                         </td>
                         <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
                           {card.tcg_raw_cents ? `$${(card.tcg_raw_cents / 100).toFixed(2)}` : '—'}
