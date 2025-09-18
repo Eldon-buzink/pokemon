@@ -16,6 +16,9 @@ async function queryOne(q: string) {
   return (j?.data || [])[0] || null;
 }
 
+const pickCM = (cm: any) =>
+  cm?.trendPrice ?? cm?.averageSellPrice ?? cm?.avg1 ?? cm?.avg7 ?? cm?.avg30 ?? cm?.lowPrice ?? cm?.lowPriceExPlus;
+
 export async function getPtgioPricesById(cardId: string): Promise<{ tcg?: MarketPrice; cm?: MarketPrice }> {
   const data = await getById(cardId);
   if (!data) return {};
@@ -24,26 +27,25 @@ export async function getPtgioPricesById(cardId: string): Promise<{ tcg?: Market
   // TCGplayer (USD)
   const tp = data.tcgplayer?.prices;
   const pickTP = tp?.holofoil || tp?.reverseHolofoil || tp?.normal || tp?.['1stEditionHolofoil'] || tp?.['1stEditionNormal'];
-  if (pickTP?.market) {
+  if (pickTP?.market != null) {
     out.tcg = { 
       source: 'tcgplayer', 
       ts: new Date().toISOString(), 
       currency: 'USD', 
-      rawCents: Math.round(pickTP.market * 100), 
-      notes: 'PTCG.io → TCGplayer (by id)' 
+      rawCents: Math.round(Number(pickTP.market) * 100), 
+      notes: 'PTCG.io→TCGplayer' 
     };
   }
   
-  // Cardmarket (EUR)
-  const cm = data.cardmarket?.prices;
-  const val = cm?.trendPrice ?? cm?.averageSellPrice ?? cm?.avg7 ?? cm?.avg30;
-  if (val) {
+  // Cardmarket (EUR) - exhaustive field mapping
+  const cmv = pickCM(data.cardmarket?.prices);
+  if (cmv != null) {
     out.cm = { 
       source: 'cardmarket', 
       ts: new Date().toISOString(), 
       currency: 'EUR', 
-      rawCents: Math.round(Number(val) * 100), 
-      notes: 'PTCG.io → Cardmarket (by id)' 
+      rawCents: Math.round(Number(cmv) * 100), 
+      notes: 'PTCG.io→Cardmarket' 
     };
   }
   

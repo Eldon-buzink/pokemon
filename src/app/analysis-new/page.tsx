@@ -2,6 +2,7 @@ import { listCardsLatest, getAvailableSets, getPriceSyncStatus } from '@/lib/que
 import { FilterBar } from '@/components/FilterBar';
 import { PriceSyncBanner } from '@/components/PriceSyncBanner';
 import { psa10Chance, formatPSA10Chance, getPSA10ChanceBadgeColor } from '@/lib/compute/psa10';
+import { usdToEurCents, formatCurrencyWithEstimate } from '@/lib/fx';
 import { Suspense } from 'react';
 
 export const dynamic = 'force-dynamic';
@@ -136,10 +137,13 @@ export default async function NewAnalysisPage({
                           </div>
                         </td>
                         <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {card.tcg_raw_cents ? `$${(card.tcg_raw_cents / 100).toFixed(2)}` : '—'}
+                          {formatCurrencyWithEstimate(card.tcg_raw_cents, 'USD')}
                         </td>
                         <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {card.cm_raw_cents ? `€${(card.cm_raw_cents / 100).toFixed(2)}` : '—'}
+                          {card.cm_raw_cents 
+                            ? formatCurrencyWithEstimate(card.cm_raw_cents, 'EUR')
+                            : formatCurrencyWithEstimate(usdToEurCents(card.tcg_raw_cents), 'EUR', true)
+                          }
                         </td>
                         <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
                           {card.ppt_raw_cents ? `$${(card.ppt_raw_cents / 100).toFixed(2)}` : '—'}

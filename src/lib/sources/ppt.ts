@@ -4,6 +4,15 @@ import { createClient } from '@supabase/supabase-js';
 const BASE = process.env.PPT_BASE_URL || 'https://www.pokemonpricetracker.com/api/v2';
 const KEY  = process.env.PPT_API_KEY;
 
+const PPT_SET_MAP: Record<string, string> = {
+  cel25c: 'celebrations-classic-collection',
+  // add more mappings later
+};
+
+function pptSetFor(input: string) { 
+  return PPT_SET_MAP[input] ?? input; 
+}
+
 const db = () => createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!, 
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -50,12 +59,15 @@ async function fetchOne(card: CardKey) {
   // First, resolve the correct PPT set ID
   const pptSetId = await resolvePPTSetId(card.setId);
   
+  // Use direct mapping instead of database lookup for better performance
+  const setParam = pptSetFor(card.setId);
+  
   // Try different PPT API patterns
   const endpoints = [
     // Pattern 1: set + number
-    `/card?set=${encodeURIComponent(pptSetId)}&number=${encodeURIComponent(card.number)}`,
+    `/card?set=${encodeURIComponent(setParam)}&number=${encodeURIComponent(card.number)}`,
     // Pattern 2: tcgPlayerId + number  
-    `/card?tcgPlayerId=${encodeURIComponent(pptSetId)}&number=${encodeURIComponent(card.number)}`,
+    `/card?tcgPlayerId=${encodeURIComponent(setParam)}&number=${encodeURIComponent(card.number)}`,
     // Pattern 3: name + number
     ...(card.name ? [`/card?name=${encodeURIComponent(cleanName(card.name))}&number=${encodeURIComponent(card.number)}`] : []),
     // Pattern 4: search query
