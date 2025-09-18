@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { psa10Chance } from '@/lib/metrics/psaChance';
 import { profitUSD } from '@/lib/metrics/profit';
+import { estimatePSA10FromRaw } from '@/lib/metrics/psa10Estimate';
 import { Sparkline } from '@/components/sparkline';
 import { Tooltip } from '@/components/tooltip';
 
@@ -97,7 +98,7 @@ function getPreferredRawValue(card: Card): number | null {
 }
 
 // Helper function to get preferred PSA10 value (90d median → 30d median → last eBay → PPT summary)
-function getPreferredPSA10Value(card: Card): number | null {
+function getPreferredPSA10Value(card: Card): { value: number | null; isEstimate: boolean } {
   // Try real PSA10 data first
   const realPSA10 = (
     (card.psa10_median_90d_cents ?? null) ??
@@ -107,23 +108,24 @@ function getPreferredPSA10Value(card: Card): number | null {
   );
   
   if (realPSA10 && realPSA10 > 0) {
-    return realPSA10;
+    return { value: realPSA10, isEstimate: false };
   }
   
-  // Fallback: estimate PSA10 as 3.5x raw price
+  // Fallback: estimate PSA10 using improved logic
   const rawValue = getPreferredRawValue(card);
   if (rawValue && rawValue > 0) {
-    return Math.round(rawValue * 3.5);
+    const estimated = estimatePSA10FromRaw(rawValue);
+    return { value: estimated, isEstimate: true };
   }
   
-  return null;
+  return { value: null, isEstimate: false };
 }
 
 // Helper function for investment grade
 function investmentGrade(card: Card): string {
-  const psa10Value = getPreferredPSA10Value(card);
-  if (psa10Value && psa10Value > 5000) return 'High Value';
-  if (psa10Value && psa10Value > 1000) return 'Mid Value';
+  const psa10Result = getPreferredPSA10Value(card);
+  if (psa10Result.value && psa10Result.value > 5000) return 'High Value';
+  if (psa10Result.value && psa10Result.value > 1000) return 'Mid Value';
   return 'Low Value';
 }
 
@@ -271,10 +273,10 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
             const preferredPSA10Value = getPreferredPSA10Value(card);
             
             // Use new PSA10 chance calculation with preferred values
-            const chance = psa10Chance(preferredRawValue, preferredPSA10Value);
+            const chance = psa10Chance(preferredRawValue, preferredPSA10Value.value);
             
             // Calculate profit using new function with preferred values
-            const profit = profitUSD(preferredRawValue, preferredPSA10Value);
+            const profit = profitUSD(preferredRawValue, preferredPSA10Value.value);
             
             const trendData = generateMockTrendData(card.card_id);
             
@@ -332,7 +334,8 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir }: Enhanc
                 </td>
                 {hasPPT && (
                   <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {preferredPSA10Value ? `$${(preferredPSA10Value / 100).toFixed(2)}` : '—'}
+                    {preferredPSA10Value.value ? `$${(preferredPSA10Value.value / 100).toFixed(2)}` : '—'}
+                    {preferredPSA10Value.isEstimate && <span className="ml-1 text-xs text-gray-500">(est)</span>}
                     {card.psa10_n_90d && card.psa10_n_90d > 0 ? <span className="text-xs text-gray-400 ml-1">({card.psa10_n_90d} sales/90d)</span> : null}
                   </td>
                 )}

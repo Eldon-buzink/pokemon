@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import { getServiceClient } from '@/server/supabase';
-import { getPptSales, getPptSummary } from '@/lib/sources/ppt';
+import { pptFetchSales } from '@/lib/sources/ppt';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const SUPPORTED = new Set(['cel25', 'cel25c']); // allowlist PPT sets (expand later)
+const SUPPORTED = new Set(['cel25c']); // PPT coverage allowlist
 
 export async function GET(req: Request) {
   // Lazy init here (NOT at module scope)
@@ -33,78 +33,22 @@ export async function GET(req: Request) {
 
   console.log(`🎯 Starting PPT sales sync for ${set}: ${cards?.length || 0} cards`);
 
-  let wroteSales = 0, wroteSummary = 0;
-  for (const c of cards ?? []) {
-    try {
-      console.log(`📊 Processing ${c.name} #${c.number}`);
-      
-      // Get sales data (graded and raw)
-      const sales = await getPptSales({ setId: c.set_id, number: c.number, name: c.name });
-      console.log(`  Found ${sales.length} sales`);
-
-      for (const s of sales) {
-        // PSA graded → graded_sales; raw (no grade) we'll put in graded_sales with grade=0
-        const gradeValue = s.grade && s.grade > 0 ? s.grade : 0;
-        
-        try {
-          const { error: insertError } = await db.from('graded_sales').insert({
-            card_id: c.card_id,
-            grade: gradeValue,
-            sold_date: s.soldDate?.slice(0,10) || new Date().toISOString().slice(0,10),
-            price: s.priceCents / 100,
-            source: s.source || 'ppt-ebay',
-            listing_id: null
-          });
-          
-          if (!insertError) {
-            wroteSales++;
-            console.log(`  ✅ Sale: Grade ${gradeValue}, $${(s.priceCents/100).toFixed(2)}`);
-          } else {
-            console.log(`  ⚠️ Sale insert error:`, insertError.message);
-          }
-        } catch (err) {
-          console.log(`  ❌ Sale insert failed:`, err);
-        }
-      }
-
-      // Also capture PPT summary (fast path) once per card (raw + psa10)
-      const summary = await getPptSummary({ setId: c.set_id, number: c.number, name: c.name });
-      if (summary) {
-        try {
-          const { error: upsertError } = await db.from('prices').upsert({
-            card_id: c.card_id,
-            source: 'ppt',
-            raw_cents: summary.rawCents ?? null,
-            psa10_cents: summary.psa10Cents ?? null,
-            currency: summary.currency,
-            ts: summary.ts,
-            notes: summary.notes
-          });
-          
-          if (!upsertError) {
-            wroteSummary++;
-            console.log(`  ✅ Summary: Raw $${summary.rawCents ? (summary.rawCents/100).toFixed(2) : 'N/A'}, PSA10 $${summary.psa10Cents ? (summary.psa10Cents/100).toFixed(2) : 'N/A'}`);
-          } else {
-            console.log(`  ⚠️ Summary upsert error:`, upsertError.message);
-          }
-        } catch (err) {
-          console.log(`  ❌ Summary upsert failed:`, err);
-        }
-      }
-
-      await new Promise(r=>setTimeout(r,150)); // be gentle to the API
-    } catch (error) {
-      console.error(`💥 Error processing ${c.name}:`, error);
+  let wrote = 0;
+  for (const c of cards || []) {
+    const sales = await pptFetchSales({ setId: c.set_id, number: c.number, name: c.name });
+    for (const s of sales) {
+      const { error: insErr } = await db.from('graded_sales').insert({
+        card_id: c.card_id,
+        grade: s.grade ?? 0,            // RAW=0, PSA10=10
+        sold_date: s.soldDate,
+        price: s.priceCents / 100,
+        source: s.source,
+        listing_id: null
+      });
+      if (!insErr) wrote++;
     }
+    await new Promise(r=>setTimeout(r,120));
   }
 
-  console.log(`✅ PPT sales sync complete: ${wroteSales} sales, ${wroteSummary} summaries`);
-  return NextResponse.json({ 
-    ok:true, 
-    set, 
-    total: cards?.length || 0,
-    wroteSales, 
-    wroteSummary,
-    message: `PPT sales sync complete for ${set}: ${wroteSales} sales, ${wroteSummary} summaries`
-  });
+  return NextResponse.json({ ok:true, set, wrote });
 }
