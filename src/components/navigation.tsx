@@ -17,6 +17,18 @@ export function Navigation() {
                 Analysis
               </Link>
               <Link 
+                href="/value-changes" 
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Value Changes
+              </Link>
+              <Link 
+                href="/admin/ingest-report" 
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Admin
+              </Link>
+              <Link 
                 href="/about" 
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >

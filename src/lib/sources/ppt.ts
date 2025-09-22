@@ -5,7 +5,27 @@ type Sale = { priceCents:number; grade:number|null; soldDate:string; source:stri
 
 const PPT_SET_MAP: Record<string,string> = { 
   cel25c: 'celebrations-classic-collection',
-  cel25: 'celebrations'
+  cel25: 'celebrations',
+  // Modern sets
+  swsh10: 'fusion-strike',
+  swsh11: 'brilliant-stars',
+  swsh12: 'astral-radiance',
+  pgo: 'pokemon-go',
+  swsh125: 'lost-origin',
+  swsh13: 'silver-tempest',
+  sv01: 'scarlet-violet-base-set',
+  sv02: 'paldea-evolved',
+  sv03: 'obsidian-flames',
+  sv35: '151',
+  sv04: 'paradox-rift',
+  sv045: 'paldean-fates',
+  sv05: 'temporal-forces',
+  sv06: 'twilight-masquerade',
+  sv065: 'shrouded-fable',
+  sv07: 'stellar-crown',
+  sv08: 'surging-sparks',
+  sv09: 'paradise-dragona',
+  sv10: 'prismatic-evolutions'
 };
 const slug = (id:string)=>PPT_SET_MAP[id] ?? id;
 
@@ -115,5 +135,5 @@ export async function getPptSales(card: CardKey) {
 }
 
 export function supportsPPT(setId: string): boolean {
-  return ['cel25', 'cel25c'].includes(setId);
+  return Object.keys(PPT_SET_MAP).includes(setId);
 }

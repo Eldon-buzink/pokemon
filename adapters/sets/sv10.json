@@ -1,0 +1,11 @@
+{
+  "id": "sv10",
+  "name": "Prismatic Evolutions", 
+  "lang": "EN",
+  "sources": {
+    "meta": ["ppt.sets", "pokemontcg.api"],
+    "images": ["pokemontcg.images", "tcgplayer.images"],
+    "prices": ["ppt.latest", "tcgplayer.market"],
+    "pops": ["psa.popCached"]
+  }
+}

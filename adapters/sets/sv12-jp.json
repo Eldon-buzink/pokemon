@@ -1,0 +1,11 @@
+{
+  "id": "sv12-jp",
+  "name": "Mega Evolutions",
+  "lang": "JP",
+  "sources": {
+    "meta": ["ppt.sets", "bulbapedia.setpage"],
+    "images": ["cardmarket.images", "pokecollector.images"],
+    "prices": ["ppt.latest"],
+    "pops": ["psa.popCached"]
+  }
+}

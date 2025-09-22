@@ -9,9 +9,17 @@
     "start": "next start",
     "lint": "eslint",
     "seed:celebrations": "ts-node --transpile-only src/scripts/seedCelebrations.ts",
+    "seed:history": "ts-node --transpile-only src/scripts/seed-history.ts",
+    "create:tables": "ts-node --transpile-only src/scripts/create-history-tables.ts",
     "debug:ppt": "ts-node --transpile-only src/scripts/debugPPT.ts",
     "find:celebrations": "ts-node --transpile-only src/scripts/findCelebrations.ts",
-    "migrate:db": "ts-node --transpile-only src/scripts/migrateDatabaseViews.ts"
+    "migrate:db": "ts-node --transpile-only src/scripts/migrateDatabaseViews.ts",
+    "ingest:modern-sets": "ts-node --transpile-only src/scripts/ingest-modern-sets.ts",
+    "ingest:all-sets": "ts-node --transpile-only src/scripts/ingest-all-sets.ts",
+    "compute:aggregates": "ts-node --transpile-only src/scripts/compute-aggregates.ts",
+    "expand:sets": "ts-node --transpile-only src/scripts/gradual-set-expansion.ts",
+    "ingest": "ts-node --transpile-only src/scripts/ingest.ts",
+    "add:next-set": "node add-remaining-sets.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
@@ -24,7 +32,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "recharts": "^3.2.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

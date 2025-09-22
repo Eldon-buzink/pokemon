@@ -9,13 +9,77 @@ interface FilterBarProps {
 
 const getSetDisplayName = (setId: string) => {
   switch (setId) {
+    // Celebrations Era
     case 'cel25': return 'Celebrations Main';
     case 'cel25c': return 'Celebrations Classic';
-    default: return setId;
+    
+    // Sword & Shield Era
+    case 'swsh10': return 'Fusion Strike';
+    case 'swsh11': return 'Brilliant Stars';
+    case 'swsh12': return 'Astral Radiance';
+    case 'pgo': return 'Pokemon GO';
+    case 'swsh125': return 'Lost Origin';
+    case 'swsh13': return 'Silver Tempest';
+    
+    // Scarlet & Violet Era
+    case 'sv01': return 'Scarlet & Violet Base';
+    case 'sv02': return 'Paldea Evolved';
+    case 'sv03': return 'Obsidian Flames';
+    case 'sv35': return '151';
+    case 'sv04': return 'Paradox Rift';
+    case 'sv045': return 'Paldean Fates';
+    case 'sv05': return 'Temporal Forces';
+    case 'sv06': return 'Twilight Masquerade';
+    case 'sv065': return 'Shrouded Fable';
+    case 'sv07': return 'Stellar Crown';
+    case 'sv08': return 'Surging Sparks';
+    case 'sv09': return 'Paradise Dragona';
+    case 'sv10': return 'Prismatic Evolutions';
+    case 'sv11': return 'Journey Together';
+    case 'sv115': return 'Space-Time Smackdown';
+    case 'sv12': return 'Mega Evolutions';
+    
+    // Japanese sets
+    case 'cel25c-jp': return 'Celebrations Classic (JP)';
+    case 'cel25-jp': return 'Celebrations (JP)';
+    case 'swsh10-jp': return 'Fusion Arts (JP)';
+    case 'swsh11-jp': return 'Star Birth (JP)';
+    case 'swsh12-jp': return 'Time Gazer / Space Juggler (JP)';
+    case 'pgo-jp': return 'Pokemon GO (JP)';
+    case 'swsh125-jp': return 'Lost Abyss (JP)';
+    case 'swsh13-jp': return 'VMAX Climax (JP)';
+    case 'sv01-jp': return 'Scarlet ex / Violet ex (JP)';
+    case 'sv02-jp': return 'Triplet Beat (JP)';
+    case 'sv03-jp': return 'Raging Surf (JP)';
+    case 'sv35-jp': return 'Pokemon Card 151 (JP)';
+    case 'sv04-jp': return 'Ancient Roar / Future Flash (JP)';
+    case 'sv045-jp': return 'Shiny Treasure ex (JP)';
+    case 'sv05-jp': return 'Cyber Judge (JP)';
+    case 'sv06-jp': return 'Mask of Change (JP)';
+    case 'sv065-jp': return 'Night Wanderer (JP)';
+    case 'sv07-jp': return 'Stellar Miracle (JP)';
+    case 'sv08-jp': return 'Paradise Dragona (JP)';
+    case 'sv09-jp': return 'Supercharged Breaker (JP)';
+    case 'sv10-jp': return 'Prismatic Evolutions (JP)';
+    case 'sv11-jp': return 'Journey Together (JP)';
+    case 'sv115-jp': return 'Space-Time Creation (JP)';
+    case 'sv12-jp': return 'Mega Evolution (JP)';
+    
+    default: return setId.toUpperCase();
   }
 };
 
-export function FilterBar({ availableSets = ['cel25', 'cel25c'] }: FilterBarProps) {
+export function FilterBar({ availableSets = [
+  // English sets
+  'cel25c', 'cel25', 'swsh10', 'swsh11', 'swsh12', 'pgo', 'swsh125', 'swsh13',
+  'sv01', 'sv02', 'sv03', 'sv35', 'sv04', 'sv045', 'sv05', 'sv06', 'sv065',
+  'sv07', 'sv08', 'sv09', 'sv10', 'sv11', 'sv115', 'sv12',
+  // Japanese sets
+  'cel25c-jp', 'cel25-jp', 'swsh10-jp', 'swsh11-jp', 'swsh12-jp', 'pgo-jp', 
+  'swsh125-jp', 'swsh13-jp', 'sv01-jp', 'sv02-jp', 'sv03-jp', 'sv35-jp', 
+  'sv04-jp', 'sv045-jp', 'sv05-jp', 'sv06-jp', 'sv065-jp', 'sv07-jp', 
+  'sv08-jp', 'sv09-jp', 'sv10-jp', 'sv11-jp', 'sv115-jp', 'sv12-jp'
+] }: FilterBarProps) {
   const router = useRouter();
   const sp = useSearchParams();
   const [searchValue, setSearchValue] = useState(sp.get('q') || '');

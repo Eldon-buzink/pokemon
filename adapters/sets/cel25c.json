@@ -1,0 +1,11 @@
+{
+  "id": "cel25c",
+  "name": "Celebrations Classic Collection",
+  "lang": "EN",
+  "sources": {
+    "meta": ["ppt.sets", "bulbapedia.setpage"],
+    "images": ["tcgplayer.images", "cardmarket.images", "pokecollector.images"],
+    "prices": ["ppt.latest"],
+    "pops": ["psa.popCached"]
+  }
+}
