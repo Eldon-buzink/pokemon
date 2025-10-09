@@ -19,11 +19,29 @@
     "compute:aggregates": "ts-node --transpile-only src/scripts/compute-aggregates.ts",
     "expand:sets": "ts-node --transpile-only src/scripts/gradual-set-expansion.ts",
     "ingest": "ts-node --transpile-only src/scripts/ingest.ts",
-    "add:next-set": "node add-remaining-sets.js"
+    "ingest:modern": "tsx src/scripts/ingest-modern-sets.ts",
+    "ingest:all": "tsx src/scripts/ingest-all-sets.ts",
+    "ingest:expand": "tsx src/scripts/gradual-set-expansion.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "add:next-set": "node add-remaining-sets.js",
+    "refresh:ebay:set": "tsx src/scripts/refresh-ebay-prices.ts --set",
+    "refresh:ebay:all": "tsx src/scripts/refresh-ebay-prices.ts --all",
+    "ebay:robust": "tsx src/scripts/refresh-ebay-robust.ts",
+    "ebay:test": "tsx src/scripts/refresh-ebay-robust.ts --set cel25c --window 7 --budget 50 --resume",
+    "build:prod": "NODE_ENV=production npm run build",
+    "start:prod": "NODE_ENV=production npm start",
+    "health:check": "tsx src/scripts/health-check.ts",
+    "deploy:vercel": "vercel --prod",
+    "deploy:netlify": "netlify deploy --prod"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.57.4",
+    "@types/xml2js": "^0.4.14",
+    "apify-client": "^2.17.0",
+    "bottleneck": "^2.19.5",
+    "cheerio": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.2",
@@ -33,6 +51,7 @@
     "react-dom": "19.1.0",
     "recharts": "^3.2.0",
     "tailwind-merge": "^3.3.1",
+    "xml2js": "^0.6.2",
     "zod": "^4.1.11"
   },
   "devDependencies": {
@@ -45,7 +64,9 @@
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "tw-animate-css": "^1.3.8",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.0.0"
   }
 }

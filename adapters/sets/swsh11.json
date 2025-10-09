@@ -1,11 +1,22 @@
 {
-  "id": "swsh11",
+  "id": "swsh12pt5",
   "name": "Brilliant Stars",
-  "lang": "EN", 
+  "lang": "EN",
   "sources": {
-    "meta": ["ppt.sets", "pokemontcg.api"],
-    "images": ["pokemontcg.images", "tcgplayer.images"],
-    "prices": ["ppt.latest", "tcgplayer.market"],
-    "pops": ["psa.popCached"]
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
   }
 }

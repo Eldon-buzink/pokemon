@@ -17,6 +17,18 @@ export function Navigation() {
                 Analysis
               </Link>
               <Link 
+                href="/analysis-enhanced" 
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                AI Analysis
+              </Link>
+              <Link 
+                href="/market-trends" 
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Market Trends
+              </Link>
+              <Link 
                 href="/value-changes" 
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -27,12 +39,6 @@ export function Navigation() {
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 Admin
-              </Link>
-              <Link 
-                href="/about" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                About
               </Link>
             </div>
           </div>

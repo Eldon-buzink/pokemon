@@ -1,11 +1,23 @@
 {
-  "id": "sv01",
+  "id": "sv1",
   "name": "Scarlet & Violet",
   "lang": "EN",
   "sources": {
-    "meta": ["ppt.sets", "pokemontcg.api"],
-    "images": ["pokemontcg.images", "tcgplayer.images", "cardmarket.images"],
-    "prices": ["ppt.latest", "tcgplayer.market"],
-    "pops": ["psa.popCached"]
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images",
+      "cardmarket.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
   }
 }

@@ -1,11 +1,22 @@
 {
-  "id": "sv35",
+  "id": "sv3pt5",
   "name": "151",
   "lang": "EN",
   "sources": {
-    "meta": ["ppt.sets", "pokemontcg.api"],
-    "images": ["pokemontcg.images", "tcgplayer.images"],
-    "prices": ["ppt.latest", "tcgplayer.market"],
-    "pops": ["psa.popCached"]
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
   }
 }

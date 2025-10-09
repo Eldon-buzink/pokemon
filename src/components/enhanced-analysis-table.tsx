@@ -226,8 +226,7 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
     router.push(`?${params.toString()}`);
   };
 
-  // Check if we have PPT data
-  const hasPPT = cards.some(card => card.ppt_raw_cents != null || card.ppt_psa10_cents != null);
+  // We now use eBay data from Apify instead of PPT
 
   return (
     <div className="overflow-x-auto">
@@ -244,11 +243,19 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
               onClick={handleSort}
             />
             <ClickableHeader 
-              label="Value" 
-              sortKey="value" 
+              label="RAW Price" 
+              sortKey="raw" 
               currentSort={currentSort} 
               currentDir={currentDir}
-              tooltip="Preferred value: PPT Raw (if available), else CM (+5% bias) or TCG"
+              tooltip="Raw/ungraded price: eBay 30d median (if available), else 90d median, else estimate"
+              onClick={handleSort}
+            />
+            <ClickableHeader 
+              label="PSA10 Price" 
+              sortKey="psa10" 
+              currentSort={currentSort} 
+              currentDir={currentDir}
+              tooltip="PSA 10 graded price: eBay 30d median (if available), else 90d median, else estimate"
               onClick={handleSort}
             />
             <ClickableHeader 
@@ -267,18 +274,6 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
               tooltip="Price change over the last 30 days"
               onClick={handleSort}
             />
-            {hasPPT && (
-              <>
-                <ClickableHeader 
-                  label="PSA10 Price" 
-                  sortKey="psa10" 
-                  currentSort={currentSort} 
-                  currentDir={currentDir}
-                  tooltip="PSA 10 graded price from PPT"
-                  onClick={handleSort}
-                />
-              </>
-            )}
             <ClickableHeader 
               label="PSA10 Chance" 
               sortKey="psa10_chance" 
@@ -443,8 +438,48 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
                   </div>
                 </td>
                 <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {preferredRawValue ? `$${(preferredRawValue / 100).toFixed(2)}` : '—'}
-                  {card.raw_n_90d && card.raw_n_90d > 0 ? <span className="text-xs text-gray-400 ml-1">({card.raw_n_90d} sales/90d)</span> : null}
+                  {preferredRawValue ? (
+                    <div className="flex items-center">
+                      <span className="text-gray-900">
+                        ${(preferredRawValue / 100).toFixed(2)}
+                      </span>
+                      {card.raw_n_30d && card.raw_n_30d > 0 ? (
+                        <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded">
+                          {card.raw_n_30d} sales/30d
+                        </span>
+                      ) : card.raw_n_90d && card.raw_n_90d > 0 ? (
+                        <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-700 rounded">
+                          {card.raw_n_90d} sales/90d
+                        </span>
+                      ) : (
+                        <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded">
+                          ESTIMATED
+                        </span>
+                      )}
+                    </div>
+                  ) : '—'}
+                </td>
+                <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {preferredPSA10Value.value ? (
+                    <div className="flex items-center">
+                      <span className={preferredPSA10Value.isEstimate ? 'text-gray-500' : 'text-gray-900'}>
+                        ${(preferredPSA10Value.value / 100).toFixed(2)}
+                      </span>
+                      {card.psa10_n_30d && card.psa10_n_30d > 0 ? (
+                        <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded">
+                          {card.psa10_n_30d} sales/30d
+                        </span>
+                      ) : card.psa10_n_90d && card.psa10_n_90d > 0 ? (
+                        <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-700 rounded">
+                          {card.psa10_n_90d} sales/90d
+                        </span>
+                      ) : (
+                        <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded">
+                          ESTIMATED
+                        </span>
+                      )}
+                    </div>
+                  ) : '—'}
                 </td>
                 <td className={`px-3 py-4 whitespace-nowrap text-sm ${getChangeColor(change5d)}`}>
                   {formatChange(change5d)}
@@ -452,28 +487,6 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
                 <td className={`px-3 py-4 whitespace-nowrap text-sm ${getChangeColor(change30d)}`}>
                   {formatChange(change30d)}
                 </td>
-                {hasPPT && (
-                  <td className="px-3 py-4 whitespace-nowrap text-sm">
-                    {estPsa10.value ? (
-                      <div className="flex items-center">
-                        <span className={estPsa10.method === 'global-ratio' ? 'text-gray-500' : 'text-gray-900'}>
-                          ${estPsa10.value.toFixed(2)}
-                        </span>
-                        {estPsa10.method === 'global-ratio' ? (
-                          <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded">
-                            ESTIMATED
-                          </span>
-                        ) : (
-                          card.psa10_n_90d && card.psa10_n_90d > 0 && (
-                            <span className="ml-1 px-1.5 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded">
-                              {card.psa10_n_90d} sales/90d
-                            </span>
-                          )
-                        )}
-                      </div>
-                    ) : '—'}
-                  </td>
-                )}
                 <td className="px-3 py-4 whitespace-nowrap text-sm">
                   {chance.pct !== null ? (
                     <div className="flex items-center">
@@ -513,11 +526,9 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
         </tbody>
       </table>
       
-      {!hasPPT && (
-        <div className="mt-4 text-center text-sm text-gray-500">
-          💡 PPT data not available for this set. Showing TCGplayer and Cardmarket prices only.
-        </div>
-      )}
+      <div className="mt-4 text-center text-sm text-gray-500">
+        💡 Pricing data from eBay sales via Apify. Green badges = 30d sales, Blue badges = 90d sales, Yellow badges = estimates.
+      </div>
       
       {/* Modal */}
       {selectedCard && (

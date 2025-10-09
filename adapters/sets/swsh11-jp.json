@@ -1,0 +1,25 @@
+{
+  "id": "swsh12pt5",
+  "name": "Star Birth",
+  "lang": "JP",
+  "sources": {
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images",
+      "cardmarket.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
+  },
+  "imagesOverrides": {},
+  "releaseDate": "2022-02-25"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "swsh14-jp",
+  "name": "Incandescent Arcana",
+  "lang": "JP",
+  "sources": {
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images",
+      "cardmarket.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
+  },
+  "imagesOverrides": {},
+  "releaseDate": "2022-11-11"
+}

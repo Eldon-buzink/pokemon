@@ -1,11 +1,22 @@
 {
-  "id": "sv12",
+  "id": "sv8pt5",
   "name": "Mega Evolutions",
   "lang": "EN",
   "sources": {
-    "meta": ["ppt.sets", "pokemontcg.api"],
-    "images": ["pokemontcg.images", "tcgplayer.images"],
-    "prices": ["ppt.latest", "tcgplayer.market"],
-    "pops": ["psa.popCached"]
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
   }
 }

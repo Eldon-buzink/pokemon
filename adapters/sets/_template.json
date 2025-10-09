@@ -1,0 +1,12 @@
+{
+  "id": "{{SET_ID}}",
+  "name": "{{SET_NAME}}",
+  "lang": "{{LANG}}",
+  "sources": {
+    "meta": ["ppt.sets", "pokemontcg.api"],
+    "images": ["pokemontcg.images", "tcgplayer.images", "cardmarket.images"],
+    "prices": ["ppt.latest", "tcgplayer.market"],
+    "pops": ["psa.popCached"]
+  },
+  "imagesOverrides": {}
+}

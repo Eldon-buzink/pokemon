@@ -8,7 +8,7 @@ const db = () => createClient(
 export type CardsListParams = {
   setId: string;
   q?: string;           // search in name or number
-  sort?: 'price'|'psa10'|'number'|'name'|'value';
+  sort?: 'price'|'psa10'|'number'|'name'|'value'|'raw';
   dir?: 'asc'|'desc';
   min?: number;         // min tcg_raw_cents
   max?: number;         // max tcg_raw_cents
@@ -74,10 +74,16 @@ export async function listCardsLatest(p: CardsListParams): Promise<CardLatest[]>
   const sort = p.sort ?? 'number';
   const dir = p.dir ?? 'asc';
   
-  q = q.order(sort === 'price' ? 'tcg_raw_cents' :
-              sort === 'psa10' ? 'ppt_psa10_cents' :
-              sort === 'value' ? 'tcg_raw_cents' : // Map 'value' to 'tcg_raw_cents'
-              sort, { ascending: dir === 'asc' });
+  // For PSA10 sorting, we need to use a calculated field since most real PSA10 values are null
+  if (sort === 'psa10') {
+    // Sort by estimated PSA10 price (4.5x raw price) when real PSA10 data is not available
+    q = q.order('tcg_raw_cents', { ascending: dir === 'asc' });
+  } else {
+    q = q.order(sort === 'price' ? 'tcg_raw_cents' :
+                sort === 'value' ? 'tcg_raw_cents' : // Map 'value' to 'tcg_raw_cents'
+                sort === 'raw' ? 'tcg_raw_cents' : // Map 'raw' to 'tcg_raw_cents'
+                sort, { ascending: dir === 'asc' });
+  }
   
   const { data, error } = await q.range(from, from + limit - 1);
   
@@ -260,22 +266,39 @@ function generateMockCardsForSet(setId: string, limit: number, from: number, par
 export async function getAvailableSets() {
   const client = db();
   
-  // Get sets from the main cards table
-  const { data, error } = await client
-    .from('cards')
-    .select('set_id')
-    .order('set_id');
+  // Use pagination to get all unique set_ids (avoiding 1000-row limit)
+  const pageSize = 1000;
+  let from = 0;
+  let to = pageSize - 1;
+  const sets = new Set<string>();
+
+  for (;;) {
+    const { data, error } = await client
+      .from('cards')
+      .select('set_id')
+      .not('set_id', 'is', null)
+      .order('set_id')
+      .range(from, to);
+
+    if (error) {
+      console.error('Error fetching sets from cards table:', error);
+      
+      // Fallback: return sets that are known to be ingested
+      return ['cel25c', 'cel25', 'pgo', 'sv01', 'sv10', 'sv10-jp'];
+    }
     
-  if (error || !data) {
-    console.error('Error fetching sets from cards table:', error);
-    
-    // Fallback: return sets that are known to be ingested
-    return ['cel25c', 'cel25'];
+    if (!data || data.length === 0) break;
+
+    data.forEach(r => sets.add(r.set_id));
+    if (data.length < pageSize) break;
+
+    from += pageSize;
+    to += pageSize;
   }
-  
-  // Get unique set IDs
-  const uniqueSets = Array.from(new Set(data.map(row => row.set_id)));
-  return uniqueSets.sort();
+
+  const uniqueSets = Array.from(sets).sort();
+  console.log('Found sets in cards table:', uniqueSets);
+  return uniqueSets;
   
   /* 
   // Original database query logic - disabled for now

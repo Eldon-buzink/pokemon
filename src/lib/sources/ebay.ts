@@ -1,135 +1,113 @@
-/**
- * eBay API Client for PSA 10 Pokemon Card Data
- * 
- * This client provides PSA 10 pricing data from eBay sold listings.
- * Currently using a placeholder implementation that can be upgraded
- * to use official eBay Marketplace Insights API or third-party services.
- */
+// eBay Finding API client for completed/sold items
+import { ebayLimiter, sleep, jitter } from '../rateLimiter';
 
-export interface EBayPSA10Data {
-  cardId: string;
-  psa10Price: number;
-  psa10Sales: number;
-  lastUpdated: string;
-  confidence: 'high' | 'medium' | 'low';
-  source: 'ebay' | 'third-party' | 'placeholder';
-}
+const EBAY_FINDING_URL = process.env.EBAY_APP_ID?.includes('SBX') 
+  ? "https://svcs.sandbox.ebay.com/services/search/FindingService/v1"
+  : "https://svcs.ebay.com/services/search/FindingService/v1";
+const APPID = process.env.EBAY_APP_ID!;
 
-export interface EBaySoldListing {
+export type CompletedItem = {
   title: string;
   price: number;
-  soldDate: string;
-  condition: string;
-  grade: string;
-  listingId: string;
+  currency: string;
+  endTime: string;
+  url: string;
+};
+
+function buildUrl(params: Record<string, string>) {
+  const u = new URL(EBAY_FINDING_URL);
+  u.searchParams.set("OPERATION-NAME", "findCompletedItems");
+  u.searchParams.set("SERVICE-VERSION", "1.13.0");
+  u.searchParams.set("RESPONSE-DATA-FORMAT", "JSON");
+  u.searchParams.set("REST-PAYLOAD", "true");
+  u.searchParams.set("SECURITY-APPNAME", APPID);
+  Object.entries(params).forEach(([k, v]) => u.searchParams.set(k, v));
+  return u.toString();
 }
 
-export class EBayClient {
-  private baseUrl: string;
-  private apiKey: string;
-
-  constructor(baseUrl: string, apiKey: string) {
-    this.baseUrl = baseUrl;
-    this.apiKey = apiKey;
-  }
-
-  /**
-   * Get PSA 10 pricing data for a specific card
-   */
-  async getPSA10Price(cardId: string, cardName: string): Promise<EBayPSA10Data | null> {
-    try {
-      // TODO: Implement actual eBay API call
-      // For now, return placeholder data
-      return this.getPlaceholderPSA10Data(cardId, cardName);
-    } catch (error) {
-      console.error('Error fetching eBay PSA 10 data:', error);
-      return null;
-    }
-  }
-
-  /**
-   * Get recent PSA 10 sold listings for a card
-   */
-  async getPSA10SoldListings(_cardId: string, _cardName: string): Promise<EBaySoldListing[]> {
-    try {
-      // TODO: Implement actual eBay API call
-      // For now, return empty array
-      return [];
-    } catch (error) {
-      console.error('Error fetching eBay sold listings:', error);
-      return [];
-    }
-  }
-
-  /**
-   * Search for PSA 10 listings by card name
-   */
-  async searchPSA10Listings(_cardName: string, _set?: string): Promise<EBaySoldListing[]> {
-    try {
-      // TODO: Implement actual eBay API call
-      // For now, return empty array
-      return [];
-    } catch (error) {
-      console.error('Error searching eBay PSA 10 listings:', error);
-      return [];
-    }
-  }
-
-  /**
-   * Placeholder PSA 10 data for development
-   * This will be replaced with real eBay data
-   */
-  private getPlaceholderPSA10Data(cardId: string, cardName: string): EBayPSA10Data {
-    // Generate some realistic placeholder data based on card name
-    const basePrice = this.estimatePSA10Price(cardName);
+async function fetchOnce(url: string, attempt = 1): Promise<any> {
+  return ebayLimiter.schedule(async () => {
+    const res = await fetch(url, { headers: { "Accept": "application/json" } });
     
-    return {
-      cardId,
-      psa10Price: basePrice,
-      psa10Sales: Math.floor(Math.random() * 20) + 5, // 5-25 sales
-      lastUpdated: new Date().toISOString(),
-      confidence: 'low' as const,
-      source: 'placeholder' as const
-    };
-  }
-
-  /**
-   * Estimate PSA 10 price based on card name
-   * This is a placeholder function for development
-   */
-  private estimatePSA10Price(cardName: string): number {
-    // Simple heuristic based on card name
-    const name = cardName.toLowerCase();
-    
-    if (name.includes('charizard')) {
-      return Math.floor(Math.random() * 5000) + 1000; // $1000-$6000
-    } else if (name.includes('pikachu')) {
-      return Math.floor(Math.random() * 2000) + 500; // $500-$2500
-    } else if (name.includes('mewtwo')) {
-      return Math.floor(Math.random() * 3000) + 800; // $800-$3800
-    } else if (name.includes('blastoise')) {
-      return Math.floor(Math.random() * 1500) + 400; // $400-$1900
-    } else if (name.includes('venusaur')) {
-      return Math.floor(Math.random() * 1200) + 300; // $300-$1500
-    } else {
-      return Math.floor(Math.random() * 500) + 100; // $100-$600
+    if (res.status === 429) {
+      // exponential backoff + jitter
+      const wait = jitter(1000 * Math.pow(2, attempt), 0.5);
+      if (attempt <= 4) { 
+        await sleep(wait); 
+        return fetchOnce(url, attempt + 1); 
+      }
+      throw new Error("eBay 429 after retries");
     }
+    
+    if (res.status >= 500) {
+      const wait = jitter(800 * Math.pow(2, attempt), 0.5);
+      if (attempt <= 4) { 
+        await sleep(wait); 
+        return fetchOnce(url, attempt + 1); 
+      }
+      throw new Error(`eBay ${res.status} after retries`);
+    }
+    
+    if (!res.ok) throw new Error(`eBay ${res.status}`);
+    
+    const json = await res.json();
+    // a little post-call jitter to avoid sync with other jobs
+    await sleep(jitter(200, 0.7));
+    return json;
+  });
+}
+
+export async function findCompleted({
+  query,
+  categoryId,
+  entriesPerPage = 100,
+  pageNumber = 1,
+  endTimeFrom,
+  endTimeTo,
+  soldOnly = true
+}: {
+  query: string;
+  categoryId?: string;
+  entriesPerPage?: number;
+  pageNumber?: number;
+  endTimeFrom?: string; // ISO
+  endTimeTo?: string;   // ISO
+  soldOnly?: boolean;
+}): Promise<{ items: CompletedItem[]; totalPages: number; totalEntries: number; }> {
+  const filters: string[] = [];
+  if (soldOnly) {
+    filters.push("itemFilter(0).name=SoldItemsOnly", "itemFilter(0).value=true");
   }
-}
+  if (endTimeFrom) filters.push(`itemFilter(1).name=EndTimeFrom`, `itemFilter(1).value=${encodeURIComponent(endTimeFrom)}`);
+  if (endTimeTo) filters.push(`itemFilter(2).name=EndTimeTo`, `itemFilter(2).value=${encodeURIComponent(endTimeTo)}`);
 
-/**
- * Create eBay client instance
- */
-export function createEBayClient(): EBayClient {
-  const baseUrl = process.env.EBAY_API_URL || 'https://api.ebay.com';
-  const apiKey = process.env.EBAY_API_KEY || 'placeholder-key';
-  
-  return new EBayClient(baseUrl, apiKey);
-}
+  const url = buildUrl({
+    "keywords": query,
+    ...(categoryId ? { "categoryId": categoryId } : {}),
+    "sortOrder": "EndTimeSoonest",
+    "paginationInput.entriesPerPage": String(entriesPerPage),
+    "paginationInput.pageNumber": String(pageNumber),
+    ...Object.fromEntries(filters.map((f, i) => [String(100 + i), f])) // hack: tack on filters
+  });
 
-/**
- * Mock eBay client for development
- */
-export function createMockEBayClient(): EBayClient {
-  return new EBayClient('https://mock-ebay-api.com', 'mock-key');
+  const json = await fetchOnce(url);
+  await sleep(1100);
+
+  const ack = json?.findCompletedItemsResponse?.[0]?.ack?.[0];
+  if (ack !== "Success") throw new Error("eBay ack != Success");
+
+  const resp = json.findCompletedItemsResponse[0];
+  const totalPages = Number(resp.paginationOutput?.[0]?.totalPages?.[0] ?? 1);
+  const totalEntries = Number(resp.paginationOutput?.[0]?.totalEntries?.[0] ?? 0);
+  const arr = (resp.searchResult?.[0]?.item ?? []) as any[];
+
+  const items: CompletedItem[] = arr.map((it: any) => ({
+    title: it.title?.[0] ?? "",
+    price: Number(it.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ ?? 0),
+    currency: it.sellingStatus?.[0]?.currentPrice?.[0]?.["@currencyId"] ?? "USD",
+    endTime: it.listingInfo?.[0]?.endTime?.[0] ?? "",
+    url: it.viewItemURL?.[0] ?? ""
+  })).filter(i => i.price > 0);
+
+  return { items, totalPages, totalEntries };
 }

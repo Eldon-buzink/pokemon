@@ -1,7 +1,17 @@
 import { readCache, writeCache, canAttempt, noteAttempt } from '@/server/pptStore';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config({ path: '.env.local' });
 
 const BASE = process.env.PPT_BASE_URL || 'https://www.pokemonpricetracker.com/api/v2';
 const KEY  = process.env.PPT_API_KEY;
+
+// Debug logging
+if (!KEY) {
+  console.warn('⚠️ PPT_API_KEY not found in pptFetch.ts');
+  console.log('Available env vars:', Object.keys(process.env).filter(k => k.includes('PPT')));
+}
 
 function sleep(ms:number){ return new Promise(r=>setTimeout(r,ms)); }
 

@@ -1,0 +1,25 @@
+{
+  "id": "zsv10pt5",
+  "name": "Mega Evolutions",
+  "lang": "EN",
+  "sources": {
+    "meta": [
+      "ppt.sets",
+      "pokemontcg.api"
+    ],
+    "images": [
+      "pokemontcg.images",
+      "tcgplayer.images",
+      "cardmarket.images"
+    ],
+    "prices": [
+      "ppt.latest",
+      "tcgplayer.market"
+    ],
+    "pops": [
+      "psa.popCached"
+    ]
+  },
+  "imagesOverrides": {},
+  "releaseDate": "2025-01-31"
+}
