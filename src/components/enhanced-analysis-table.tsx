@@ -11,6 +11,7 @@ import { Sparkline } from '@/components/sparkline';
 import { Tooltip } from '@/components/tooltip';
 import { ConfidenceChip } from '@/components/ConfidenceChip';
 import { CardDetailModal } from '@/components/CardDetailModal';
+import { getSafeImageUrl, analyzeImageIssues } from '@/lib/image-validation';
 
 interface Card {
   card_id: string;
@@ -115,15 +116,15 @@ function getProfitColor(profit: number): string {
   return 'text-gray-500';
 }
 
-// Helper function to get preferred RAW value (90d median → 30d median → last eBay → PPT summary → TCG → CM)
+// Helper function to get preferred RAW value (90d median → 30d median → TCG → CM → PPT eBay → PPT)
 function getPreferredRawValue(card: Card): number | null {
   return (
     (card.raw_median_90d_cents ?? null) ??
     (card.raw_median_30d_cents ?? null) ??
-    (card.ppt_raw_ebay_cents ?? null) ??
-    card.ppt_raw_cents ??
     card.tcg_raw_cents ??
     (card.cm_raw_cents ? Math.round(card.cm_raw_cents * 1.05) : null) ??
+    (card.ppt_raw_ebay_cents ?? null) ??
+    card.ppt_raw_cents ??
     null
   );
 }
@@ -388,27 +389,7 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
                     className="flex items-center hover:text-blue-600 transition-colors cursor-pointer w-full text-left"
                   >
                     <div className="flex-shrink-0 h-8 w-6">
-                      {card.image_url_small ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          className="h-8 w-6 rounded object-cover"
-                          src={card.image_url_small}
-                          alt={card.name}
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.innerHTML = '<span class="text-xs text-gray-500">🎴</span>';
-                              parent.className = 'h-8 w-6 rounded bg-gray-200 flex items-center justify-center';
-                            }
-                          }}
-                        />
-                      ) : (
-                        <div className="h-8 w-6 rounded bg-gray-200 flex items-center justify-center">
-                          <span className="text-xs text-gray-500">?</span>
-                        </div>
-                      )}
+                      <CardImage card={card} />
                     </div>
                     <div className="ml-2 min-w-0">
                       <div className="text-xs font-medium text-gray-900 truncate">
@@ -539,5 +520,57 @@ export function EnhancedAnalysisTable({ cards, currentSort, currentDir, trendlin
         />
       )}
     </div>
+  );
+}
+
+// CardImage component with validation
+function CardImage({ card }: { card: Card }) {
+  const safeImageUrl = getSafeImageUrl(
+    {
+      cardId: card.card_id,
+      setId: card.set_id,
+      name: card.name,
+      number: card.number
+    },
+    card.image_url_small
+  );
+
+  const imageAnalysis = analyzeImageIssues(
+    {
+      cardId: card.card_id,
+      setId: card.set_id,
+      name: card.name,
+      number: card.number
+    },
+    card.image_url_small
+  );
+
+  // If the image is invalid, show a placeholder with debug info
+  if (!imageAnalysis.isValid && card.image_url_small) {
+    return (
+      <Tooltip content={`Invalid image: ${imageAnalysis.reason} (Source: ${imageAnalysis.source})`}>
+        <div className="h-8 w-6 rounded bg-red-100 border border-red-300 flex items-center justify-center">
+          <span className="text-xs text-red-600">⚠️</span>
+        </div>
+      </Tooltip>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className="h-8 w-6 rounded object-cover"
+      src={safeImageUrl}
+      alt={card.name}
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.style.display = 'none';
+        const parent = target.parentElement;
+        if (parent) {
+          parent.innerHTML = '<span class="text-xs text-gray-500">🎴</span>';
+          parent.className = 'h-8 w-6 rounded bg-gray-200 flex items-center justify-center';
+        }
+      }}
+    />
   );
 }

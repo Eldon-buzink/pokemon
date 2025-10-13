@@ -14,9 +14,9 @@ const getSetDisplayName = (setId: string) => {
     case 'cel25c': return 'Celebrations Classic';
     
     // Sword & Shield Era
-    case 'swsh10': return 'Fusion Strike';
+    case 'swsh10': return 'Astral Radiance';
     case 'swsh11': return 'Brilliant Stars';
-    case 'swsh12': return 'Astral Radiance';
+    case 'swsh12': return 'Fusion Strike';
     case 'pgo': return 'Pokemon GO';
     case 'swsh125': return 'Lost Origin';
     case 'swsh13': return 'Silver Tempest';

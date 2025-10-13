@@ -274,14 +274,14 @@ export async function getAvailableSets() {
 
   for (;;) {
     const { data, error } = await client
-      .from('cards')
+      .from('v_cards_latest')
       .select('set_id')
       .not('set_id', 'is', null)
       .order('set_id')
       .range(from, to);
 
     if (error) {
-      console.error('Error fetching sets from cards table:', error);
+      console.error('Error fetching sets from v_cards_latest:', error);
       
       // Fallback: return sets that are known to be ingested
       return ['cel25c', 'cel25', 'pgo', 'sv01', 'sv10', 'sv10-jp'];
@@ -297,7 +297,7 @@ export async function getAvailableSets() {
   }
 
   const uniqueSets = Array.from(sets).sort();
-  console.log('Found sets in cards table:', uniqueSets);
+  console.log('Found sets in v_cards_latest:', uniqueSets);
   return uniqueSets;
   
   /* 

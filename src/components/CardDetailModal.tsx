@@ -12,6 +12,7 @@ import { CardMeta, MarketNow } from '@/lib/types';
 import { isSuspiciousRatio } from '@/lib/quality';
 import { Psa10Delta } from '@/components/Psa10Delta';
 import { getPriceChartingBenchmark } from '@/lib/external-benchmarks';
+import { getSafeImageUrl, analyzeImageIssues } from '@/lib/image-validation';
 
 interface CardDetailModalProps {
   setId: string;
@@ -106,7 +107,15 @@ export function CardDetailModal({ setId, number, onClose }: CardDetailModalProps
     name: cardData.name,
     rarity: cardData.rarity || undefined,
     setName: cardData.set_name || 'Unknown Set',
-    imageUrl: cardData.image_url_large || cardData.image_url_small || undefined
+    imageUrl: getSafeImageUrl(
+      {
+        cardId: cardData.card_id,
+        setId: cardData.set_id,
+        name: cardData.name,
+        number: cardData.number
+      },
+      cardData.image_url_large || cardData.image_url_small
+    )
   };
   
   // Use same logic as analysis table for consistency

@@ -25,6 +25,7 @@ const TCGDEX_BASE_URL = 'https://api.tcgdex.net/v2/ja';
 
 // Map our set IDs to TCGdex set IDs
 const SET_ID_MAPPING: Record<string, string> = {
+  'cel25-jp': 'CEL25', // Celebrations Japanese
   'sv01-jp': 'SV1V',  // Violet ex
   'sv02-jp': 'SV2D',  // Snow Hazard
   'sv03-jp': 'SV2P',  // Clay Burst
